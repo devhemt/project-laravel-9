@@ -12,7 +12,7 @@
         @endphp
         <img src="images/{{ $image[0] }}" href="">
     </div>
-    
+
 
     <div class="col-md-6">
         <div class="product-details">
@@ -22,7 +22,7 @@
             <span class="price">Price : ${{ $p->price }}</span>
             <div class="size-variation">
                 <span>size :</span>
-                <select name="size-value">
+                <select wire:model="getsize" name="size-value">
                 @php
                     $trim = trim($p->size);
                     $size = explode(" ",$trim);
@@ -32,24 +32,29 @@
                 @endforeach
                 </select>
             </div>
-            <div class="color-variation">
+            <div  class="color-variation">
                 <span>color :</span>
-                <ul>
+                <ul id="blablo">
                 @php
                     $trim = trim($p->color);
                     $color = explode(" ",$trim);
                 @endphp
                 @foreach ($color as $s)
-                    <li><i class="fas fa-circle" style="color:{{ $s }}"></i></li>
+                    <li class="quickcolor"><i wire:click="getColor('{{$s}}')" class="fas fa-circle
+                    @if($showchose == $s)
+                        {{$colorclass}}
+                    @endif
+                    " style="color:{{ $s }}"></i></li>
                 @endforeach
                 </ul>
             </div>
+            <p class="text-danger" style="height:20px;padding: 0px;">{{$checked}}</p>
 
             <div class="add-tocart-wrap" wire:ignore>
-                
-                <input class="quantityQV" min="1" name="quantity" value="1" type="number"/>
-                <a href="#" wire:click="addcart" class="add-to-cart"><i class="flaticon-shopping-purse-icon"></i>Add to Cart</a>
-                
+
+                <input wire:model="quantity" class="quantityQV" min="1" name="quantity" value="{{$quantity}}" type="number"/>
+                <a href="#" wire:click="addcart({{$p->prd_id}})" class="add-to-cart"><i class="flaticon-shopping-purse-icon"></i>Add to Cart</a>
+
             </div>
 
 
@@ -72,7 +77,7 @@
             </div>
 
         </div>
-        
+
     </div>
 @endforeach
 @endif

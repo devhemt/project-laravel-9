@@ -416,6 +416,12 @@ p {
   overflow: hidden;
 }
 
+.cart-img img{
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
+
 .single-cart {
   display: block;
   margin-bottom: 10px;
@@ -1793,6 +1799,14 @@ a.btn-two::after {
 
 .color-variation ul li {
   display: inline-block;
+}
+
+.color-variation ul li {
+    display: inline-block;
+}
+
+.color-variation .quickcolor .active{
+    background-color: #0dcaf0;
 }
 
 .color-variation ul li:nth-child(1) {
@@ -5477,7 +5491,7 @@ border-bottom-right-radius: 16px;
     height: 510px;
     overflow: scroll;
   }
-  
+
   .quickview .add-tocart-wrap a.add-to-cart {
     height: 45px;
     width: 169px;
@@ -6358,7 +6372,7 @@ border-bottom-right-radius: 16px;
   .main-product .sin-product .color-variation ul li {
     font-size: 10px;
   }
-  
+
   .main-product .sin-product.style-two .mid-wrapper span {
     font-size: 14px;
     float: none;

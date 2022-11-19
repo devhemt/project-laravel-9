@@ -8,16 +8,11 @@ use Illuminate\Support\Facades\DB;
 class Index extends Component
 {
     public $product;
-    
 
-    // public function mount()
-    // {
-        
-    // }
     public function showQuickView($id) {
         $this->emit('idView', $id);
     }
-    
+
     public function render()
     {
         $this->product = DB::table('items')
