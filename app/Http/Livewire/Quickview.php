@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class Quickview extends Component
 {
@@ -19,9 +20,6 @@ class Quickview extends Component
     public $quantity = 1;
     public $checked = 'Stock';
 
-//    public function mount(){
-//        Cart::remove(1);
-//    }
 
     public function getColor($input){
         $this->color = $input;
@@ -40,8 +38,15 @@ class Quickview extends Component
             $this->color = $colorch[0];
         }
         // issue the same prd but not the same color and size will be solved by checkall
-        $userId = Auth::guard("customer")->id();
-        Cart::session($userId);
+
+//        $sessionId = Session::getId();
+//        dd($sessionId);
+        if (Auth::guard("customer")->check()){
+            $userId = Auth::guard("customer")->id();
+            Cart::session($userId);
+        }else{
+            $userId = Session::getId();
+        }
         Cart::add([
             'id' => $prd_id,
             'name' => $this->name,
