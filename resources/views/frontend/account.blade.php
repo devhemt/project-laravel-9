@@ -1,6 +1,6 @@
 @extends('layout.default')
 @section('content')
-  
+
     <main id="main">
 		<!--=========================-->
 		<!--=        Breadcrumb         =-->
@@ -38,7 +38,8 @@
 								<li>1652</li>
 							</ul>
 						</div>
-						<!-- /.cart-subtotal -->
+                        <a href="{{ route('signout') }}" class="btn-two">Sign Out</a>
+
 					</div>
 					<!-- /.col-xl-3 -->
 					<div class="col-xl-9">

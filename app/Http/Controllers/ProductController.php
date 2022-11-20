@@ -45,13 +45,13 @@ class ProductController extends Controller
         // dd($request);
 
         $request->validate([
-            'prd_name' => 'required|unique:items,name|size:200',
+            'prd_name' => 'required|unique:items,name|max:200',
             'prd_cost_price' => 'required',
             'prd_price' => 'required',
             'prd_category' => 'required',
             'prd_tag' => 'required',
-            'prd_size' => 'required',
-            'prd_color' => 'required',
+            'prd_size' => 'required|max:20',
+            'prd_color' => 'required|max:20',
             'prd_amount' => 'required',
             'prd_description' => 'required'
         ]);
@@ -61,7 +61,7 @@ class ProductController extends Controller
             $images.=$i->getClientOriginalName();
             $images.=" ";
         }
-        
+
         $items = Items::create([
             'images' => $images,
             'name' => $request->get('prd_name'),
@@ -74,7 +74,7 @@ class ProductController extends Controller
         foreach ($file as $f) {
             $f->move('images', $f->getClientOriginalName());
         }
-        
+
 
         $id = DB::table('items')->latest('created_at')->first();
         $size = $request->get('prd_size');

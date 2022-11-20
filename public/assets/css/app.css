@@ -3570,6 +3570,10 @@ border-bottom-right-radius: 16px;
   padding: 70px 0px;
 }
 
+.account-area .btn-two{
+    margin-left: 80px;
+}
+
 .account-table th {
   text-align: inherit;
   padding: 10px 0;

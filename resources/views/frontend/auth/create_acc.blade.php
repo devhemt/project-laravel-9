@@ -37,19 +37,38 @@
 				<div class="row justify-content-center">
 					<div class="col-sm-9 col-md-8 col-lg-6 col-xl-4">
 						<div class="contact-form login-form">
-							<form action="#">
+							<form accept-charset="utf-8" action="{{ route('register.custom') }}" role="form" method="POST">
+                                @csrf
 								<div class="row">
 									<div class="col-xl-12">
-										<input type="text" placeholder="First Name*">
+										<input name="name" type="text" placeholder="Name">
+                                        @if ($errors->has('name'))
+                                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                                        @endif
 									</div>
 									<div class="col-xl-12">
-										<input type="text" placeholder="Last Name*">
+										<input name="email" type="email" placeholder="Email">
+                                        @if ($errors->has('email'))
+                                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                                        @endif
 									</div>
 									<div class="col-xl-12">
-										<input type="text" placeholder="Email*">
+										<input name="phone" type="tel" placeholder="Phone">
+                                        @if ($errors->has('phone'))
+                                            <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                        @endif
 									</div>
+                                    <div class="col-xl-12">
+                                        <input name="address" type="text" placeholder="Address">
+                                        @if ($errors->has('address'))
+                                            <span class="text-danger">{{ $errors->first('address') }}</span>
+                                        @endif
+                                    </div>
 									<div class="col-xl-12">
-										<input type="text" placeholder="Password*">
+										<input name="password" type="password" placeholder="Password">
+                                        @if ($errors->has('password'))
+                                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                                        @endif
 									</div>
 									<div class="col-xl-12">
 										<input type="submit" value="CREATE">

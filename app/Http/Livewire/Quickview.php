@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Cart;
+use Illuminate\Support\Facades\Auth;
 
 class Quickview extends Component
 {
@@ -39,6 +40,8 @@ class Quickview extends Component
             $this->color = $colorch[0];
         }
         // issue the same prd but not the same color and size will be solved by checkall
+        $userId = Auth::guard("customer")->id();
+        Cart::session($userId);
         Cart::add([
             'id' => $prd_id,
             'name' => $this->name,

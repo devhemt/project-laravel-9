@@ -37,14 +37,21 @@
 				<div class="row justify-content-center">
 					<div class="col-sm-9 col-md-8 col-lg-6 col-xl-4">
 						<div class="contact-form login-form">
-							<form action="#">
+							<form method="POST" action="{{ url('/login') }}">
+                                @csrf
 								<div class="row">
 									<div class="col-xl-12">
-										<input type="text" placeholder="Email*">
+										<input name="email" type="email" placeholder="Email">
 									</div>
+                                    @if ($errors->has('email'))
+                                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                                    @endif
 									<div class="col-xl-12">
-										<input type="text" placeholder="Password*">
+										<input name="password" type="password" placeholder="Password">
 									</div>
+                                    @if ($errors->has('password'))
+                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                    @endif
 									<div class="col-xl-12">
 										<input type="submit" value="LOG IN">
 									</div>

@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/acc', function () {
-    return view('frontend.account');
-});
 
 Route::get('/blog', function () {
     return view('frontend.blog');
@@ -32,10 +29,6 @@ Route::get('/contact', function () {
 
 Route::get('/createacc', function () {
     return view('frontend.auth.create_acc');
-});
-
-Route::get('/login', function () {
-    return view('frontend.auth.login');
 });
 
 Route::get('/prd', function () {
@@ -55,14 +48,12 @@ Route::resource('/', HomeController::class);
 
 Route::resource('/item', ItemsController::class);
 
-Route::resource('/customer', CustomerController::class);
+Route::match(['get', 'post'], '/login', [\App\Http\Controllers\CustomerController::class, 'login'])->name('login');
+//Route::middleware('auth')->group(function (){
+//    Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//});
 
+Route::get('registration', [\App\Http\Controllers\CustomerController::class, 'registration'])->name('register-user');
+Route::post('custom-registration', [\App\Http\Controllers\CustomerController::class, 'customRegistration'])->name('register.custom');
+Route::get('signout', [\App\Http\Controllers\CustomerController::class, 'signOut'])->name('signout');
 
-
-
-
-
-// Route::get('/role',[
-//     'middleware' => 'role:superadmin',
-//     'uses' => 'MainController@checkRole',
-//  ]);
