@@ -8,45 +8,43 @@
                             <div class="p-5">
                                 <div class="d-flex justify-content-between align-items-center mb-5">
                                     <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
-                                    <h6 class="mb-0 text-muted">3 items</h6>
+                                    <h6 class="mb-0 text-muted">{{$totalquantity}} items</h6>
                                 </div>
                                 <hr class="my-4">
-
+                                @if(isset($cart))
+                                @foreach($cart as $c)
                                 <div class="row mb-4 d-flex justify-content-between align-items-center">
                                     <div class="col-md-2 col-lg-2 col-xl-2">
                                         <img
-                                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img7.webp"
+                                            src="{{url('images/'.$c['attributes'][0]['image'])}}"
                                             class="img-fluid rounded-3" alt="Cotton T-shirt">
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-3">
-                                        <h6 class="text-muted">Shirt</h6>
-                                        <h6 class="text-black mb-0">Cotton T-shirt</h6>
+                                        <h6 class="text-muted">{{$c['name']}}</h6>
                                         <h6 class="color">Color:
                                             <div class="color-container">
-                                                <div id="colors" class="colors" style="background-color:red;"></div>
+                                                <div id="colors" class="colors" style="background-color:{{$c['attributes'][0]['color']}};"></div>
                                             </div>
                                         </h6>
                                         <h6 class="size">Size:
                                             <div class="size-container">
-                                                <div id="sizes" class="sizes">XL</div>
+                                                <div id="sizes" class="sizes">{{$c['attributes'][0]['size']}}</div>
                                             </div>
                                         </h6>
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                        <button class="btn btn-link px-2"
-                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                        <button wire:click="minus({{$c['id']}})" class="btn btn-link px-2">
                                             <i class="fas fa-minus"></i>
                                         </button>
 
-                                        <input id="form3" class="quantity" min="0" name="quantity" value="1" type="number"/>
+                                        <input id="form3" class="quantity" min="0" name="quantity" value="{{$c['quantity']}}" type="number" readonly/>
 
-                                        <button class="btn btn-link px-2"
-                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                        <button wire:click="plus({{$c['id']}})" class="btn btn-link px-2">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </div>
                                     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                        <h6 class="mb-0">€ 44.00</h6>
+                                        <h6 class="mb-0">$ {{$c['price']}}</h6>
                                     </div>
                                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                         <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
@@ -54,6 +52,8 @@
                                 </div>
 
                                 <hr class="my-4">
+                                @endforeach
+                                @endif
 
                                 <div class="pt-5">
                                     <h6 class="mb-0"><a href="#!" class="text-body"><i
@@ -67,8 +67,8 @@
                                 <hr class="my-4">
 
                                 <div class="d-flex justify-content-between mb-4">
-                                    <h5 class="text-uppercase">items 3</h5>
-                                    <h5>€ 132.00</h5>
+                                    <h5 class="text-uppercase">{{$totalquantity}} items</h5>
+                                    <h5>$ {{$total}}</h5>
                                 </div>
 
                                 <h5 class="text-uppercase mb-3">Shipping</h5>
@@ -95,7 +95,7 @@
 
                                 <div class="d-flex justify-content-between mb-5">
                                     <h5 class="text-uppercase">Total price</h5>
-                                    <h5>€ 137.00</h5>
+                                    <h5>$ {{$total}}</h5>
                                 </div>
 
                                 <button type="button" class="btn btn-dark btn-block btn-lg"

@@ -1,6 +1,6 @@
-<li class="top-cart">
-    <a href="javascript:void(0)"><i class="fa fa-shopping-cart" aria-hidden="true"></i> (2)</a>
-    <div class="cart-drop">
+<li class="top-cart" >
+    <a href="javascript:void(0)" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> (2)</a>
+    <div class="cart-drop" wire:ignore.self>
         @if(isset($cart))
         @foreach($cart as $c)
         <div class="single-cart">

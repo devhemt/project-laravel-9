@@ -54,8 +54,8 @@ class Quickview extends Component
             'quantity' => $this->quantity,
             'attributes' => array(
                 0 => array(
-                    'color' => $this->getsize,
-                    'size' => $this->color,
+                    'color' => $this->color,
+                    'size' => $this->getsize,
                     'image' => $this->imagein,
                 )
 //                'color' => $this->getsize,

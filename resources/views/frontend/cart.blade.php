@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        @livewire('cart')
+        @livewire('truecart')
       </section>
 
 
