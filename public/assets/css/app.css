@@ -3487,6 +3487,7 @@ border-bottom-right-radius: 16px;
 .visitor-form-container form .btn{
   display: block;
   width:100%;
+    background-color: rgba(234, 171, 41, 0.99);
 }
 
 .visitor-form-container #form-close{

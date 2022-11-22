@@ -98,7 +98,7 @@
                                     <h5>$ {{$total}}</h5>
                                 </div>
 
-                                <button type="button" class="btn btn-dark btn-block btn-lg"
+                                <button wire:click="register" type="button" class="btn btn-dark btn-block btn-lg"
                                         data-mdb-ripple-color="dark" id="visitor-btn">Register</button>
 
                             </div>

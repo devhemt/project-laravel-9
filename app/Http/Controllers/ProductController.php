@@ -9,7 +9,6 @@ use App\Models\Nature1;
 use App\Models\Category;
 use App\Models\Batchprice;
 use Illuminate\Support\Facades\DB;
-use Cart;
 
 class ProductController extends Controller
 {
@@ -20,7 +19,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-        Cart::add([]);
         return view('backend.product.showproduct');
     }
 
