@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('invoice_id');
             $table->integer('cusid')->unsigned();
             $table->float('pay');
-            $table->float('cost_pay');
+            $table->string('payment',50);
             $table->timestamps();
             $table->foreign('cusid')
                   ->references('cus_id')->on('customer')

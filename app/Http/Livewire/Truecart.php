@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Detail_invoice;
+use App\Models\Invoice;
+use App\Models\Status;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
@@ -14,14 +17,12 @@ class Truecart extends Component
     public $totalquantity = 0;
     public $total;
 
-    public function checkInvoice($prd_id,$size,$color){
+    public function checkInvoice($prd_id){
         $product = DB::table('detail_invoice')
             ->join('invoice', 'detail_invoice.invoice_id','=', 'invoice.invoice_id')
             ->join('status', 'invoice.invoice_id','=', 'status.invoice_id')
             ->select('detail_invoice.*','status.status')
             ->where('detail_invoice.itemsid','=', $prd_id)
-            ->where('detail_invoice.size','=',$size)
-            ->where('detail_invoice.color','=',$color)
             ->get();
 
         $totalamount = 0;
@@ -38,10 +39,8 @@ class Truecart extends Component
                 ->where('batch','=',$batch)
                 ->get();
 
-        $totalamount ;
-        foreach ($prdbatch as $p){
-            $totalamount = $p['batch_amount'];
-        }
+        $totalamount = $prdbatch[0]->batch_amount;
+
 
         return $totalamount;
     }
@@ -50,9 +49,21 @@ class Truecart extends Component
         if (Auth::guard("customer")->check()){
             $userId = Auth::guard("customer")->id();
             Cart::session($userId);
+            $this->total = Cart::getTotal();
             if (Cart::isEmpty()){
                 dd("mua hang di dm");
             }else{
+                $items = Invoice::create([
+                    'cusid' => $userId,
+                    'pay' => $this->total,
+                    'payment' => 'cash',
+                ]);
+                $idinvoice = DB::table('invoice')->latest('created_at')->first();
+                $status = Status::create([
+                    'invoice_id'=> $idinvoice->invoice_id,
+                    'status'=> 1,
+                ]);
+
                 $cartin = Cart::getContent()->toArray();
                 foreach ($cartin as $c){
                     $prdbatch = DB::table('batch_price')
@@ -60,10 +71,66 @@ class Truecart extends Component
                         ->get();
                     $length = count($prdbatch);
                     $check = 0;
+                    $start;
+                    $end;
+                    $input1;
                     for ($i=1;$i<=$length;$i++){
                         $check += $this->checkBatch($c['id'],$i);
-                        if (($this->checkInvoice($c['id'],$c['attributes'][0]['image'],$c['attributes'][0]['size'])+$c['quantity'])<=$check){
+                        if ($this->checkInvoice($c['id'])<$check){
+                            $start = $i;
+                            $input1 = $check - $this->checkInvoice($c['id']);
+                        }
+                        if (($this->checkInvoice($c['id'])+$c['quantity'])<=$check){
+                            $end = $i;
+                            if ($start == $end){
+                                $batch1 = DB::table('batch_price')
+                                    ->where('prdid','=',$c['id'])
+                                    ->where('batch','=',$start)
+                                    ->get();
 
+                                $cost1 = $batch1['0']->cost;
+                                $detail1 = Detail_invoice::create([
+                                    'itemsid'=> $c['id'],
+                                    'invoice_id'=> $idinvoice->invoice_id,
+                                    'size'=> $c['attributes'][0]['size'],
+                                    'color'=> $c['attributes'][0]['color'],
+                                    'amount'=> $c['quantity'],
+                                    'price_one'=> $c['price'],
+                                    'cost_one'=> $cost1,
+                                ]);
+                            }else{
+                                $input2 = $c['quantity'] - $input1;
+                                $batch1 = DB::table('batch_price')
+                                    ->where('prdid','=',$c['id'])
+                                    ->where('batch','=',$start)
+                                    ->get();
+                                $cost1 = $batch1['0']->cost;
+                                $batch2 = DB::table('batch_price')
+                                    ->where('prdid','=',$c['id'])
+                                    ->where('batch','=',$end)
+                                    ->get();
+                                $cost2 = $batch2['0']->cost;
+                                $detail1 = Detail_invoice::create([
+                                    'itemsid'=> $c['id'],
+                                    'invoice_id'=> $idinvoice->invoice_id,
+                                    'size'=> $c['attributes'][0]['size'],
+                                    'color'=> $c['attributes'][0]['color'],
+                                    'amount'=> $input1,
+                                    'price_one'=> $c['price'],
+                                    'cost_one'=> $cost1,
+                                ]);
+                                $detail2 = Detail_invoice::create([
+                                    'itemsid'=> $c['id'],
+                                    'invoice_id'=> $idinvoice->invoice_id,
+                                    'size'=> $c['attributes'][0]['size'],
+                                    'color'=> $c['attributes'][0]['color'],
+                                    'amount'=> $input2,
+                                    'price_one'=> $c['price'],
+                                    'cost_one'=> $cost2,
+                                ]);
+                            }
+                            Cart::clear();
+                            $this->emit('loadsmallcart');
                             break;
                         }
                     }
