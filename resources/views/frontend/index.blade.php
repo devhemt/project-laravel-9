@@ -1,8 +1,8 @@
 @extends('layout.default')
 @section('content')
-  
+
     <main id="main">
-  
+
         <!--=========================-->
         <!--=        Slider         =-->
         <!--=========================-->
@@ -173,9 +173,9 @@
         </div>
         <!-- Container  -->
     </section>
-    
+
       <!-- main-product 1 End -->
-      
+
 
       @livewire('index2')
       @livewire('index3')
@@ -494,13 +494,9 @@
       </div>
 
       <!-- Quick View -->
-      <div class="modal quickview-wrapper ">
-        <div class="quickview">
-            @livewire('quickview')
-        </div>
-      </div>
-      
+        @livewire('quickview')
 
-  
+
+
     </main><!-- End #main -->
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -47,7 +48,12 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = DB::table('items')
+            ->join('nature1','items.prd_id','nature1.itemsid')
+            ->where('prd_id', $id)->get();
+        return view('frontend.product',[
+            'product' => $product,
+        ]);
     }
 
     /**

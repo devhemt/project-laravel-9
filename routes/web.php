@@ -31,10 +31,6 @@ Route::get('/createacc', function () {
     return view('frontend.auth.create_acc');
 });
 
-Route::get('/prd', function () {
-    return view('frontend.product');
-});
-
 Route::get('/shop', function () {
     return view('frontend.shop');
 });
@@ -43,10 +39,8 @@ Route::get('/singleblog', function () {
     return view('frontend.single_blog');
 });
 
-
-Route::resource('/', HomeController::class);
-
-Route::resource('/item', ItemsController::class);
+Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
+Route::get('/product/{id}',[\App\Http\Controllers\HomeController::class, 'show']);
 
 Route::match(['get', 'post'], '/login', [\App\Http\Controllers\CustomerController::class, 'login'])->name('login');
 //Route::middleware('auth')->group(function (){

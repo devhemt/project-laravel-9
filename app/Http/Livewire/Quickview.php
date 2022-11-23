@@ -19,6 +19,7 @@ class Quickview extends Component
     public $color;
     public $quantity = 1;
     public $checked = 'Stock';
+    public $open = null;
 
 
     public function getColor($input){
@@ -70,6 +71,7 @@ class Quickview extends Component
     public function idView($id)
     {
         $this->getid = $id;
+        $this->open = "open";
     }
 
     public function render()

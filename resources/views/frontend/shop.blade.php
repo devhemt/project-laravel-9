@@ -157,10 +157,6 @@
     <!--=========================-->
 
         <!-- Quick View -->
-		<div class="modal quickview-wrapper ">
-			<div class="quickview">
-				@livewire('quickview')
-			</div>
-		</div>
+        @livewire('quickview')
     </main>
 @endsection
