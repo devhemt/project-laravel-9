@@ -154,75 +154,7 @@
 							</div>
 							<!-- /.col-xl-6 -->
 
-							<div class="col-lg-6 col-xl-6">
-								<div class="product-details">
-									<h5 class="pro-title"><a href="#">Woman fashion dress</a></h5>
-									<span class="price">Price : $387</span>
-									<div class="size-variation">
-										<span>size :</span>
-										<select name="size-value">
-									<option value="">1</option>
-									<option value="">2</option>
-									<option value="">3</option>
-									<option value="">4</option>
-									<option value="">5</option>
-								</select>
-									</div>
-									<div class="color-checkboxes">
-										<h4>Color:</h4>
-										<input class="color-checkbox__input" id="col-Blue" name="colour" type="radio">
-										<label class="color-checkbox" for="col-Blue" id="col-Blue-label"></label>
-										<span></span>
-
-										<input class="color-checkbox__input" id="col-Green" value="#8bc34a" name="colour" type="radio">
-										<label class="color-checkbox" for="col-Green" id="col-Green-label"></label>
-										<span></span>
-
-										<input class="color-checkbox__input" id="col-Yellow" value="#fdd835" name="colour" type="radio">
-										<label class="color-checkbox" for="col-Yellow" id="col-Yellow-label"></label>
-										<span></span>
-
-										<input class="color-checkbox__input" id="col-Orange" value="#ff9800" name="colour" type="radio">
-										<label class="color-checkbox" for="col-Orange" id="col-Orange-label"></label>
-										<span></span>
-
-										<input class="color-checkbox__input" id="col-Red" value="#f44336" name="colour" type="radio">
-										<label class="color-checkbox" for="col-Red" id="col-Red-label"></label>
-										<span></span>
-
-										<input class="color-checkbox__input" id="col-Black" value="#222222" name="colour" type="radio">
-										<label class="color-checkbox" for="col-Black" id="col-Black-label"></label>
-										<span></span>
-									</div>
-
-									<div class="add-tocart-wrap">
-										<!--PRODUCT INCREASE BUTTON START-->
-										<div class="cart-plus-minus-button">
-											<input type="text" value="1" name="qtybutton" class="cart-plus-minus">
-										</div>
-										<a href="#" class="add-to-cart"><i class="flaticon-shopping-purse-icon"></i>Add to Cart</a>
-									</div>
-
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-										irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-									<ul>
-										<li>Lorem ipsum dolor sit amet</li>
-										<li>quis nostrud exercitation ullamco</li>
-										<li>Duis aute irure dolor in reprehenderit</li>
-									</ul>
-									<div class="product-social">
-										<span>Share :</span>
-										<ul>
-											<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-											<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fab fa-instagram"></i></a></li>
-											<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-										</ul>
-									</div>
-
-								</div>
-								<!-- /.product-details -->
-							</div>
+							@livewire('product',['product' => $product])
 							<!-- /.col-xl-6 -->
 
 
