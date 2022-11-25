@@ -20,3 +20,4 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('apiproduct',[ApiController::class,'apiproduct']);
+Route::get('apiimage/{id}',[ApiController::class,'apiimage']);

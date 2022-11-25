@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
-            $table->increments('prd_id');
-            $table->string('demoimage',200);
-            $table->string('name',150);
-            $table->text('description');
-            $table->float('price');
-            $table->string('tag');
-            $table->string('brand',100);
+        Schema::create('images', function (Blueprint $table) {
+            $table->increments('images_id');
+            $table->integer('itemsid')->unsigned();
+            $table->string('url');
             $table->timestamps();
+            $table->foreign('itemsid')
+                ->references('prd_id')->on('items')
+                ->onDelete('cascade');
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('images');
     }
 };

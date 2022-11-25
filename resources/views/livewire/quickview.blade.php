@@ -9,10 +9,7 @@
             @if (isset($prdQV))
                 @foreach ($prdQV as $p)
                     <div class="col-md-6">
-                        @php
-                            $image = explode(" ",$p->images);
-                        @endphp
-                        <img src="images/{{ $image[0] }}" href="">
+                        <img src="images/{{ $p->demoimage }}" href="">
                     </div>
 
 

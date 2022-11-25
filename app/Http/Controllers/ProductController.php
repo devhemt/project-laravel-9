@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Images;
 use Illuminate\Http\Request;
 use App\Models\Items;
 use App\Models\Nature;
@@ -55,28 +56,31 @@ class ProductController extends Controller
             'prd_description' => 'required'
         ]);
 
-        $images = "";
-        foreach ($request->prd_image as $i){
-            $images.=$i->getClientOriginalName();
-            $images.=" ";
-        }
 
         $items = Items::create([
-            'images' => $images,
+            'demoimage'=> $request->prd_image[0]->getClientOriginalName(),
             'name' => $request->get('prd_name'),
             'description' => $request->get('prd_description'),
             'price' => $request->get('prd_price'),
             'tag' => $request->get('prd_tag'),
             'brand' => $request->get('prd_brand')
         ]);
+        $id = DB::table('items')->latest('created_at')->first();
 
+
+        foreach ($request->prd_image as $i){
+            $images = Images::create([
+                'itemsid'=> $id->prd_id,
+                'url'=> $i->getClientOriginalName()
+            ]);
+        }
         $file = $request->prd_image;
         foreach ($file as $f) {
             $f->move('images', $f->getClientOriginalName());
         }
 
 
-        $id = DB::table('items')->latest('created_at')->first();
+
         $size = $request->get('prd_size');
         $color = $request->get('prd_color');
         $amount = $request->get('prd_amount');

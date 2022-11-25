@@ -82,8 +82,7 @@ class Quickview extends Component
             $this->colors = $p->color;
             $this->name = $p->name;
             $this->price = $p->price;
-            $image = explode(" ",$p->images);
-            $this->imagein = $image[0];
+            $this->imagein = $p->demoimage;
         }
 
         return view('livewire.quickview',['prdQV' => $this->prdQV,'showchose'=>$this->color,'thisid'=>$this->thisid]);

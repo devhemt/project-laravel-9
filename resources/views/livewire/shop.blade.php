@@ -4,10 +4,7 @@
         <div class="col-sm-6 col-xl-3">
             <div class="sin-product style-two">
                 <div class="pro-img">
-                    @php
-                        $image = explode(" ",$p->images);
-                    @endphp
-                    <img src="{{ asset('images/'.$image[0]) }}" alt="">
+                    <img src="{{ asset('images/'.$p->demoimage) }}" alt="">
                 </div>
                 @if ($p->created_at=='true')
                     <span class="new-tag">NEW!</span>

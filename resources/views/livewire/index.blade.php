@@ -3,10 +3,7 @@
     <div class=" grid-item {{ $p->categories }} col-6 col-md-6  col-lg-4 col-xl-3">
         <div class="sin-product style-one">
             <div class="pro-img">
-                @php
-                $image = explode(" ",$p->images);
-                @endphp
-                <img src="{{ asset('images/'.$image[0]) }}" alt="">
+                <img src="{{ asset('images/'.$p->demoimage) }}" alt="">
             </div>
             <div class="mid-wrapper">
                 <h5 class="pro-title"><a href="product.html">{{ $p->name }}</a></h5>
