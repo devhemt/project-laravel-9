@@ -6,11 +6,11 @@
     <div class="sidebar-widget category-widget">
         <h6>PRODUCT CATEGORIES</h6>
         <ul>
-            <li><a wire:click="find(2)">Woman Clothing </a> <span>(19)</span></li>
-            <li><a wire:click="find(1)">Man Clothing </a> <span>(15)</span></li>
-            <li><a wire:click="find(3)">kid Clothing </a> <span>(59)</span></li>
-            <li><a wire:click="find(4)">Accessories </a> <span>(29)</span></li>
-            <li><a wire:click="find(5)">Others Clothing </a> <span>(56)</span></li>
+            <li><a style="font-weight: {{$style1}}" wire:click="find(1)">Man Clothing </a> <span>(15)</span></li>
+            <li><a style="font-weight: {{$style2}}" wire:click="find(2)">Woman Clothing </a> <span>(19)</span></li>
+            <li><a style="font-weight: {{$style3}}" wire:click="find(3)">kid Clothing </a> <span>(59)</span></li>
+            <li><a style="font-weight: {{$style4}}" wire:click="find(4)">Accessories </a> <span>(29)</span></li>
+            <li><a style="font-weight: {{$style5}}" wire:click="find(5)">Others Clothing </a> <span>(56)</span></li>
         </ul>
     </div>
 </div>

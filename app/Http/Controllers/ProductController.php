@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Images;
 use Illuminate\Http\Request;
 use App\Models\Items;
-use App\Models\Nature;
-use App\Models\Nature1;
+use App\Models\Properties;
+use App\Models\Totalproperty;
 use App\Models\Category;
 use App\Models\Batchprice;
 use Illuminate\Support\Facades\DB;
@@ -87,7 +87,7 @@ class ProductController extends Controller
         $flag = 0;
 
         foreach ($size as $p){
-            $nature = Nature::create([
+            $Properties = Properties::create([
                 'itemsid'=> $id->prd_id,
                 'size' => strtoupper($p),
                 'color' => $color[$flag],
@@ -109,10 +109,10 @@ class ProductController extends Controller
             $colorcolap.=" ";
         }
 
-        $nature = Nature1::create([
+        $Totalproperty = Totalproperty::create([
             'itemsid'=> $id->prd_id,
-            'size' => $sizecolap,
-            'color' => $colorcolap
+            'sizes' => $sizecolap,
+            'colors' => $colorcolap
         ]);
 
         // categories(1=men,2=women,3=kid,4=accessories)

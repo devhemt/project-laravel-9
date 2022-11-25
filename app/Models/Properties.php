@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Nature1 extends Model
+class Properties extends Model
 {
     use HasFactory;
 
-    protected $table = 'nature1';
+    protected $table = 'Properties';
     protected $primaryKey = 'id';
-    protected $fillable = ['itemsid','size','color'];
+    protected $fillable = ['itemsid','size','color','amount'];
 }

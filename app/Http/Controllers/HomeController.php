@@ -49,7 +49,7 @@ class HomeController extends Controller
     public function show($id)
     {
         $product = DB::table('items')
-            ->join('nature1','items.prd_id','nature1.itemsid')
+            ->join('total_property','items.prd_id','total_property.itemsid')
             ->where('prd_id', $id)->get();
         return view('frontend.product',[
             'product' => $product,

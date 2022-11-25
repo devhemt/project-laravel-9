@@ -73,13 +73,13 @@ class Quickview extends Component
     public function render()
     {
         $this->prdQV = DB::table('items')
-            ->join('nature1', 'items.prd_id','=', 'nature1.itemsid')
-            ->select('items.*','nature1.size','nature1.color')
+            ->join('total_property', 'items.prd_id','=', 'total_property.itemsid')
+            ->select('items.*','total_property.sizes','total_property.colors')
             ->where('prd_id', $this->getid)->get();
         foreach ($this->prdQV as $p){
             $this->thisid = $p->prd_id;
-            $this->sizes = $p->size;
-            $this->colors = $p->color;
+            $this->sizes = $p->sizes;
+            $this->colors = $p->colors;
             $this->name = $p->name;
             $this->price = $p->price;
             $this->imagein = $p->demoimage;

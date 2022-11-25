@@ -7,7 +7,7 @@
             <span>size :</span>
             <select wire:model="getsize" name="size-value">
                 @php
-                    $trim = trim($product[0]->size);
+                    $trim = trim($product[0]->sizes);
                     $size = explode(" ",$trim);
                 @endphp
                 @foreach ($size as $s)
@@ -18,7 +18,7 @@
         <div class="color-checkboxes">
             <h4>Color:</h4>
             @php
-                $trim = trim($product[0]->color);
+                $trim = trim($product[0]->colors);
                 $color = explode(" ",$trim);
             @endphp
             @foreach ($color as $s)

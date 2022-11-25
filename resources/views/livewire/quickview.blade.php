@@ -23,7 +23,7 @@
                                 <span>size :</span>
                                 <select wire:model="getsize" name="size-value">
                                     @php
-                                        $trim = trim($p->size);
+                                        $trim = trim($p->sizes);
                                         $size = explode(" ",$trim);
                                     @endphp
                                     @foreach ($size as $s)
@@ -35,7 +35,7 @@
                                 <span>color :</span>
                                 <ul id="blablo">
                                     @php
-                                        $trim = trim($p->color);
+                                        $trim = trim($p->colors);
                                         $color = explode(" ",$trim);
                                     @endphp
                                     @foreach ($color as $s)

@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('nature1', function (Blueprint $table) {
+        Schema::create('properties', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('itemsid')->unsigned();
             $table->string('size',20);
             $table->string('color',20);
+            $table->smallInteger('amount');
             $table->timestamps();
             $table->foreign('itemsid')
                   ->references('prd_id')->on('items')
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nature1');
+        Schema::dropIfExists('nature');
     }
 };
