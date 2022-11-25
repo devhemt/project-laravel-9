@@ -48,6 +48,7 @@ class ProductController extends Controller
             'prd_price' => 'required',
             'prd_category' => 'required',
             'prd_tag' => 'required',
+            'prd_brand'=> 'required|max:200',
             'prd_size' => 'required|max:20',
             'prd_color' => 'required|max:20',
             'prd_amount' => 'required',
@@ -65,7 +66,8 @@ class ProductController extends Controller
             'name' => $request->get('prd_name'),
             'description' => $request->get('prd_description'),
             'price' => $request->get('prd_price'),
-            'tag' => $request->get('prd_tag')
+            'tag' => $request->get('prd_tag'),
+            'brand' => $request->get('prd_brand')
         ]);
 
         $file = $request->prd_image;

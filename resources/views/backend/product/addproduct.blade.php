@@ -29,7 +29,7 @@
                         @endforeach
                         </p>
                     @endif
-                  </div>                             
+                  </div>
                   <div class="form-group">
                       <label>Cost price</label>
                       <input required name="prd_cost_price" type="number" min="0" class="form-control">
@@ -40,7 +40,7 @@
                         @endforeach
                         </p>
                     @endif
-                  </div> 
+                  </div>
                   <div class="form-group">
                     <label>Price</label>
                     <input required name="prd_price" type="number" min="0" class="form-control">
@@ -51,7 +51,7 @@
                         @endforeach
                         </p>
                     @endif
-                </div> 
+                </div>
                   <div class="form-group">
                     <label>Danh mục</label>
                     <select name="prd_category" class="form-control">
@@ -69,7 +69,7 @@
                         @endforeach
                         </p>
                     @endif
-                  </div>              
+                  </div>
                   <div class="form-group">
                       <label>Tag</label>
                       <input name="prd_tag" type="text" class="form-control">
@@ -80,8 +80,19 @@
                         @endforeach
                         </p>
                     @endif
-                  </div>  
-                  <div class="form-group">
+                  </div>
+                    <div class="form-group">
+                        <label>Brand</label>
+                        <input name="prd_brand" type="text" class="form-control">
+                        @if ($errors->has('prd_brand'))
+                            <p class="text-danger">
+                                @foreach ($errors->get('prd_brand') as $e)
+                                    {{ $e }}
+                                @endforeach
+                            </p>
+                        @endif
+                    </div>
+                    <div class="form-group">
                       <label>Nature:</label>
                       @if ($errors->has('prd_size'))
                         <p class="text-danger">
@@ -120,19 +131,19 @@
                               </tr>
                           </tbody>
                       </table>
-                      
+
                   </div>
                   <div class="form-group">
                     <table class="table" id="my-table-1">
                         <tbody>
                             <tr>
-                                
+
                             </tr>
                             <tr>
-                                
+
                             </tr>
                             <tr>
-                                
+
                             </tr>
                         </tbody>
                     </table>
@@ -141,13 +152,13 @@
                     <table class="table" id="my-table-2">
                         <tbody>
                             <tr>
-                                
+
                             </tr>
                             <tr>
-                                
+
                             </tr>
                             <tr>
-                                
+
                             </tr>
                         </tbody>
                     </table>
@@ -157,9 +168,9 @@
                     <input type="button" value="Delete columns" onclick="javascript:deleteColumns()" class="delete"/><br />
                   </div>
               </div>
-      
+
               <div class="col-lg-6">
-      
+
                 <div class="form-group">
                     <label>Ảnh sản phẩm</label>
                     @if ($errors->has('prd_image'))
@@ -174,8 +185,8 @@
                     <div id="view-images">
                     </div>
                 </div>
-                
-                  
+
+
                   <div class="form-group">
                     <label>Mô tả sản phẩm</label>
                     <textarea required name="prd_description" class="form-control" rows="3"></textarea>
@@ -190,7 +201,7 @@
                   <button name="sbm" type="submit" class="btn btn-success">Thêm mới</button>
                   <button type="reset" class="btn btn-default">Làm mới</button>
                 </form>
-      
+
               </div>
             </div>
         </section>
@@ -202,7 +213,7 @@
                 while (cell.hasChildNodes()) {
                     cell.removeChild(cell.firstChild);
                 }
-                
+
                 for (var i = 0; i < event.target.files.length;i++){
                     var div=document.createElement('img');
                     div.setAttribute('width','130px');
@@ -211,7 +222,7 @@
                     cell.appendChild(div);
                     flagimage = true;
                 }
-                
+
             }
             function appendColumn(){
                 var tbl=document.getElementById('my-table');
@@ -219,7 +230,7 @@
                 var tbl2=document.getElementById('my-table-2');
                 if (flagname < 4) {
                     for(var i=0;i<tbl.rows.length;i++){
-                    
+
                         if (i==0) {
                             createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length),'prd_size[]','form-control','text');
                         }
@@ -230,10 +241,10 @@
                             createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length),'prd_amount[]','form-control','number');
                         }
                     }
-                } 
+                }
                 if(flagname >= 4 && flagname <=8) {
                     for(var i=0;i<tbl1.rows.length;i++){
-                    
+
                         if (i==0) {
                             createCell(tbl1.rows[i].insertCell(tbl1.rows[i].cells.length),'prd_size[]','form-control','text');
                         }
@@ -247,7 +258,7 @@
                 }
                 if(flagname >= 9 && flagname <=13) {
                     for(var i=0;i<tbl2.rows.length;i++){
-                    
+
                         if (i==0) {
                             createCell(tbl2.rows[i].insertCell(tbl2.rows[i].cells.length),'prd_size[]','form-control','text');
                         }
@@ -259,9 +270,9 @@
                         }
                     }
                 }
-                
+
                 flagname++;
-                
+
             }
 
             function createCell(cell,name,style,type){
@@ -274,7 +285,7 @@
                 div.setAttribute('className',style);
                 cell.appendChild(div);
             }
-            
+
             // delete table columns with index greater then 0
             function deleteColumns() {
                 var tbl = document.getElementById('my-table'), // table reference

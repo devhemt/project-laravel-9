@@ -12,7 +12,7 @@ class Quickview extends Component
 {
     protected $listeners = ['idView'];
     public $prdQV;
-    public $getid;
+    public $getid,$thisid;
     public $name,$price,$imagein;
     public $sizes,$colors,$colorclass = null;
     public $getsize;
@@ -27,7 +27,7 @@ class Quickview extends Component
         $this->colorclass = "active";
     }
 
-    public function addcart($prd_id){
+    public function addcart(){
         if($this->getsize == null){
             $trim = trim($this->sizes);
             $size = explode(" ",$trim);
@@ -49,7 +49,7 @@ class Quickview extends Component
             $userId = Session::getId();
         }
         Cart::add([
-            'id' => $prd_id,
+            'id' => $this->thisid,
             'name' => $this->name,
             'price' => $this->price,
             'quantity' => $this->quantity,
@@ -59,13 +59,9 @@ class Quickview extends Component
                     'size' => $this->getsize,
                     'image' => $this->imagein,
                 )
-//                'color' => $this->getsize,
-//                'size' => $this->color,
-//                'image' => $this->imagein,
             )
         ]);
         $this->emit('loadsmallcart');
-//        dd(Cart::getContent()->toArray());
     }
 
     public function idView($id)
@@ -81,6 +77,7 @@ class Quickview extends Component
             ->select('items.*','nature1.size','nature1.color')
             ->where('prd_id', $this->getid)->get();
         foreach ($this->prdQV as $p){
+            $this->thisid = $p->prd_id;
             $this->sizes = $p->size;
             $this->colors = $p->color;
             $this->name = $p->name;
@@ -89,6 +86,6 @@ class Quickview extends Component
             $this->imagein = $image[0];
         }
 
-        return view('livewire.quickview',['prdQV' => $this->prdQV,'showchose'=>$this->color]);
+        return view('livewire.quickview',['prdQV' => $this->prdQV,'showchose'=>$this->color,'thisid'=>$this->thisid]);
     }
 }

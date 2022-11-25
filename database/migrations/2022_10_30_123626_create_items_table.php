@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('description');
             $table->float('price');
             $table->string('tag');
+            $table->string('brand',200);
             $table->timestamps();
         });
     }

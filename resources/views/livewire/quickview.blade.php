@@ -55,7 +55,7 @@
                             <div class="add-tocart-wrap" wire:ignore>
 
                                 <input wire:model="quantity" class="quantityQV" min="1" name="quantity" value="{{$quantity}}" type="number"/>
-                                <a href="#" wire:click="addcart({{$p->prd_id}})" class="add-to-cart"><i class="flaticon-shopping-purse-icon"></i>Add to Cart</a>
+                                <a href="#{{$p->name}}" wire:click="addcart" class="add-to-cart"><i class="flaticon-shopping-purse-icon"></i>Add to Cart</a>
 
                             </div>
 
