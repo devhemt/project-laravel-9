@@ -2859,6 +2859,16 @@ p.sub-title {
 /*--------------------------------------------------------------
   ##  Product Page
   --------------------------------------------------------------*/
+.single-product .quickview-slider .slider-for img{
+    height: 500px;
+    object-fit: cover;
+}
+
+.single-product .quickview-slider .slider-nav img{
+    height: 97px;
+    object-fit: cover;
+}
+
 .zoom-slider.owl-theme .owl-nav [class*="owl-"] {
   color: #979fa2;
   font-size: 23px;
@@ -2995,6 +3005,15 @@ p.sub-title {
   background: #464646 url("../../media/images/icon/arrow-w.png") no-repeat scroll 29px 25px;
   float: left;
   margin-right: 6px;
+}
+
+.add-tocart-wrap input{
+    float: left;
+    text-align: center;
+    margin-right: 50px;
+    width: 50px;
+    margin-top: 15px;
+    border: 1px black solid;
 }
 
 .add-tocart-wrap a.add-to-cart {

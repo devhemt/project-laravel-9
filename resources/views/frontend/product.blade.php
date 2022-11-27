@@ -37,7 +37,7 @@
 								<h6>BEST SELLERS</h6>
 								<div class="wid-pro">
 									<div class="sp-img">
-										<img src="media/images/product/sb1.jpg" alt="">
+										<img src="{{asset('media/images/product/sb1.jpg')}}" alt="">
 									</div>
 									<div class="small-pro-details">
 										<h5 class="title"><a href="#">Contrasting T-Shirt</a></h5>
@@ -48,7 +48,7 @@
 
 								<div class="wid-pro">
 									<div class="sp-img">
-										<img src="media/images/product/sb2.jpg" alt="">
+										<img src="{{asset('media/images/product/sb2.jpg')}}" alt="">
 									</div>
 									<div class="small-pro-details">
 										<h5 class="title"><a href="#">Contrasting T-Shirt</a></h5>
@@ -59,7 +59,7 @@
 
 								<div class="wid-pro">
 									<div class="sp-img">
-										<img src="media/images/product/sb3.jpg" alt="">
+										<img src="{{asset('media/images/product/sb3.jpg')}}" alt="">
 									</div>
 									<div class="small-pro-details">
 										<h5 class="title"><a href="#">Contrasting T-Shirt</a></h5>
@@ -70,7 +70,7 @@
 
 								<div class="wid-pro">
 									<div class="sp-img">
-										<img src="media/images/product/sb4.jpg" alt="">
+										<img src="{{asset('media/images/product/sb4.jpg')}}" alt="">
 									</div>
 									<div class="small-pro-details">
 										<h5 class="title"><a href="#">Contrasting T-Shirt</a></h5>
@@ -82,7 +82,7 @@
 
 							<div class="sidebar-widget banner-wid">
 								<div class="img">
-									<img src="media/images/banner/sb1.jpg" alt="">
+									<img src="{{asset('media/images/banner/sb1.jpg')}}" alt="">
 								</div>
 							</div>
 						</div>
@@ -93,68 +93,29 @@
 							<div class="col-lg-6 col-xl-6">
 								<!-- Product View Slider -->
 								<div class="quickview-slider">
+                                @if(isset($images))
 									<div class="slider-for">
+                                        @foreach($images as $i)
 										<div class="">
-											<img src="media/images/product/single/b1.jpg" alt="Thumb">
+											<img src="{{asset('images/'.$i->url)}}" alt="Thumb">
 										</div>
-										<div class="">
-											<img src="media/images/product/single/b2.jpg" alt="thumb">
-										</div>
-										<div class="">
-											<img src="media/images/product/single/b3.jpg" alt="thumb">
-										</div>
-										<div class="">
-											<img src="media/images/product/single/b4.jpg" alt="thumb">
-										</div>
-										<div class="">
-											<img src="media/images/product/single/b5.jpg" alt="Thumb">
-										</div>
-										<div class="">
-											<img src="media/images/product/single/b1.jpg" alt="thumb">
-										</div>
-										<div class="">
-											<img src="media/images/product/single/b2.jpg" alt="thumb">
-										</div>
-										<div class="">
-											<img src="media/images/product/single/b3.jpg" alt="thumb">
-										</div>
+                                        @endforeach
 									</div>
 
 									<div class="slider-nav">
-
-										<div class="">
-											<img src="media/images/product/single/b1.jpg" alt="thumb">
-										</div>
-										<div class="">
-											<img src="media/images/product/single/b2.jpg" alt="thumb">
-										</div>
-										<div class="">
-											<img src="media/images/product/single/b3.jpg" alt="thumb">
-										</div>
-										<div class="">
-											<div class="">
-												<img src="media/images/product/single/b4.jpg" alt="Thumb">
-											</div>
-										</div>
-										<div class="">
-											<img src="media/images/product/single/b5.jpg" alt="thumb">
-										</div>
-										<div class="">
-											<img src="media/images/product/single/b1.jpg" alt="thumb">
-										</div>
-										<div class="">
-											<img src="media/images/product/single/b2.jpg" alt="thumb">
-										</div>
-										<div class="">
-											<img src="media/images/product/single/b3.jpg" alt="thumb">
-										</div>
+                                        @foreach($images as $i)
+                                            <div class="">
+                                                <img src="{{asset('images/'.$i->url)}}" alt="Thumb">
+                                            </div>
+                                        @endforeach
 									</div>
 								</div>
+                                @endif
 								<!-- /.quickview-slider -->
 							</div>
 							<!-- /.col-xl-6 -->
 
-							@livewire('product',['product' => $product])
+							@livewire('product',['prd_id' => $id])
 							<!-- /.col-xl-6 -->
 
 
@@ -172,20 +133,12 @@
 										</li>
 									</ul>
 									<div class="tab-content" id="myTabContent">
+                                    @if(isset($product))
+                                    @foreach($product as $p)
 										<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 											<div class="prod-bottom-tab-sin description">
 												<h5>Description</h5>
-												<p>But I must explain to you how all this taken idea of denouncipleasure and praisi pain was born and I will give you a complete accoun syste and expound the actu teachings of the great explorer of tmaster-builder of human happiness. No one rejects,
-													dislikes, or avoids pleasure beca pleasure, but because those how.But I must explain to you how all this mistaken idea of denouncipleasure and praisi pain was born and I will give you a complete accoun system, and expound the actu teachings
-													of the great explorer of tmaster-builder.</p>
-												<p>But I must explain to you how all this taken idea of denouncipleasure and praisi pain was born and I will give you a complete accoun syste and expound the actu teachings of the great explorer mistaken idea of denouncipleasure and praisi pain</p>
-												<ul>
-													<li>Lorem ipsum dolor sit amet</li>
-													<li>quis nostrud exercitation ullamco</li>
-													<li>Duis aute irure dolor in reprehenderit</li>
-													<li>Lorem ipsum dolor sit amet</li>
-												</ul>
-												<p>Lorem ipsum dolor sit amet Duis aute irure dolor in denouncipleasure and praisi pain was born.Lorem ipsum dolor sit amet Duis aute irure dolor in denouncipleasure and praisi pain was born.</p>
+												<p>{{$p->description}}</p>
 
 											</div>
 										</div>
@@ -198,7 +151,7 @@
 															Brand
 														</div>
 														<div class="secound">
-															ThemeIM
+															{{$p->brand}}
 														</div>
 													</div>
 													<div class="sin-aditional-info">
@@ -209,28 +162,20 @@
 															ThemeCity
 														</div>
 													</div>
+                                                    <div class="sin-aditional-info">
+                                                        <div class="first">
+                                                            Sizes
+                                                        </div>
+                                                        <div class="secound">
+                                                            {{$p->sizes}}
+                                                        </div>
+                                                    </div>
 													<div class="sin-aditional-info">
 														<div class="first">
 															Colors
 														</div>
 														<div class="secound">
-															Black, Blue, Brown, Gray
-														</div>
-													</div>
-													<div class="sin-aditional-info">
-														<div class="first">
-															Brand
-														</div>
-														<div class="secound">
-															ThemeIM
-														</div>
-													</div>
-													<div class="sin-aditional-info">
-														<div class="first">
-															Brand
-														</div>
-														<div class="secound">
-															ThemeIM
+                                                            {{$p->colors}}
 														</div>
 													</div>
 												</div>
@@ -263,7 +208,9 @@
 												</div>
 											</div>
 										</div>
-									</div>
+									@endforeach
+                                    @endif
+                                    </div>
 								</div>
 							</div>
 						</div>
@@ -288,7 +235,7 @@
 					<div class="col-sm-6 col-lg-3 col-xl-3">
 						<div class="sin-product">
 							<div class="pro-img">
-								<img src="media/images/product/8.jpg" alt="">
+								<img src="{{asset('media/images/product/8.jpg')}}" alt="">
 							</div>
 							<div class="mid-wrapper">
 								<h5 class="pro-title"><a href="product.html">Bandage Dresses</a></h5>
@@ -307,7 +254,7 @@
 					<div class="col-sm-6 col-lg-3 col-xl-3">
 						<div class="sin-product">
 							<div class="pro-img">
-								<img src="media/images/product/1.jpg" alt="">
+								<img src="{{asset('media/images/product/1.jpg')}}" alt="">
 							</div>
 							<div class="mid-wrapper">
 								<h5 class="pro-title"><a href="product.html">High-Low Dresses</a></h5>
@@ -326,7 +273,7 @@
 					<div class="col-sm-6 col-lg-3 col-xl-3">
 						<div class="sin-product">
 							<div class="pro-img">
-								<img src="media/images/product/2.jpg" alt="">
+								<img src="{{asset('media/images/product/2.jpg')}}" alt="">
 							</div>
 							<div class="mid-wrapper">
 								<h5 class="pro-title"><a href="product.html">Empire Waist Dresses</a></h5>
@@ -346,7 +293,7 @@
 					<div class="col-sm-6 col-lg-3 col-xl-3">
 						<div class="sin-product">
 							<div class="pro-img">
-								<img src="media/images/product/3.jpg" alt="">
+								<img src="{{asset('media/images/product/3.jpg')}}" alt="">
 							</div>
 							<div class="mid-wrapper">
 								<h5 class="pro-title"><a href="product.html">Bodycon Dresses</a></h5>

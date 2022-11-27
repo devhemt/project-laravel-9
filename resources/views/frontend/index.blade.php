@@ -160,10 +160,10 @@
                     <div class="pro-tab-filter">
                         <ul class="pro-tab-button">
                             <li class="filter active" data-filter="*">ALL</li>
-                            <li class="filter" data-filter=".1">Accessories</li>
-                            <li class="filter" data-filter=".2">Men's clothing</li>
+                            <li class="filter" data-filter=".1">Men's clothing</li>
+                            <li class="filter" data-filter=".2">Women dresses</li>
                             <li class="filter" data-filter=".3">Kids clothing</li>
-                            <li class="filter" data-filter=".4">Women dresses</li>
+                            <li class="filter" data-filter=".4">Accessories</li>
                         </ul>
                         @livewire('index')
                     </div>

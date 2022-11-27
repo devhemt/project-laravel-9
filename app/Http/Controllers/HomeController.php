@@ -51,8 +51,12 @@ class HomeController extends Controller
         $product = DB::table('items')
             ->join('total_property','items.prd_id','total_property.itemsid')
             ->where('prd_id', $id)->get();
+        $images = DB::table('images')
+            ->where('itemsid', $id)->get();
         return view('frontend.product',[
             'product' => $product,
+            'images' => $images,
+            'id' => $id,
         ]);
     }
 
