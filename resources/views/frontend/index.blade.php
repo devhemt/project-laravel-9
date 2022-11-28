@@ -21,7 +21,7 @@
                                   <h4 class="animated fadeInUp"><span>BRAND NEW</span> COLLECTION</h4>
                                   <h1 class="animated fadeInUp">COMERCIO SHOP</h1>
                                   <p class="animated fadeInUp">Autem vel eum iriure dolor in molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros.</p>
-                                  <a class="animated fadeInUp btn-two" href="#">SHOP NOW</a>
+                                  <a class="animated fadeInUp btn-two" href="{{url('shop')}}">SHOP NOW</a>
                               </div>
                           </div>
                           <!-- Col End -->

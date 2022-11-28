@@ -6,14 +6,14 @@
                 <img src="{{ asset('images/'.$p->demoimage) }}" alt="">
             </div>
             <div class="mid-wrapper">
-                <h5 class="pro-title"><a href="product.html">{{ $p->name }}</a></h5>
+                <h5 class="pro-title"><a href="{{url('product/'.$p->prd_id)}}">{{ $p->name }}</a></h5>
                 <span id="{{ $p->price }}">${{ $p->price }}</span>
             </div>
 
             <div class="pro-icon">
                 <ul>
-                    <li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-                    <li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>
+{{--                    <li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>--}}
+                    <li><a href="{{url('cart')}}"><i class="flaticon-shopping-cart"></i></a></li>
                     <li><a class="trigger" href="#{{ $p->name }}" wire:click.prefetch="showQuickView({{ $p->prd_id }})"><i class="flaticon-zoom-in" ></i></a></li>
                 </ul>
             </div>

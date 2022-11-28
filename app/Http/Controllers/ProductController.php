@@ -91,6 +91,7 @@ class ProductController extends Controller
                 'itemsid'=> $id->prd_id,
                 'size' => strtoupper($p),
                 'color' => $color[$flag],
+                'batch'=> 1,
                 'amount' => $amount[$flag]
             ]);
             $flag++;

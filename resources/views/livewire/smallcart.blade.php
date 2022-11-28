@@ -31,7 +31,7 @@
                 <p>Total <span>${{$total}}</span></p>
             </div>
             <div class="cart-checkout">
-                <a href="cart.html"><i class="fa fa-shopping-cart"></i>View Cart</a>
+                <a href="{{url('cart')}}"><i class="fa fa-shopping-cart"></i>View Cart</a>
             </div>
             <div class="cart-share">
                 <a href="#"><i class="fa fa-share"></i>Checkout</a>

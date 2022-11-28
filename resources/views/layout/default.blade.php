@@ -65,8 +65,8 @@
                             <ul id="navigation">
                                 <li><a href="{{ url('/') }}" class="active">home</a>
                                 </li>
-                                <li><a href="{{ url('/shop') }}">Men</a></li>
-                                <li><a href="{{ url('/shop') }}">Woman</a></li>
+{{--                                <li><a href="{{ url('/shop') }}">Men</a></li>--}}
+{{--                                <li><a href="{{ url('/shop') }}">Woman</a></li>--}}
                                 <li class="has-child"><a href="{{ url('/shop') }}">Collections</a>
                                     <div class="mega-menu">
                                         <div class="mega-catagory per-20">

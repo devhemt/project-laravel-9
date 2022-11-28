@@ -11,7 +11,7 @@
                 @endif
 
                 <div class="mid-wrapper">
-                    <h5 class="pro-title"><a href="product.html">Dark jackets</a></h5>
+                    <h5 class="pro-title"><a href="{{url('product/'.$p->prd_id)}}">Dark jackets</a></h5>
                     <div class="color-variation">
                         <ul>
                             <li><i class="fas fa-circle"></i></li>
@@ -25,14 +25,14 @@
                 <div class="icon-wrapper">
                     <div class="pro-icon">
                         <ul>
-                            <li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-                            <li><a href="#"><i class="flaticon-compare"></i></a></li>
+{{--                            <li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>--}}
+                            <li><a href="{{url('cart')}}"><i class="flaticon-compare"></i></a></li>
                             <li><a href="#{{ $p->name }}" class="trigger" wire:click.prefetch="showQuickView({{ $p->prd_id }})"><i class="flaticon-eye"></i></a></li>
                         </ul>
                     </div>
-                    <div class="add-to-cart">
-                        <a href="#">add to cart</a>
-                    </div>
+{{--                    <div class="add-to-cart">--}}
+{{--                        <a href="#">add to cart</a>--}}
+{{--                    </div>--}}
                 </div>
             </div>
 

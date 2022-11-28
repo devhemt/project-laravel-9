@@ -98,6 +98,11 @@ class Truecart extends Component
                                     'price_one'=> $c['price'],
                                     'cost_one'=> $cost1,
                                 ]);
+                                $change = DB::table('properties')
+                                    ->where('size','=', $c['attributes'][0]['size'])
+                                    ->where('color','=', $c['attributes'][0]['color'])
+                                    ->where('batch','=', $start )
+                                    ->decrement('amount', $c['quantity']);
                             }else{
                                 $input2 = $c['quantity'] - $input1;
                                 $batch1 = DB::table('batch_price')
@@ -128,6 +133,16 @@ class Truecart extends Component
                                     'price_one'=> $c['price'],
                                     'cost_one'=> $cost2,
                                 ]);
+                                $change1 = DB::table('properties')
+                                    ->where('size','=', $c['attributes'][0]['size'])
+                                    ->where('color','=', $c['attributes'][0]['color'])
+                                    ->where('batch','=', $start )
+                                    ->decrement('amount', $input1);
+                                $change2 = DB::table('properties')
+                                    ->where('size','=', $c['attributes'][0]['size'])
+                                    ->where('color','=', $c['attributes'][0]['color'])
+                                    ->where('batch','=', $end )
+                                    ->decrement('amount', $input2);
                             }
                             Cart::clear();
                             $this->emit('loadsmallcart');

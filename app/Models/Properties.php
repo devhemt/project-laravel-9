@@ -11,5 +11,5 @@ class Properties extends Model
 
     protected $table = 'Properties';
     protected $primaryKey = 'id';
-    protected $fillable = ['itemsid','size','color','amount'];
+    protected $fillable = ['itemsid','size','color','batch','amount'];
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('itemsid')->unsigned();
             $table->string('size',20);
             $table->string('color',20);
+            $table->tinyInteger('batch');
             $table->smallInteger('amount');
             $table->timestamps();
             $table->foreign('itemsid')
