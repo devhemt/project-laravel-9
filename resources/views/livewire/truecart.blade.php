@@ -47,7 +47,7 @@
                                         <h6 class="mb-0">$ {{$c['price']}}</h6>
                                     </div>
                                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                        <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                                        <a href="#!" class="text-muted"><i wire:click="deleteCartItem({{$c['id']}})" class="fas fa-times"></i></a>
                                     </div>
                                 </div>
 

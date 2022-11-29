@@ -33,6 +33,11 @@ class ProductController extends Controller
         return view('backend.product.addproduct');
     }
 
+    public function batch()
+    {
+        return view('backend.product.addbatch');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +46,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
 
         $request->validate([
             'prd_name' => 'required|unique:items,name|max:200',

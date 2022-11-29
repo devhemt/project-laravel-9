@@ -13,9 +13,23 @@ use Illuminate\Support\Facades\DB;
 
 class Truecart extends Component
 {
+    protected $listeners = ['loadtruecart'];
     public $cart;
     public $totalquantity = 0;
     public $total;
+
+    public function loadtruecart(){}
+
+    public function deleteCartItem($itemsid){
+        if (Auth::guard("customer")->check()){
+            $userId = Auth::guard("customer")->id();
+            Cart::session($userId);
+        }else{
+            $userId = Session::getId();
+        }
+        Cart::remove($itemsid);
+        $this->emit('loadsmallcart');
+    }
 
     public function checkInvoice($prd_id){
         $product = DB::table('detail_invoice')
@@ -53,6 +67,7 @@ class Truecart extends Component
             if (Cart::isEmpty()){
                 dd("mua hang di dm");
             }else{
+                $cartin = Cart::getContent()->toArray();
                 $items = Invoice::create([
                     'cusid' => $userId,
                     'pay' => $this->total,
@@ -64,7 +79,6 @@ class Truecart extends Component
                     'status'=> 1,
                 ]);
 
-                $cartin = Cart::getContent()->toArray();
                 foreach ($cartin as $c){
                     $prdbatch = DB::table('batch_price')
                         ->where('prdid','=',$c['id'])

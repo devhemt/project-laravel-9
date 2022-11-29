@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('backend.dashboard');
 });
 
+Route::get('/addbatch', [\App\Http\Controllers\ProductController::class,'batch']);
+
 Route::resource('/product', ProductController::class);
 
 Route::resource('/invoice', InvoiceController::class);

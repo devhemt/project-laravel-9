@@ -16,6 +16,18 @@ class Smallcart extends Component
     public function loadsmallcart(){
 
     }
+
+    public function deleteCartItem($itemsid){
+        if (Auth::guard("customer")->check()){
+            $userId = Auth::guard("customer")->id();
+            Cart::session($userId);
+        }else{
+            $userId = Session::getId();
+        }
+        Cart::remove($itemsid);
+        $this->emit('loadtruecart');
+    }
+
     public function render()
     {
         if (Auth::guard("customer")->check()){

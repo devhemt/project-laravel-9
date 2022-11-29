@@ -13,7 +13,7 @@
             <div class="cart-price">
                 <p>{{$c['quantity']}} x ${{$c['price']}} </p>
             </div>
-            <a href="#"><i class="fa fa-times"></i></a>
+            <a href="#"><i wire:click="deleteCartItem({{$c['id']}})" class="fa fa-times"></i></a>
         </div>
         @endforeach
         @endif
