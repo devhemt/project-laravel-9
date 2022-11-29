@@ -18,6 +18,11 @@ class Product extends Component
     public $quantity = 1;
     public $checked = 'Stock';
 
+    public function updated($quantity)
+    {
+        $this->quantity = 2;
+    }
+
     public function getColor($input){
         $this->color = $input;
         $this->colorclass = "active";

@@ -196,14 +196,7 @@
 														<h6>ADD A REVIEW</h6>
 														<p>YOUR RATING* </p>
 
-														<div class="raing-form">
-															<form action="#">
-																<input type="text" placeholder="">
-																<input type="text">
-																<textarea name="rating-form"></textarea>
-																<input type="submit">
-															</form>
-														</div>
+														@livewire('comment',['prd_id' => $id])
 													</div>
 												</div>
 											</div>
