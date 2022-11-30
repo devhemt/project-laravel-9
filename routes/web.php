@@ -39,6 +39,8 @@ Route::get('/singleblog', function () {
     return view('frontend.single_blog');
 });
 
+Route::get('/test',[\App\Http\Controllers\InvoiceController::class,'test']);
+
 Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
 Route::get('/product/{id}',[\App\Http\Controllers\HomeController::class, 'show']);
 

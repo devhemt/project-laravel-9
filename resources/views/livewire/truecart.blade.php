@@ -97,7 +97,14 @@
                                     <h5 class="text-uppercase">Total price</h5>
                                     <h5>$ {{$total}}</h5>
                                 </div>
-
+                                <form method="POST" action="{{ url('admin/invoice') }}">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <input type="submit" value="LOG IN">
+                                        </div>
+                                    </div>
+                                </form>
                                 <button wire:click="register" type="button" class="btn btn-dark btn-block btn-lg"
                                         data-mdb-ripple-color="dark" id="visitor-btn">Register</button>
 

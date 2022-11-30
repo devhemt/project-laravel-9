@@ -14,9 +14,16 @@ use Illuminate\Support\Facades\DB;
 class Truecart extends Component
 {
     protected $listeners = ['loadtruecart'];
+    public $resultCode;
     public $cart;
     public $totalquantity = 0;
     public $total;
+
+    public function mount(){
+        if ($this->resultCode != null){
+            $this->register();
+        }
+    }
 
     public function loadtruecart(){}
 
