@@ -9,11 +9,7 @@
             @livewire('takeinfor')
         </div>
 
-        @if(isset($resultCode))
-            @livewire('truecart',['resultCode' => $resultCode])
-        @else
             @livewire('truecart')
-        @endif
 
       </section>
 

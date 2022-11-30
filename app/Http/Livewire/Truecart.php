@@ -18,12 +18,8 @@ class Truecart extends Component
     public $cart;
     public $totalquantity = 0;
     public $total;
+    public $checked = [];
 
-    public function mount(){
-        if ($this->resultCode != null){
-            $this->register();
-        }
-    }
 
     public function loadtruecart(){}
 
@@ -48,7 +44,7 @@ class Truecart extends Component
 
         $totalamount = 0;
         foreach ($product as $c){
-            $totalamount += $c['amount'];
+            $totalamount += $c->amount;
         }
 
         return $totalamount;
@@ -75,6 +71,21 @@ class Truecart extends Component
                 dd("mua hang di dm");
             }else{
                 $cartin = Cart::getContent()->toArray();
+                foreach ($cartin as $c){
+                    $detail = DB::table('properties')
+                        ->where('itemsid','=',$c['id'])
+                        ->where('size','=',$c['attributes'][0]['size'])
+                        ->where('color','=',$c['attributes'][0]['color'])
+                        ->get();
+
+                    $totalamount = 0;
+                    foreach ($detail as $d){
+                        $totalamount += $d->amount;
+                    }
+                    if ($c['quantity']>$totalamount){
+                        $this->checked[$c['id']] = 'The product in the order has exceeded the number of products left in stock';
+                    }
+                }
                 $items = Invoice::create([
                     'cusid' => $userId,
                     'pay' => $this->total,
@@ -172,6 +183,7 @@ class Truecart extends Component
                     }
 
                 }
+
             }
         }else{
             $this->emit('showTakeInfor');
@@ -190,11 +202,40 @@ class Truecart extends Component
         $minus--;
 
         if ($minus == 0){
-            dd('ghsdhgfsd');
-        }else{
             Cart::update($id, array(
-                'quantity' => -1,
+                'quantity' => array(
+                    'relative' => false,
+                    'value' => 1
+                ),
             ));
+        }else{
+            $detail = DB::table('properties')
+                ->where('itemsid','=',$id)
+                ->where('size','=',$thiscartquantity['attributes'][0]['size'])
+                ->where('color','=',$thiscartquantity['attributes'][0]['color'])
+                ->get();
+
+            $totalamount = 0;
+            foreach ($detail as $d){
+                $totalamount += $d->amount;
+            }
+
+            if ($minus >= $totalamount){
+                $this->checked[$id] = 'Sold out';
+                Cart::update($id, array(
+                    'quantity' => array(
+                        'relative' => false,
+                        'value' => $totalamount
+                    ),
+                ));
+            }
+            if ($minus < $totalamount){
+                $this->checked[$id] = 'Stock';
+                Cart::update($id, array(
+                    'quantity' => -1,
+                ));
+            }
+
         }
         $this->emit('loadsmallcart');
     }
@@ -210,14 +251,28 @@ class Truecart extends Component
         $plus = $thiscartquantity['quantity'];
         $plus++;
 
-        if ($plus == 0){
-            dd('ghsdhgfsd');
-        }else{
+        $detail = DB::table('properties')
+            ->where('itemsid','=',$id)
+            ->where('size','=',$thiscartquantity['attributes'][0]['size'])
+            ->where('color','=',$thiscartquantity['attributes'][0]['color'])
+            ->get();
+
+        $totalamount = 0;
+        foreach ($detail as $d){
+            $totalamount += $d->amount;
+        }
+
+        if ($plus >= $totalamount){
+            $this->checked[$id] = 'Sold out';
+        }
+        if ($plus < $totalamount){
+            $this->checked[$id] = 'Stock';
             Cart::update($id, array(
                 'quantity' => 1,
             ));
+            $this->emit('loadsmallcart');
         }
-        $this->emit('loadsmallcart');
+
     }
 
     public function render()

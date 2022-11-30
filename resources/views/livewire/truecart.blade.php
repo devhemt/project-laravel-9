@@ -31,6 +31,11 @@
                                                 <div id="sizes" class="sizes">{{$c['attributes'][0]['size']}}</div>
                                             </div>
                                         </h6>
+                                            <h6 class="text-danger">
+                                                @if(isset($checked[$c['id']]))
+                                                {{$checked[$c['id']]}}
+                                                @endif
+                                            </h6>
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                         <button wire:click="minus({{$c['id']}})" class="btn btn-link px-2">
@@ -99,14 +104,12 @@
                                 </div>
                                 <form method="POST" action="{{ url('admin/invoice') }}">
                                     @csrf
-                                    <div class="row">
-                                        <div class="col-xl-12">
-                                            <input type="submit" value="LOG IN">
-                                        </div>
+                                    <div class="d-flex justify-content-between mb-5">
+                                            <input type="submit" class="btn btn-info" value="MoMo payment">
                                     </div>
                                 </form>
                                 <button wire:click="register" type="button" class="btn btn-dark btn-block btn-lg"
-                                        data-mdb-ripple-color="dark" id="visitor-btn">Register</button>
+                                        data-mdb-ripple-color="dark" id="visitor-btn">Cash payment</button>
 
                             </div>
                         </div>
