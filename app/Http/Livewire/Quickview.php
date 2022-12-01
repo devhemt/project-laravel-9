@@ -42,7 +42,7 @@ class Quickview extends Component
         foreach ($detail as $d){
             $totalamount += $d->amount;
         }
-        if ($this->quantity > $totalamount){
+        if ($this->quantity >= $totalamount){
             $this->checked = 'Sold out';
             $this->quantity = $totalamount;
         }

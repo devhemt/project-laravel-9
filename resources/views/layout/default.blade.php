@@ -52,7 +52,7 @@
                     <div class="col-lg-6 col-xl-2">
                         <div class="logo">
                             <a href="index.html">
-                                <img src="{{asset('media/images/logo.png')}}" alt="">
+                                <img src="{{asset('images/logo.png')}}" alt="">
                             </a>
                         </div>
                     </div>
@@ -224,7 +224,7 @@
                 <ul>
                     <li class="mob-logo">
                         <a href="index.html">
-                            <img src="media/images/logo.png" alt="">
+                            <img src="{{asset('images/logoproject2.png')}}" alt="">
                         </a>
                     </li>
                     <li><a href="#" class="closeme"><i class="flaticon-close"></i></a></li>
@@ -310,7 +310,7 @@
                         <div class="footer-widget">
                             <div class="logo">
                                 <a href="#">
-                                    <img src="{{asset('media/images/logo2.png')}}" alt="">
+                                    <img src="{{asset('images/logo.png')}}" alt="">
                                 </a>
                             </div>
                             <p>Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu olestie consequat Autem vel eum iriure dolor.</p>

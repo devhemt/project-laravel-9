@@ -93,6 +93,39 @@
                         @endif
                     </div>
                     <div class="form-group">
+                        <label>Provided name</label>
+                        <input name="provided_name" type="text" class="form-control">
+                        @if ($errors->has('provided_name'))
+                            <p class="text-danger">
+                                @foreach ($errors->get('provided_name') as $e)
+                                    {{ $e }}
+                                @endforeach
+                            </p>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label>Provided phone</label>
+                        <input name="provided_phone" type="tel" class="form-control">
+                        @if ($errors->has('provided_phone'))
+                            <p class="text-danger">
+                                @foreach ($errors->get('provided_phone') as $e)
+                                    {{ $e }}
+                                @endforeach
+                            </p>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label>Provided address</label>
+                        <input name="provided_address" type="text" class="form-control">
+                        @if ($errors->has('provided_address'))
+                            <p class="text-danger">
+                                @foreach ($errors->get('provided_address') as $e)
+                                    {{ $e }}
+                                @endforeach
+                            </p>
+                        @endif
+                    </div>
+                    <div class="form-group">
                       <label>Nature:</label>
                       @if ($errors->has('prd_size'))
                         <p class="text-danger">
@@ -294,6 +327,9 @@
                 var tbl1 = document.getElementById('my-table-1'), // table reference
                     lastCol1 = tbl1.rows[0].cells.length - 1,    // set the last column index
                     a, b;
+                var tbl2 = document.getElementById('my-table-2'), // table reference
+                    lastCol2 = tbl2.rows[0].cells.length - 1,    // set the last column index
+                    c, d;
             // delete cells with index greater then 0 (for each row)
                 for (i = 0; i < tbl.rows.length; i++) {
                     for (j = lastCol; j > 1; j--) {
@@ -303,6 +339,11 @@
                 for (a = 0; a < tbl1.rows.length; a++) {
                     for (b = lastCol1; b >= 0; b--) {
                         tbl1.rows[a].deleteCell(b);
+                    }
+                }
+                for (c = 0; c < tbl2.rows.length; c++) {
+                    for (d = lastCol2; d >= 0; d--) {
+                        tbl2.rows[c].deleteCell(d);
                     }
                 }
                 flagname = 1;

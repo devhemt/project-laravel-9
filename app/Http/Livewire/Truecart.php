@@ -262,10 +262,10 @@ class Truecart extends Component
             $totalamount += $d->amount;
         }
 
-        if ($plus >= $totalamount){
+        if ($plus > $totalamount){
             $this->checked[$id] = 'Sold out';
         }
-        if ($plus < $totalamount){
+        if ($plus <= $totalamount){
             $this->checked[$id] = 'Stock';
             Cart::update($id, array(
                 'quantity' => 1,

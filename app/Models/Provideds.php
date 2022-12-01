@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Properties extends Model
+class Provideds extends Model
 {
     use HasFactory;
 
-    protected $table = 'properties';
+    protected $table = 'provideds';
     protected $primaryKey = 'id';
-    protected $fillable = ['itemsid','size','color','batch','amount'];
+    protected $fillable = ['provided_name','provided_phone','provided_address'];
 }

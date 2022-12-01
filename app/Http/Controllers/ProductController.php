@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Images;
+use App\Models\Provideds;
 use Illuminate\Http\Request;
 use App\Models\Items;
 use App\Models\Properties;
@@ -54,12 +55,25 @@ class ProductController extends Controller
             'prd_category' => 'required',
             'prd_tag' => 'required',
             'prd_brand'=> 'required|max:200',
+            'provided_name'=> 'required',
+            'provided_phone'=> 'required',
+            'provided_address'=> 'required',
             'prd_size' => 'required|max:20',
             'prd_color' => 'required|max:20',
             'prd_amount' => 'required',
             'prd_description' => 'required'
         ]);
 
+        $provided = DB::table('provideds')
+            ->where('provided_phone','=',$request->get('provided_phone'))
+            ->first();
+        if ($provided == null){
+            Provideds::create([
+                'provided_name'=> $request->get('provided_name'),
+                'provided_phone'=> $request->get('provided_phone'),
+                'provided_address'=> $request->get('provided_address')
+            ]);
+        }
 
         $items = Items::create([
             'demoimage'=> $request->prd_image[0]->getClientOriginalName(),
@@ -67,7 +81,8 @@ class ProductController extends Controller
             'description' => $request->get('prd_description'),
             'price' => $request->get('prd_price'),
             'tag' => $request->get('prd_tag'),
-            'brand' => $request->get('prd_brand')
+            'brand' => $request->get('prd_brand'),
+            'provided' => $provided->id
         ]);
         $id = DB::table('items')->latest('created_at')->first();
 

@@ -82,7 +82,7 @@
 
 							<div class="sidebar-widget banner-wid">
 								<div class="img">
-									<img src="{{asset('media/images/banner/sb1.jpg')}}" alt="">
+									<img src="{{asset('images/inta3.jpg')}}" alt="">
 								</div>
 							</div>
 						</div>

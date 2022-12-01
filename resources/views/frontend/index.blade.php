@@ -12,7 +12,7 @@
           <div class="slider-start slider-1 owl-carousel owl-theme">
 
               <div class="item">
-                  <img src="media/images/banner/f1.jpg" alt="">
+                  <img src="{{asset('images/banner3.png')}}" alt="">
                   <div class="container-fluid custom-container slider-content">
                       <div class="row align-items-center">
 
@@ -31,7 +31,7 @@
               </div>
 
               <div class="item">
-                  <img src="media/images/banner/f2.jpg" alt="">
+                  <img src="{{asset('images/banner3.png')}}" alt="">
                   <div class="container-fluid custom-container slider-content">
                       <div class="row align-items-center">
 
@@ -50,7 +50,7 @@
               </div>
 
               <div class="item">
-                  <img src="media/images/banner/f3.jpg" alt="">
+                  <img src="{{asset('images/banner3.png')}}" alt="">
                   <div class="container-fluid custom-container slider-content">
                       <div class="row align-items-center">
                           <div class="col-12 col-sm-8 col-md-8 offset-md-1 col-lg-6 offset-xl-2 col-xl-5 mr-auto">
@@ -83,7 +83,7 @@
                   <div class="col-12 col-md-4">
                       <a href="#">
                           <div class="sin-banner align-items-center">
-                              <img src="media/images/banner/2.png" alt="">
+                              <img src="{{asset('images/menfashion.jpg')}}" alt="">
                               <div class="sin-banner-con">
                                   <div class="sin-banner-inner-wrap">
                                       <div class="banner-top">
@@ -106,7 +106,7 @@
                       <a href="#">
                           <div class="sin-banner style-two">
 
-                              <img src="media/images/banner/3.png" alt="">
+                              <img src="{{asset('images/womenfashion.png')}}" alt="">
 
                               <div class="sin-banner-con">
                                   <div class="sin-banner-inner-wrap">
@@ -127,7 +127,7 @@
                   <div class="col-12 col-md-4">
                       <a href="#">
                           <div class="sin-banner">
-                              <img src="media/images/banner/5.png" alt="">
+                              <img src="{{asset('images/kidfashion.jpg')}}" alt="">
                               <div class="br-wrapper">
                                   <div class="sin-banner-con-right">
                                       <p>Kids shop sale</p>
@@ -258,7 +258,7 @@
       <!--=========================-->
 
       <section class="add-area">
-          <a href="#"><img src="media/images/banner/add.jpg" alt=""></a>
+          <a href="#"><img src="{{asset('images/banner1.png')}}" alt=""></a>
       </section>
 
       <!--=========================-->
@@ -409,7 +409,7 @@
           <div class="instagram-slider owl-carousel owl-theme">
               <!-- single instagram-slider -->
               <div class="sin-instagram">
-                  <img src="media/images/instagram/1.jpg" alt="">
+                  <img src="{{asset('images/inta1.jpg')}}" alt="">
                   <div class="hover-text">
                       <a href="#">
                           <img src="media/images/icon/ig.png" alt="">
@@ -419,7 +419,7 @@
               </div>
               <!-- single instagram-slider -->
               <div class="sin-instagram">
-                  <img src="media/images/instagram/2.jpg" alt="">
+                  <img src="{{asset('images/inta2.jpg')}}" alt="">
                   <div class="hover-text">
                       <a href="#">
                           <img src="media/images/icon/ig.png" alt="">
@@ -429,7 +429,7 @@
               </div>
               <!-- single instagram-slider -->
               <div class="sin-instagram">
-                  <img src="media/images/instagram/3.jpg" alt="">
+                  <img src="{{asset('images/inta3.jpg')}}" alt="">
                   <div class="hover-text">
                       <a href="#">
                           <img src="media/images/icon/ig.png" alt="">
@@ -439,7 +439,7 @@
               </div>
               <!-- single instagram-slider -->
               <div class="sin-instagram">
-                  <img src="media/images/instagram/4.jpg" alt="">
+                  <img src="{{asset('images/inta1.jpg')}}" alt="">
                   <div class="hover-text">
                       <a href="#">
                           <img src="media/images/icon/ig.png" alt="">
@@ -449,7 +449,7 @@
               </div>
               <!-- single instagram-slider -->
               <div class="sin-instagram">
-                  <img src="media/images/instagram/5.jpg" alt="">
+                  <img src="{{asset('images/inta2.jpg')}}" alt="">
                   <div class="hover-text">
                       <a href="#">
                           <img src="media/images/icon/ig.png" alt="">
