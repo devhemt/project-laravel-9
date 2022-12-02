@@ -224,7 +224,7 @@
                 <ul>
                     <li class="mob-logo">
                         <a href="index.html">
-                            <img src="{{asset('images/logoproject2.png')}}" alt="">
+                            <img src="{{asset('images/logo.png')}}" alt="">
                         </a>
                     </li>
                     <li><a href="#" class="closeme"><i class="flaticon-close"></i></a></li>

@@ -75,6 +75,10 @@ class ProductController extends Controller
             ]);
         }
 
+        $provided = DB::table('provideds')
+            ->where('provided_phone','=',$request->get('provided_phone'))
+            ->first();
+//        dd($provided->id);
         $items = Items::create([
             'demoimage'=> $request->prd_image[0]->getClientOriginalName(),
             'name' => $request->get('prd_name'),

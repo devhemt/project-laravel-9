@@ -11,5 +11,5 @@ class Items extends Model
 
     protected $table = 'items';
     protected $primaryKey = 'prd_id';
-    protected $fillable = ['demoimage','name','description','price','tag','brand'];
+    protected $fillable = ['demoimage','name','description','price','tag','brand','provided'];
 }
