@@ -17,7 +17,7 @@ class Showproduct extends Component
     {
 
         return view('livewire.showproduct',[
-            'products' => Items::latest()->paginate(2),
+            'products' => Items::latest()->paginate(10),
         ]);
     }
 }

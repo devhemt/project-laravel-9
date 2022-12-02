@@ -11,7 +11,7 @@
                 @endif
 
                 <div class="mid-wrapper">
-                    <h5 class="pro-title"><a href="{{url('product/'.$p->prd_id)}}">Dark jackets</a></h5>
+                    <h5 class="pro-title"><a href="{{url('product/'.$p->prd_id)}}">{{$p->name}}</a></h5>
                     <div class="color-variation">
                         <ul>
                             <li><i class="fas fa-circle"></i></li>
@@ -20,7 +20,17 @@
                             <li><i class="fas fa-circle"></i></li>
                         </ul>
                     </div>
-                    <p>Woman / <span>$387</span></p>
+                    <p>
+                        @if($p->categories == 1)
+                        Men
+                        @elseif($p->categories == 2)
+                        Women
+                        @elseif($p->categories == 3)
+                        Kid
+                        @elseif($p->categories == 4)
+                        Accessories
+                        @endif
+                        / <span>${{$p->price}}</span></p>
                 </div>
                 <div class="icon-wrapper">
                     <div class="pro-icon">

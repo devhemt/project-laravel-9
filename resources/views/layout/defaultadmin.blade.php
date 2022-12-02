@@ -271,7 +271,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="{{asset('admin')}}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -283,17 +283,22 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{ url('product') }}">
+            <a href="{{ url('admin/product') }}">
               <i class="bi bi-circle"></i><span>Show products</span>
             </a>
           </li>
           <li>
-            <a href="{{ url('product/create') }}">
+            <a href="{{ url('admin/product/create') }}">
               <i class="bi bi-circle"></i><span>Add product</span>
             </a>
           </li>
+            <li>
+                <a href="{{ url('admin/addbatch') }}">
+                    <i class="bi bi-circle"></i><span>Add batch</span>
+                </a>
+            </li>
           <li>
-            <a href="{{ url('product/{product}/edit') }}">
+            <a href="{{ url('admin/product/{product}/edit') }}">
               <i class="bi bi-circle"></i><span>Edit product</span>
             </a>
           </li>

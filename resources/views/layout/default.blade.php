@@ -6,12 +6,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Comercio - Fashion Shop Ecommerce HTML Template</title>
+    <title>King Fashion - Luxurious And Seductive</title>
 
     <!-- Fav Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/fav-icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/fav-icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/fav-icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/img/fav-icons/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/img/fav-icons/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/img/fav-icons/favicon-16x16.png')}}">
 
     <!-- Dependency Styles -->
     <link rel="stylesheet" href="{{ asset('dependencies/bootstrap/css/bootstrap.min.css') }}" type="text/css">
@@ -362,16 +362,16 @@
                             <div class="payment-link">
                                 <ul>
                                     <li>
-                                        <a href="#"><img src="media/images/p1.png" alt=""></a>
+                                        <a href="#"><img src="{{asset('media/images/p1.png')}}" alt=""></a>
                                     </li>
                                     <li>
-                                        <a href="#"><img src="media/images/p2.png" alt=""></a>
+                                        <a href="#"><img src="{{asset('media/images/p2.png')}}" alt=""></a>
                                     </li>
                                     <li>
-                                        <a href="#"><img src="media/images/p3.png" alt=""></a>
+                                        <a href="#"><img src="{{asset('media/images/p3.png')}}" alt=""></a>
                                     </li>
                                     <li>
-                                        <a href="#"><img src="media/images/p4.png" alt=""></a>
+                                        <a href="#"><img src="{{asset('media/images/p4.png')}}" alt=""></a>
                                     </li>
                                 </ul>
                             </div>

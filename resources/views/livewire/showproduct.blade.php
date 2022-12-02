@@ -8,53 +8,27 @@
             <th scope="col">Id</th>
             <th scope="col">Name</th>
             <th scope="col">Demo image</th>
-            <th scope="col">Age</th>
-            <th scope="col">Start Date</th>
-            <th scope="col">do something</th>
+            <th scope="col">Created at</th>
+            <th scope="col">Update at</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
+        @foreach($products as $p)
         <tr>
-            <th scope="row">1</th>
+            <th scope="row">{{$p->prd_id}}</th>
             <td>Brandon Jacob</td>
-            <td><img src="{{asset('images/inta2.jpg')}}" alt=""></td>
-            <td>28</td>
-            <td>2016-05-25</td>
+            <td><img src="{{asset('images/'.$p->demoimage)}}" alt=""></td>
+            <td>{{$p->created_at}}</td>
+            <td>{{$p->updated_at}}</td>
             <td>
-                <a href="#"><i class="fas fa-trash fa-spin"></i></a>
-                <a href="#"><i class="fas fa-eye fa-spin"></i></a>
-                <a href="#"><i class="fas fa-edit fa-spin"></i></a>
-                <a href="#"><i class="fa-solid fa-circle-plus fa-spin"></i></a>
+                <a href="#"><i class="fas fa-trash "></i></a>
+                <a href="#"><i class="fas fa-eye "></i></a>
+                <a href="#"><i class="fas fa-edit "></i></a>
+                <a href="#"><i class="fa-solid fa-circle-plus "></i></a>
             </td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Bridie Kessler</td>
-            <td>Developer</td>
-            <td>35</td>
-            <td>2014-12-05</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Ashleigh Langosh</td>
-            <td>Finance</td>
-            <td>45</td>
-            <td>2011-08-12</td>
-        </tr>
-        <tr>
-            <th scope="row">4</th>
-            <td>Angus Grady</td>
-            <td>HR</td>
-            <td>34</td>
-            <td>2012-06-11</td>
-        </tr>
-        <tr>
-            <th scope="row">5</th>
-            <td>Raheem Lehner</td>
-            <td>Dynamic Division Officer</td>
-            <td>47</td>
-            <td>2011-04-19</td>
-        </tr>
+        @endforeach
         </tbody>
     </table>
     @foreach ($products as $p)

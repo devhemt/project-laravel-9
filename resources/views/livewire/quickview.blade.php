@@ -15,7 +15,7 @@
 
                     <div class="col-md-6">
                         <div class="product-details">
-                            <h5 class="pro-title"><a href="#">
+                            <h5 class="pro-title"><a href="{{url('product/'.$p->prd_id)}}">
                                     {{ $p->name }}
                                 </a></h5>
                             <span class="price">Price : ${{ $p->price }}</span>
