@@ -19,31 +19,31 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        return view('frontend.cart');
+        return view('client.cart');
     }
     public function index0()
     {
-        return view('backend.order.canceledorder');
+        return view('admin.order.canceledorder');
     }
     public function index1()
     {
-        return view('backend.order.noprocessorder');
+        return view('admin.order.noprocessorder');
     }
     public function index2()
     {
-        return view('backend.order.confirmedorder');
+        return view('admin.order.confirmedorder');
     }
     public function index3()
     {
-        return view('backend.order.packingorder');
+        return view('admin.order.packingorder');
     }
     public function index4()
     {
-        return view('backend.order.deliveryorder');
+        return view('admin.order.deliveryorder');
     }
     public function index5()
     {
-        return view('backend.order.successfulorder');
+        return view('admin.order.successfulorder');
     }
 
     /**

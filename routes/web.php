@@ -16,27 +16,27 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/blog', function () {
-    return view('frontend.blog');
+    return view('client.blog');
 });
 
 Route::get('/cart', function () {
-    return view('frontend.cart');
+    return view('client.cart');
 });
 
 Route::get('/contact', function () {
-    return view('frontend.contact');
+    return view('client.contact');
 });
 
 Route::get('/createacc', function () {
-    return view('frontend.auth.create_acc');
+    return view('client.auth.create_acc');
 });
 
 Route::get('/shop', function () {
-    return view('frontend.shop');
+    return view('client.shop');
 });
 
 Route::get('/singleblog', function () {
-    return view('frontend.single_blog');
+    return view('client.single_blog');
 });
 
 Route::get('/test',[\App\Http\Controllers\InvoiceController::class,'test']);

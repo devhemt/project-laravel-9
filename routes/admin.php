@@ -30,3 +30,5 @@ Route::get('/successfulorder', [\App\Http\Controllers\InvoiceController::class, 
 Route::resource('/product', ProductController::class);
 
 Route::resource('/invoice', InvoiceController::class);
+
+Route::resource('/profile', \App\Http\Controllers\ProfileController::class);

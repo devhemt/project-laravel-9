@@ -13,11 +13,11 @@ class CustomerController extends Controller
     public function login(Request $request)
     {
         if(Auth::guard('customer')->check()){
-            return view('frontend.account');
+            return view('client.account');
         }
 
         if ($request->getMethod() == 'GET') {
-            return view('frontend.auth.login');
+            return view('client.auth.login');
         }
 
         $credentials = $request->only(['email', 'password']);
@@ -30,7 +30,7 @@ class CustomerController extends Controller
 
     public function registration()
     {
-        return view('frontend.auth.create_acc');
+        return view('client.auth.create_acc');
     }
 
     public function customRegistration(Request $request)

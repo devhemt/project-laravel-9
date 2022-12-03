@@ -21,7 +21,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('backend.product.showproduct');
+        return view('admin.product.showproduct');
     }
 
     /**
@@ -31,12 +31,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('backend.product.addproduct');
+        return view('admin.product.addproduct');
     }
 
     public function batch()
     {
-        return view('backend.product.addbatch');
+        return view('admin.product.addbatch');
     }
 
     /**
