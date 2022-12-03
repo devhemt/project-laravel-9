@@ -21,6 +21,30 @@ class InvoiceController extends Controller
     {
         return view('frontend.cart');
     }
+    public function index0()
+    {
+        return view('backend.order.canceledorder');
+    }
+    public function index1()
+    {
+        return view('backend.order.noprocessorder');
+    }
+    public function index2()
+    {
+        return view('backend.order.confirmedorder');
+    }
+    public function index3()
+    {
+        return view('backend.order.packingorder');
+    }
+    public function index4()
+    {
+        return view('backend.order.deliveryorder');
+    }
+    public function index5()
+    {
+        return view('backend.order.successfulorder');
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -298,7 +298,7 @@
                 </a>
             </li>
           <li>
-            <a href="{{ url('admin/product/{product}/edit') }}">
+            <a href="{{ url('admin/product/1/edit') }}">
               <i class="bi bi-circle"></i><span>Edit product</span>
             </a>
           </li>
@@ -307,19 +307,39 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-journal-text"></i><span>Orders</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="forms-elements.html">
-              <i class="bi bi-circle"></i><span>Form Elements</span>
+            <a href="{{url('admin/canceledorder')}}">
+              <i class="bi bi-circle"></i><span>Canceled order</span>
             </a>
           </li>
           <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span>Form Layouts</span>
+            <a href="{{url('admin/noprocessorder')}}">
+              <i class="bi bi-circle"></i><span>Noprocess order</span>
             </a>
           </li>
+            <li>
+                <a href="{{url('admin/confirmedorder')}}">
+                    <i class="bi bi-circle"></i><span>Confirmed order</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{url('admin/packingorder')}}">
+                    <i class="bi bi-circle"></i><span>Packing order</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{url('admin/deliveryorder')}}">
+                    <i class="bi bi-circle"></i><span>Delivery order</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{url('admin/successfulorder')}}">
+                    <i class="bi bi-circle"></i><span>Sucessful order</span>
+                </a>
+            </li>
         </ul>
       </li><!-- End Forms Nav -->
 
