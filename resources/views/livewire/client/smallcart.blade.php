@@ -1,7 +1,7 @@
 <li class="top-cart" >
     <a href="javascript:void(0)" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> {{$amount}}</a>
     <div class="cart-drop" wire:ignore.self>
-        <div style="height: 200px;overflow-y: overlay;">
+        <div style="max-height: 200px;overflow-y: overlay;">
         @if(isset($cart))
         @foreach($cart as $c)
         <div class="single-cart">
