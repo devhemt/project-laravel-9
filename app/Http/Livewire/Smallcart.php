@@ -11,7 +11,7 @@ class Smallcart extends Component
 {
     protected $listeners = ['loadsmallcart'];
     public $cart;
-    public $subtotal,$total;
+    public $subtotal,$total,$amount;
 
     public function loadsmallcart(){
 
@@ -39,6 +39,7 @@ class Smallcart extends Component
         $this->cart = Cart::getContent()->toArray();
         $this->subtotal = Cart::getSubTotal();
         $this->total = Cart::getTotal();
-        return view('livewire.smallcart',['cart'=>$this->cart]);
+        $this->amount = Cart::getTotalQuantity();
+        return view('livewire.client.smallcart',['cart'=>$this->cart]);
     }
 }

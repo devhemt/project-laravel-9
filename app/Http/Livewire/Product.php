@@ -106,6 +106,6 @@ class Product extends Component
             $this->imagein = $p->demoimage;
         }
 
-        return view('livewire.product');
+        return view('livewire.client.product');
     }
 }

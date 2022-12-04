@@ -19,6 +19,6 @@ class Takeinfor extends Component
 
     public function render()
     {
-        return view('livewire.takeinfor');
+        return view('livewire.client.takeinfor');
     }
 }

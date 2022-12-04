@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('cusid')->unsigned();
             $table->float('pay');
             $table->string('payment',50);
+            $table->string('delivery',50);
             $table->timestamps();
             $table->foreign('cusid')
                   ->references('cus_id')->on('customer')

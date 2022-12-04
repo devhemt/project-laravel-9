@@ -19,6 +19,8 @@ class Truecart extends Component
     public $totalquantity = 0;
     public $total;
     public $checked = [];
+    public $deliverymethod = 'Default delivery $5';
+    public $options = ['Default delivery $5','Fast delivery $5','Super fast delivery $25'];
 
 
     public function loadtruecart(){}
@@ -71,6 +73,7 @@ class Truecart extends Component
                 dd("mua hang di dm");
             }else{
                 $cartin = Cart::getContent()->toArray();
+                $flagcountcheck = false;
                 foreach ($cartin as $c){
                     $detail = DB::table('properties')
                         ->where('itemsid','=',$c['id'])
@@ -84,12 +87,17 @@ class Truecart extends Component
                     }
                     if ($c['quantity']>$totalamount){
                         $this->checked[$c['id']] = 'The product in the order has exceeded the number of products left in stock';
+                        $flagcountcheck = true;
                     }
+                }
+                if ($flagcountcheck){
+                    $this->redirect('cart');
                 }
                 $items = Invoice::create([
                     'cusid' => $userId,
                     'pay' => $this->total,
                     'payment' => 'cash',
+                    'delivery' => $this->deliverymethod
                 ]);
                 $idinvoice = DB::table('invoice')->latest('created_at')->first();
                 $status = Status::create([
@@ -292,6 +300,6 @@ class Truecart extends Component
         }
 
 
-        return view('livewire.truecart');
+        return view('livewire.client.truecart');
     }
 }

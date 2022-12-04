@@ -1,6 +1,7 @@
 <li class="top-cart" >
-    <a href="javascript:void(0)" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> (2)</a>
+    <a href="javascript:void(0)" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> {{$amount}}</a>
     <div class="cart-drop" wire:ignore.self>
+        <div style="height: 200px;overflow-y: overlay;">
         @if(isset($cart))
         @foreach($cart as $c)
         <div class="single-cart">
@@ -17,6 +18,7 @@
         </div>
         @endforeach
         @endif
+        </div>
         <div class="cart-bottom">
             <div class="cart-sub-total">
                 <p>Sub-Total <span>${{$subtotal}}</span></p>

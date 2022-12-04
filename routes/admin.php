@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('backend.dashboard');
+    return view('admin.dashboard');
 });
 
 Route::get('/addbatch', [\App\Http\Controllers\ProductController::class,'batch']);

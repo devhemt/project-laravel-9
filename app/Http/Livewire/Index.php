@@ -21,6 +21,6 @@ class Index extends Component
         ->orderBy('items.prd_id')
         ->limit(8)
         ->get();
-        return view('livewire.index');
+        return view('livewire.client.index');
     }
 }

@@ -79,11 +79,20 @@
                                 <h5 class="text-uppercase mb-3">Shipping</h5>
 
                                 <div class="mb-4 pb-2">
-                                    <select class="select">
-                                        <option value="1">Standard-Delivery- €5.00</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                        <option value="4">Four</option>
+{{--                                    <select class="select">--}}
+{{--                                        <option value="1">Standard-Delivery- €5.00</option>--}}
+{{--                                        <option value="2">Two</option>--}}
+{{--                                        <option value="3">Three</option>--}}
+{{--                                        <option value="4">Four</option>--}}
+{{--                                    </select>--}}
+                                    <select wire:model="deliverymethod" class="select">
+                                        @foreach ($options as $op)
+                                            @if ($op=='Default delivery $5')
+                                                <option selected="selected" value="{{ $op }}">{{ $op }}</option>
+                                            @else
+                                                <option value="{{ $op }}">{{ $op }}</option>
+                                            @endif
+                                        @endforeach
                                     </select>
                                 </div>
 

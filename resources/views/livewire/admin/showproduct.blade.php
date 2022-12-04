@@ -17,7 +17,7 @@
         @foreach($products as $p)
         <tr>
             <th scope="row">{{$p->prd_id}}</th>
-            <td>Brandon Jacob</td>
+            <td>{{$p->name}}</td>
             <td><img src="{{asset('images/'.$p->demoimage)}}" alt=""></td>
             <td>{{$p->created_at}}</td>
             <td>{{$p->updated_at}}</td>
@@ -31,9 +31,6 @@
         @endforeach
         </tbody>
     </table>
-    @foreach ($products as $p)
-
-    @endforeach
 
     {{ $products->links() }}
 </div>

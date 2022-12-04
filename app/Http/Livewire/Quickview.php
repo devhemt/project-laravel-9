@@ -114,6 +114,6 @@ class Quickview extends Component
             $this->imagein = $p->demoimage;
         }
 
-        return view('livewire.quickview',['prdQV' => $this->prdQV,'showchose'=>$this->color,'thisid'=>$this->thisid]);
+        return view('livewire.client.quickview',['prdQV' => $this->prdQV,'showchose'=>$this->color,'thisid'=>$this->thisid]);
     }
 }

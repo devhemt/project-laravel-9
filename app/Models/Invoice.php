@@ -11,5 +11,5 @@ class Invoice extends Model
 
     protected $table = 'invoice';
     protected $primaryKey = 'invoice_id';
-    protected $fillable = ['cusid','pay','payment'];
+    protected $fillable = ['cusid','pay','payment','delivery'];
 }

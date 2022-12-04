@@ -55,6 +55,6 @@ class Searchshop extends Component
 
     public function render()
     {
-        return view('livewire.searchshop');
+        return view('livewire.client.searchshop');
     }
 }

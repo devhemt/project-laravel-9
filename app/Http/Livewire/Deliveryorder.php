@@ -4,11 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class ShopSBP extends Component
+class Deliveryorder extends Component
 {
-
     public function render()
     {
-        return view('livewire.client.shop-s-b-p');
+        return view('livewire.admin.deliveryorder');
     }
 }

@@ -180,7 +180,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.product.editproduct');
+        return view('admin.product.editproduct');
     }
 
     /**

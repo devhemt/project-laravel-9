@@ -20,11 +20,16 @@ class CustomerController extends Controller
             return view('client.auth.login');
         }
 
+        $request->validate([
+            'email' => 'required|email|exists:customer,email',
+            'password' => 'required|min:6',
+        ]);
+
         $credentials = $request->only(['email', 'password']);
         if (Auth::guard('customer')->attempt($credentials)) {
             return redirect('/');
         } else {
-            return redirect()->back()->withInput();
+            return redirect()->back();
         }
     }
 
@@ -46,7 +51,7 @@ class CustomerController extends Controller
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect('/');
+        return redirect('login');
     }
 
     public function create(array $data)

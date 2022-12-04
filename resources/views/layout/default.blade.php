@@ -51,7 +51,7 @@
 
                     <div class="col-lg-6 col-xl-2">
                         <div class="logo">
-                            <a href="index.html">
+                            <a href="{{url('/')}}">
                                 <img src="{{asset('images/logo.png')}}" alt="">
                             </a>
                         </div>
