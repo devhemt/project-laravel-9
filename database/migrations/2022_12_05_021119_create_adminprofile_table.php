@@ -13,18 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
-            $table->increments('prd_id');
-            $table->integer('staff')->unsigned()->nullable();
-            $table->string('demoimage',200);
-            $table->string('name',150);
-            $table->text('description');
-            $table->float('price');
-            $table->string('tag');
-            $table->smallInteger('provided');
-            $table->string('brand',100);
+        Schema::create('adminprofile', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('userid')->unsigned();
+            $table->string('about')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('linkedin')->nullable();
             $table->timestamps();
-            $table->foreign('staff')
+            $table->foreign('userid')
                 ->references('user_id')->on('users')
                 ->onDelete('cascade');
         });
@@ -37,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('adminprofile');
     }
 };
