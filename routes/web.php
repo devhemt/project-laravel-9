@@ -45,9 +45,7 @@ Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
 Route::get('/product/{id}',[\App\Http\Controllers\HomeController::class, 'show']);
 
 Route::match(['get', 'post'], '/login', [\App\Http\Controllers\CustomerController::class, 'login'])->name('login');
-//Route::middleware('auth')->group(function (){
-//    Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//});
+
 
 Route::get('registration', [\App\Http\Controllers\CustomerController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [\App\Http\Controllers\CustomerController::class, 'customRegistration'])->name('register.custom');
