@@ -25,7 +25,7 @@ return new class extends Migration
                   ->references('cus_id')->on('customer_noacc')
                   ->onDelete('cascade');
             $table->foreign('staff')
-                ->references('user_id')->on('users')
+                ->references('user_id')->on('user')
                 ->onDelete('cascade');
         });
     }

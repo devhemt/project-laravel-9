@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('isdirector');
+    }
     /**
      * Display a listing of the resource.
      *

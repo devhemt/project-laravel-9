@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('brand',100);
             $table->timestamps();
             $table->foreign('staff')
-                ->references('user_id')->on('users')
+                ->references('user_id')->on('user')
                 ->onDelete('cascade');
         });
     }
