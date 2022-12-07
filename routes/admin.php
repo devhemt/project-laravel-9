@@ -18,6 +18,13 @@ Route::get('/', function () {
     return view('admin.dashboard');
 });
 
+Route::get('/login', function () {
+    return view('admin.login');
+});
+Route::get('/signout', [\App\Http\Controllers\ProfileController::class,'signOut']);
+
+Route::match(['get', 'post'], '/login', [\App\Http\Controllers\ProfileController::class, 'login']);
+
 Route::get('/addbatch', [\App\Http\Controllers\ProductController::class,'batch']);
 
 Route::get('/canceledorder', [\App\Http\Controllers\InvoiceController::class, 'index0']);
@@ -31,4 +38,4 @@ Route::resource('/product', ProductController::class);
 
 Route::resource('/invoice', InvoiceController::class);
 
-Route::resource('/profile', \App\Http\Controllers\ProfileController::class);
+Route::resource('/profile', \App\Http\Controllers\ProfileController::class)->middleware('isdirector');

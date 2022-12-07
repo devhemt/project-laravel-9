@@ -22,28 +22,47 @@
                             <h5 class="card-title">Create new staff</h5>
 
                             <!-- Vertical Form -->
-                            <form class="row g-3">
+                            <form class="row g-3" accept-charset="utf-8" action="{{url('admin/profile')}}" role="form" method="POST">
+                            @csrf
                                 <div class="col-12">
                                     <label for="inputNanme4" class="form-label">Your Name</label>
-                                    <input type="text" class="form-control" id="inputNanme4">
+                                    <input required name="name" type="text" class="form-control" id="inputNanme4">
+                                    @if ($errors->has('name'))
+                                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                                    @endif
                                 </div>
                                 <div class="col-12">
                                     <label for="inputEmail4" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail4">
+                                    <input required name="email" type="email" class="form-control" id="inputEmail4">
+                                    @if ($errors->has('email'))
+                                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                                    @endif
                                 </div>
                                 <div class="col-12">
                                     <label for="inputPhone4" class="form-label">Phone</label>
-                                    <input type="tel" class="form-control" id="inputPhone4">
+                                    <input required name="phone" type="tel" class="form-control" id="inputPhone4">
+                                    @if ($errors->has('phone'))
+                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                    @endif
                                 </div>
                                 <div class="col-12">
                                     <label for="inputPassword4" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword4">
+                                    <input required name="password" type="password" class="form-control" id="inputPassword4">
+                                    @if ($errors->has('password'))
+                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                    @endif
                                 </div>
                                 <div class="col-12">
-                                    <select id="inputState" class="form-select">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
+                                    <select name="role" id="inputState" class="form-select">
+                                        <option value="1" selected>Director</option>
+                                        <option value="2">Total-Manager</option>
+                                        <option value="3">Import Staff</option>
+                                        <option value="4">Order Manager</option>
+                                        <option value="5">Delivery Manager</option>
                                     </select>
+                                    @if ($errors->has('role'))
+                                        <span class="text-danger">{{ $errors->first('role') }}</span>
+                                    @endif
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>

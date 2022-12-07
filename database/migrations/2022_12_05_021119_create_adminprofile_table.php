@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('linkedin')->nullable();
             $table->timestamps();
             $table->foreign('userid')
-                ->references('user_id')->on('users')
+                ->references('user_id')->on('user')
                 ->onDelete('cascade');
         });
     }

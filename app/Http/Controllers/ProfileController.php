@@ -3,9 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
+//    public function __construct()
+//    {
+//        $this->middleware('isdirector');
+//    }
+
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +43,53 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:user,email',
+            'phone' => 'required|unique:user,phone',
+            'password' => 'required|min:6',
+            'role' => 'required',
+        ]);
+
+        $data = $request->all();
+        $create = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'password' => Hash::make($data['password']),
+            'role' => $data['role']
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function login(Request $request)
+    {
+        if(Auth::guard('user')->check()){
+            return view('admin.profile');
+        }
+
+        if ($request->getMethod() == 'GET') {
+            return view('admin.login');
+        }
+
+        $request->validate([
+            'email' => 'required|email|exists:customer,email',
+            'password' => 'required|min:6',
+        ]);
+
+        $credentials = $request->only(['email', 'password']);
+        if (Auth::guard('user')->attempt($credentials)) {
+            return redirect('admin/');
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function signOut() {
+        Auth::guard('user')->logout();
+        Session::flush();
+        return Redirect('admin/login');
     }
 
     /**
