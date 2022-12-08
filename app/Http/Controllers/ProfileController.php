@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
-//    public function __construct()
-//    {
-//        $this->middleware('isdirector');
-//    }
-
     /**
      * Display a listing of the resource.
      *

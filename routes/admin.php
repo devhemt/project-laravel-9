@@ -34,8 +34,16 @@ Route::get('/packingorder', [\App\Http\Controllers\InvoiceController::class, 'in
 Route::get('/deliveryorder', [\App\Http\Controllers\InvoiceController::class, 'index4']);
 Route::get('/successfulorder', [\App\Http\Controllers\InvoiceController::class, 'index5']);
 
-Route::resource('/product', ProductController::class);
 
-Route::resource('/invoice', InvoiceController::class);
+Route::post('/invoice',[\App\Http\Controllers\InvoiceController::class, 'store']);
 
-Route::resource('/profile', \App\Http\Controllers\ProfileController::class)->middleware('isdirector');
+
+Route::get('/product',[\App\Http\Controllers\ProductController::class, 'index'])->middleware('istotalmanager');
+Route::post('/product',[\App\Http\Controllers\ProductController::class, 'store']);
+Route::get('product/create',[\App\Http\Controllers\ProductController::class,'create']);
+Route::get('/product/{product}/edit',[\App\Http\Controllers\ProductController::class,'edit']);
+
+
+Route::get('/profile',[\App\Http\Controllers\ProfileController::class,'index']);
+Route::post('/profile',[\App\Http\Controllers\ProfileController::class,'store']);
+Route::get('/profile/create',[\App\Http\Controllers\ProfileController::class,'create']);
