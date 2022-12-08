@@ -56,7 +56,7 @@
                                     <select name="role" id="inputState" class="form-select">
                                         <option value="1" selected>Director</option>
                                         <option value="2">Total-Manager</option>
-                                        <option value="3">Import Staff</option>
+                                        <option value="3">Import Manager</option>
                                         <option value="4">Order Manager</option>
                                         <option value="5">Delivery Manager</option>
                                     </select>

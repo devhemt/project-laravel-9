@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsDirector
+class IsImportManager
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class IsDirector
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::guard('user')->check() && Auth::guard('user')->user()->role == 1)
+        if(Auth::guard('user')->check() && Auth::guard('user')->user()->role == 1 || Auth::guard('user')->user()->role == 3 || Auth::guard('user')->user()->role == 2)
         {
             return $next($request);
         }else{

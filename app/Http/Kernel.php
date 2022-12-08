@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\IsDeliveryManager;
 use App\Http\Middleware\IsDirector;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -66,6 +67,11 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role'=> \App\Http\Middleware\RoleMiddleware::class,
         'isdirector'=> \App\Http\Middleware\IsDirector::class,
+        'isdeliverymanager'=> \App\Http\Middleware\IsDeliveryManager::class,
+        'isimportmanager'=> \App\Http\Middleware\IsImportManager::class,
+        'isordermanager'=> \App\Http\Middleware\IsOrderManager::class,
+        'istotalmanager'=> \App\Http\Middleware\IsTotalManager::class,
+
     ];
 
 
