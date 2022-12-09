@@ -174,7 +174,26 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = DB::table('items')
+            ->join('category','items.prd_id','category.prdid')
+            ->join('provideds','items.provided','provideds.id')
+            ->where('items.prd_id', $id)->get();
+
+        $images = DB::table('images')
+            ->where('itemsid', $id)->get();
+
+        $properties = DB::table('properties')
+            ->where('itemsid', $id)->get();
+
+        $batch = DB::table('batch_price')
+            ->where('prdid', $id)->get();
+
+        return view('admin.product.product',[
+            'product' => $product,
+            'images' => $images,
+            'properties' => $properties,
+            'batch' => $batch,
+        ]);
     }
 
     /**
