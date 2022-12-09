@@ -119,9 +119,7 @@
                                 </li>
                                 @livewire('smallcart')
                                 <li class="top-search">
-                                    <a href="javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i>
-									</a>
-                                    <input type="text" class="search-input" placeholder="Search">
+                                    @livewire('searchhome')
                                 </li>
                             </ul>
                         </div>
