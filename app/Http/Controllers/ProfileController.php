@@ -17,6 +17,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        $currentURL = url()->current();
+
+        dd($currentURL);
         return view('admin.profile');
     }
 
