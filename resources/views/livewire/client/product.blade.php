@@ -1,8 +1,8 @@
 <div class="col-lg-6 col-xl-6">
     @if(isset($product))
     <div class="product-details">
-        <h5 class="pro-title"><a href="#">Woman fashion dress</a></h5>
-        <span class="price">Price : $387</span>
+        <h5 class="pro-title"><a href="#">{{$product[0]->name}}</a></h5>
+        <span class="price">Price : ${{$product[0]->price}}</span>
         <div class="size-variation">
             <span>size :</span>
             <select wire:model="getsize" name="size-value">

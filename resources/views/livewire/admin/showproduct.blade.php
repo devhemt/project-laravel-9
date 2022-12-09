@@ -33,7 +33,7 @@
             <td>{{$p->updated_at}}</td>
             <td>
                 <a href="#"><i class="fas fa-trash "></i></a>
-                <a href="#"><i class="fas fa-eye "></i></a>
+                <a href="{{url('admin/product/'.$p->prd_id)}}"><i class="fas fa-eye "></i></a>
                 <a href="#"><i class="fas fa-edit "></i></a>
                 <a href="#"><i class="fa-solid fa-circle-plus "></i></a>
             </td>

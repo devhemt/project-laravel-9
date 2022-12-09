@@ -72,7 +72,7 @@
                   </div>
                   <div class="form-group">
                       <label>Tag</label>
-                      <input name="prd_tag" type="text" class="form-control">
+                      <input required name="prd_tag" type="text" class="form-control">
                     @if ($errors->has('prd_tag'))
                         <p class="text-danger">
                         @foreach ($errors->get('prd_tag') as $e)
@@ -83,7 +83,7 @@
                   </div>
                     <div class="form-group">
                         <label>Brand</label>
-                        <input name="prd_brand" type="text" class="form-control">
+                        <input required name="prd_brand" type="text" class="form-control">
                         @if ($errors->has('prd_brand'))
                             <p class="text-danger">
                                 @foreach ($errors->get('prd_brand') as $e)
@@ -94,7 +94,7 @@
                     </div>
                     <div class="form-group">
                         <label>Provided name</label>
-                        <input name="provided_name" type="text" class="form-control">
+                        <input required name="provided_name" type="text" class="form-control">
                         @if ($errors->has('provided_name'))
                             <p class="text-danger">
                                 @foreach ($errors->get('provided_name') as $e)
@@ -105,7 +105,7 @@
                     </div>
                     <div class="form-group">
                         <label>Provided phone</label>
-                        <input name="provided_phone" type="tel" class="form-control">
+                        <input required name="provided_phone" type="tel" class="form-control">
                         @if ($errors->has('provided_phone'))
                             <p class="text-danger">
                                 @foreach ($errors->get('provided_phone') as $e)
@@ -116,7 +116,7 @@
                     </div>
                     <div class="form-group">
                         <label>Provided address</label>
-                        <input name="provided_address" type="text" class="form-control">
+                        <input required name="provided_address" type="text" class="form-control">
                         @if ($errors->has('provided_address'))
                             <p class="text-danger">
                                 @foreach ($errors->get('provided_address') as $e)

@@ -42,6 +42,7 @@ Route::get('/product',[\App\Http\Controllers\ProductController::class, 'index'])
 Route::post('/product',[\App\Http\Controllers\ProductController::class, 'store']);
 Route::get('product/create',[\App\Http\Controllers\ProductController::class,'create']);
 Route::get('/product/{product}/edit',[\App\Http\Controllers\ProductController::class,'edit']);
+Route::get('/product/{id}',[\App\Http\Controllers\ProductController::class,'show']);
 
 
 Route::get('/profile',[\App\Http\Controllers\ProfileController::class,'index']);
