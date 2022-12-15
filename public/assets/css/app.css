@@ -344,6 +344,8 @@ p {
 .search-output {
     /*visibility: hidden;*/
     border: 1px solid #cfcccc;
+    display: flex;
+    flex-direction: column;
     position: absolute;
     right: 0;
     padding: 7px 10px;
@@ -2636,33 +2638,13 @@ p.sub-title {
   margin-right: 10px;
 }
 
-.color-widget ul li {
-  width: 25px;
-  height: 25px;
-  display: inline-block;
-  margin-right: 3px;
-  border: 1px solid #ddd;
-}
-
-.color-widget ul li:nth-child(1) {
-  background: #cdcd16;
-}
-
-.color-widget ul li:nth-child(2) {
-  background: #45ce09;
-}
-
-.color-widget ul li:nth-child(3) {
-  background: #cd163d;
-}
-
-.color-widget ul li:nth-child(4) {
-  background: #e51996;
-}
-
-.color-widget ul li:nth-child(5) {
-  background: #2e2e2e;
-}
+/*.color-widget ul li {*/
+/*  width: 25px;*/
+/*  height: 25px;*/
+/*  display: inline-block;*/
+/*  margin-right: 3px;*/
+/*  border: 1px solid #ddd;*/
+/*}*/
 
 .color-widget ul li a {
   display: block;
@@ -2935,6 +2917,41 @@ p.sub-title {
   -o-text-overflow: ellipsis;
      text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.sort-by-price {
+    text-align: left;
+}
+
+.sort-by-price span {
+    font-size: 16px;
+    color: #7b7b7b;
+    margin-right: 15px;
+    font-weight: 500;
+}
+
+.sort-by-price select {
+    border: 1px solid #e9e9e9;
+    width: 200px;
+    height: 30px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    background: transparent url("../../media/images/icon/arrow.png") no-repeat scroll 94% 47%;
+    color: #7b7b7b;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 25px;
+}
+
+.sort-by-price select option {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /*--------------------------------------------------------------

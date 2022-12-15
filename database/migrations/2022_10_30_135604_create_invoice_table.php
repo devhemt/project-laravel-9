@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('cusid')->unsigned();
             $table->integer('staff')->unsigned()->nullable();
             $table->float('pay');
+            $table->string('see',50)->nullable();
             $table->string('payment',50);
             $table->string('delivery',50);
             $table->timestamps();

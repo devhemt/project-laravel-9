@@ -12,7 +12,10 @@ body {
   background: #f6f9ff;
   color: #444444;
 }
-
+.append_column , .delete {
+    width: 200px;
+    background: #ffdb00;
+}
 a {
   color: #4154f1;
   text-decoration: none;
@@ -361,7 +364,75 @@ h6 {
   color: #4154f1;
   border-bottom: 2px solid #4154f1;
 }
+/* visitor */
+.visitor-form-container{
+    position: fixed;
+    top:-120%; left: 0;
+    z-index: 10000;
+    min-height: 100vh;
+    width:100%;
+    background:rgba(0,0,0,.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.visitor-form-container.active{
+    top:0;
+}
+
+.visitor-form-container form{
+    margin:2rem;
+    padding:1.5rem 2rem;
+    border-radius: .5rem;
+    background:#fff;
+    width:40rem;
+}
+
+.visitor-form-container form h3{
+    font-size: 3rem;
+    color:#444;
+    text-transform: uppercase;
+    text-align: center;
+    padding:1rem 0;
+}
+
+.visitor-form-container form .box{
+    width:100%;
+    padding:1rem;
+    font-size: 1rem;
+    color:#333;
+    margin:.5rem 0;
+    border:.1rem solid rgba(0,0,0,.3);
+    text-transform: none;
+}
+
+.visitor-form-container form .box:focus{
+    border-color: var(--orange);;
+}
+
+.visitor-form-container form #remember{
+    margin:2rem 0;
+}
+
+.visitor-form-container form p{
+    font-size: 1rem;
+}
+
+.visitor-form-container form .danger{
+    display: block;
+    width:100%;
+    background-color: rgba(255, 0, 0, 0.99);
+}
+.visitor-form-container form .no{
+    display: block;
+    width:100%;
+    background-color: rgba(115, 255, 0, 0.99);
+}
+
+
+
+/* visitor end */
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -405,31 +476,13 @@ h6 {
   color: #012970;
 }
 
-.header .search-bar {
-  min-width: 360px;
-  padding: 0 20px;
+#search button{
+    background: #fbfcfc;
+    border: 1px solid #4d4848;
 }
-
-@media (max-width: 1199px) {
-  .header .search-bar {
-    position: fixed;
-    top: 50px;
-    left: 0;
-    right: 0;
-    padding: 20px;
-    box-shadow: 0px 0px 15px 0px rgba(1, 41, 112, 0.1);
-    background: white;
-    z-index: 9999;
-    transition: 0.3s;
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  .header .search-bar-show {
-    top: 60px;
-    visibility: visible;
-    opacity: 1;
-  }
+#search input{
+    margin-right: -4px;
+    height: 28px;
 }
 
 .header .search-form {

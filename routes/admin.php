@@ -25,7 +25,7 @@ Route::get('/signout', [\App\Http\Controllers\ProfileController::class,'signOut'
 
 Route::match(['get', 'post'], '/login', [\App\Http\Controllers\ProfileController::class, 'login']);
 
-Route::get('/addbatch', [\App\Http\Controllers\ProductController::class,'batch']);
+Route::get('/addbatch/{id}', [\App\Http\Controllers\ProductController::class,'batch']);
 
 Route::get('/canceledorder', [\App\Http\Controllers\InvoiceController::class, 'index0']);
 Route::get('/noprocessorder', [\App\Http\Controllers\InvoiceController::class, 'index1']);
@@ -33,6 +33,7 @@ Route::get('/confirmedorder', [\App\Http\Controllers\InvoiceController::class, '
 Route::get('/packingorder', [\App\Http\Controllers\InvoiceController::class, 'index3']);
 Route::get('/deliveryorder', [\App\Http\Controllers\InvoiceController::class, 'index4']);
 Route::get('/successfulorder', [\App\Http\Controllers\InvoiceController::class, 'index5']);
+Route::get('/order/{id}', [\App\Http\Controllers\InvoiceController::class, 'show']);
 
 
 Route::post('/invoice',[\App\Http\Controllers\InvoiceController::class, 'store']);
@@ -42,6 +43,8 @@ Route::get('/product',[\App\Http\Controllers\ProductController::class, 'index'])
 Route::post('/product',[\App\Http\Controllers\ProductController::class, 'store']);
 Route::get('product/create',[\App\Http\Controllers\ProductController::class,'create']);
 Route::get('/product/{product}/edit',[\App\Http\Controllers\ProductController::class,'edit']);
+Route::post('/product/edit',[\App\Http\Controllers\ProductController::class,'editInside']);
+Route::post('/product/addbatch',[\App\Http\Controllers\ProductController::class,'batchinside']);
 Route::get('/product/{id}',[\App\Http\Controllers\ProductController::class,'show']);
 
 

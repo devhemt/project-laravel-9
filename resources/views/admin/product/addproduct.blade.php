@@ -196,6 +196,21 @@
                         </tbody>
                     </table>
                   </div>
+                    <div class="form-group">
+                        <table class="table" id="my-table-3">
+                            <tbody>
+                            <tr>
+
+                            </tr>
+                            <tr>
+
+                            </tr>
+                            <tr>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                   <div class="form-group">
                     <input type="button" value="Add column" onclick="javascript:appendColumn()" class="append_column"/><br />
                     <input type="button" value="Delete columns" onclick="javascript:deleteColumns()" class="delete"/><br />
@@ -261,6 +276,7 @@
                 var tbl=document.getElementById('my-table');
                 var tbl1=document.getElementById('my-table-1');
                 var tbl2=document.getElementById('my-table-2');
+                var tbl3=document.getElementById('my-table-3');
                 if (flagname < 4) {
                     for(var i=0;i<tbl.rows.length;i++){
 
@@ -303,6 +319,20 @@
                         }
                     }
                 }
+                if(flagname >= 14 && flagname <=18) {
+                    for(var i=0;i<tbl3.rows.length;i++){
+
+                        if (i==0) {
+                            createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_size[]','form-control','text');
+                        }
+                        if (i==1) {
+                            createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_color[]','form-control','text');
+                        }
+                        if (i==2) {
+                            createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_amount[]','form-control','number');
+                        }
+                    }
+                }
 
                 flagname++;
 
@@ -330,6 +360,9 @@
                 var tbl2 = document.getElementById('my-table-2'), // table reference
                     lastCol2 = tbl2.rows[0].cells.length - 1,    // set the last column index
                     c, d;
+                var tbl3 = document.getElementById('my-table-3'), // table reference
+                    lastCol3 = tbl3.rows[0].cells.length - 1,    // set the last column index
+                    e, f;
             // delete cells with index greater then 0 (for each row)
                 for (i = 0; i < tbl.rows.length; i++) {
                     for (j = lastCol; j > 1; j--) {
@@ -344,6 +377,11 @@
                 for (c = 0; c < tbl2.rows.length; c++) {
                     for (d = lastCol2; d >= 0; d--) {
                         tbl2.rows[c].deleteCell(d);
+                    }
+                }
+                for (e = 0; e < tbl3.rows.length; e++) {
+                    for (f = lastCol3; f >= 0; f--) {
+                        tbl3.rows[e].deleteCell(f);
                     }
                 }
                 flagname = 1;

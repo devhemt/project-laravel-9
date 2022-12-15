@@ -363,23 +363,6 @@ var THEMEIM = THEMEIM || {};
       });
 
 
-      /*---------------------
-          price-slider active
-          ------------------------- */
-
-
-      $("#slider-range").slider({
-        range: true,
-        min: 0,
-        max: 600,
-        values: [60, 570],
-        slide: function(event, ui) {
-          $("#amount").val("$" + ui.values[0] + " to $" + ui.values[1]);
-        }
-      });
-      $("#amount").val("$" + $("#slider-range").slider("values", 0) +
-        " to $" + $("#slider-range").slider("values", 1));
-
 
 
 

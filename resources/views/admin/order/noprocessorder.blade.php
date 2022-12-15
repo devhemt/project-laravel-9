@@ -10,6 +10,7 @@
                     <li class="breadcrumb-item active">General</li>
                 </ol>
             </nav>
+            @livewire('searchadmin',['currentURL' => $currentURL])
         </div><!-- End Page Title -->
 
         <section class="section">

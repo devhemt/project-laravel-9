@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->increments('prd_id');
             $table->integer('staff')->unsigned()->nullable();
+            $table->string('block',10)->nullable();
             $table->string('demoimage',200);
             $table->string('name',150);
             $table->text('description');

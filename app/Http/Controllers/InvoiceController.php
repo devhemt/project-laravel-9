@@ -23,27 +23,45 @@ class InvoiceController extends Controller
     }
     public function index0()
     {
-        return view('admin.order.canceledorder');
+        $currentURL = url()->current();
+        return view('admin.order.canceledorder',[
+            'currentURL'=> $currentURL,
+        ]);
     }
     public function index1()
     {
-        return view('admin.order.noprocessorder');
+        $currentURL = url()->current();
+        return view('admin.order.noprocessorder',[
+            'currentURL'=> $currentURL,
+        ]);
     }
     public function index2()
     {
-        return view('admin.order.confirmedorder');
+        $currentURL = url()->current();
+        return view('admin.order.confirmedorder',[
+            'currentURL'=> $currentURL,
+        ]);
     }
     public function index3()
     {
-        return view('admin.order.packingorder');
+        $currentURL = url()->current();
+        return view('admin.order.packingorder',[
+            'currentURL'=> $currentURL,
+        ]);
     }
     public function index4()
     {
-        return view('admin.order.deliveryorder');
+        $currentURL = url()->current();
+        return view('admin.order.deliveryorder',[
+            'currentURL'=> $currentURL,
+        ]);
     }
     public function index5()
     {
-        return view('admin.order.successfulorder');
+        $currentURL = url()->current();
+        return view('admin.order.successfulorder',[
+            'currentURL'=> $currentURL,
+        ]);
     }
 
     /**
@@ -278,7 +296,9 @@ class InvoiceController extends Controller
      */
     public function show($id)
     {
-
+        return view('admin.order.order',[
+            'id' => $id,
+        ]);
     }
 
     /**

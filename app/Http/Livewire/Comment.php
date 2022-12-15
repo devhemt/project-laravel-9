@@ -10,6 +10,7 @@ class Comment extends Component
 {
     public $prd_id;
     public $cmt;
+    public $comments;
 
     protected $rules = [
         'cmt'=> 'required|max:300'
@@ -56,6 +57,12 @@ class Comment extends Component
 
     public function render()
     {
+        $this->comments = DB::table('comments')
+            ->join('customer', 'comments.cus_id','=', 'customer.cus_id')
+            ->select('comments.*','customer.name')
+            ->where('itemsid', $this->prd_id)
+            ->latest()->limit(5)->get();
+
         return view('livewire.client.comment');
     }
 }

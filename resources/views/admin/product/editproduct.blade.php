@@ -16,12 +16,15 @@
             <div class="row addpd">
                 <div class="col-lg-6">
 
-                    <form accept-charset="utf-8" action="{{ url("admin/product") }}" role="form" method="POST" enctype="multipart/form-data">
+                    <form accept-charset="utf-8" action="{{ url("admin/product/edit") }}" role="form" method="POST" enctype="multipart/form-data">
                         {{ method_field('POST') }}
                         @csrf
                         <div class="form-group">
+                            <input hidden name="prd_id" class="form-control" value="{{$id}}">
+                        </div>
+                        <div class="form-group">
                             <label>Product's Name</label>
-                            <input required name="prd_name" class="form-control" placeholder="">
+                            <input name="prd_name" class="form-control" placeholder="{{$product[0]->name}}">
                             @if ($errors->has('prd_name'))
                                 <p class="text-danger">
                                     @foreach ($errors->get('prd_name') as $e)
@@ -31,19 +34,8 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Cost price</label>
-                            <input required name="prd_cost_price" type="number" min="0" class="form-control">
-                            @if ($errors->has('prd_cost_price'))
-                                <p class="text-danger">
-                                    @foreach ($errors->get('prd_cost_price') as $e)
-                                        {{ $e }}
-                                    @endforeach
-                                </p>
-                            @endif
-                        </div>
-                        <div class="form-group">
                             <label>Price</label>
-                            <input required name="prd_price" type="number" min="0" class="form-control">
+                            <input name="prd_price" type="number" min="0" class="form-control" placeholder="{{$product[0]->price}}">
                             @if ($errors->has('prd_price'))
                                 <p class="text-danger">
                                     @foreach ($errors->get('prd_price') as $e)
@@ -56,7 +48,17 @@
                             <label>Danh mục</label>
                             <select name="prd_category" class="form-control">
                                 {{-- categories(1=men,2=women,3=kid,4=accessories) --}}
-                                <option value="0">-- Lựa chọn --</option>
+                                <option value="{{$product[0]->categories}}">--
+                                    @if($product[0]->categories == 1)
+                                        {{'Men'}}
+                                    @elseif($product[0]->categories == 2)
+                                        {{'Women'}}
+                                    @elseif($product[0]->categories == 3)
+                                        {{'Kid'}}
+                                    @elseif($product[0]->categories == 4)
+                                        {{'Accessories'}}
+                                    @endif
+                                    --</option>
                                 <option value="1">-- Men --</option>
                                 <option value="2">-- Women --</option>
                                 <option value="3">-- Kid --</option>
@@ -72,7 +74,7 @@
                         </div>
                         <div class="form-group">
                             <label>Tag</label>
-                            <input name="prd_tag" type="text" class="form-control">
+                            <input name="prd_tag" type="text" class="form-control" placeholder="{{$product[0]->tag}}">
                             @if ($errors->has('prd_tag'))
                                 <p class="text-danger">
                                     @foreach ($errors->get('prd_tag') as $e)
@@ -83,7 +85,7 @@
                         </div>
                         <div class="form-group">
                             <label>Brand</label>
-                            <input name="prd_brand" type="text" class="form-control">
+                            <input name="prd_brand" type="text" class="form-control" placeholder="{{$product[0]->brand}}">
                             @if ($errors->has('prd_brand'))
                                 <p class="text-danger">
                                     @foreach ($errors->get('prd_brand') as $e)
@@ -94,7 +96,7 @@
                         </div>
                         <div class="form-group">
                             <label>Provided name</label>
-                            <input name="provided_name" type="text" class="form-control">
+                            <input name="provided_name" type="text" class="form-control" placeholder="{{$product[0]->provided_name}}">
                             @if ($errors->has('provided_name'))
                                 <p class="text-danger">
                                     @foreach ($errors->get('provided_name') as $e)
@@ -105,7 +107,7 @@
                         </div>
                         <div class="form-group">
                             <label>Provided phone</label>
-                            <input name="provided_phone" type="tel" class="form-control">
+                            <input name="provided_phone" type="tel" class="form-control" placeholder="{{$product[0]->provided_phone}}">
                             @if ($errors->has('provided_phone'))
                                 <p class="text-danger">
                                     @foreach ($errors->get('provided_phone') as $e)
@@ -116,7 +118,7 @@
                         </div>
                         <div class="form-group">
                             <label>Provided address</label>
-                            <input name="provided_address" type="text" class="form-control">
+                            <input name="provided_address" type="text" class="form-control" placeholder="{{$product[0]->provided_address}}">
                             @if ($errors->has('provided_address'))
                                 <p class="text-danger">
                                     @foreach ($errors->get('provided_address') as $e)
@@ -125,87 +127,20 @@
                                 </p>
                             @endif
                         </div>
-                        <div class="form-group">
-                            <label>Nature:</label>
-                            @if ($errors->has('prd_size'))
-                                <p class="text-danger">
-                                    @foreach ($errors->get('prd_size') as $e)
-                                        {{ $e }}
-                                    @endforeach
-                                </p>
-                            @endif
-                            @if ($errors->has('prd_color'))
-                                <p class="text-danger">
-                                    @foreach ($errors->get('prd_color') as $e)
-                                        {{ $e }}
-                                    @endforeach
-                                </p>
-                            @endif
-                            @if ($errors->has('prd_amount'))
-                                <p class="text-danger">
-                                    @foreach ($errors->get('prd_amount') as $e)
-                                        {{ $e }}
-                                    @endforeach
-                                </p>
-                            @endif
-                            <table class="table" id="my-table">
-                                <tbody>
-                                <tr>
-                                    <th>Size</th>
-                                    <td><input required name="prd_size[]" type="text" class="form-control"></td>
-                                </tr>
-                                <tr>
-                                    <th>Color</th>
-                                    <td><input required name="prd_color[]" type="text" class="form-control"></td>
-                                </tr>
-                                <tr>
-                                    <th>Amount</th>
-                                    <td><input required min="0" name="prd_amount[]" type="number" class="form-control"></td>
-                                </tr>
-                                </tbody>
-                            </table>
 
-                        </div>
-                        <div class="form-group">
-                            <table class="table" id="my-table-1">
-                                <tbody>
-                                <tr>
-
-                                </tr>
-                                <tr>
-
-                                </tr>
-                                <tr>
-
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="form-group">
-                            <table class="table" id="my-table-2">
-                                <tbody>
-                                <tr>
-
-                                </tr>
-                                <tr>
-
-                                </tr>
-                                <tr>
-
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="form-group">
-                            <input type="button" value="Add column" onclick="javascript:appendColumn()" class="append_column"/><br />
-                            <input type="button" value="Delete columns" onclick="javascript:deleteColumns()" class="delete"/><br />
-                        </div>
                 </div>
 
                 <div class="col-lg-6">
 
                     <div class="form-group">
                         <label>Ảnh sản phẩm</label>
+                        <div id="view-images">
+                            @foreach($images as $i)
+                                <img src="{{asset('images/'.$i->url)}}" alt="Thumb" style="height: 200px; width: 130px">
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="form-group">
                         @if ($errors->has('prd_image'))
                             <p class="text-danger">
                                 @foreach ($errors->get('prd_image') as $e)
@@ -213,16 +148,13 @@
                                 @endforeach
                             </p>
                         @endif
-                        <input required  name="prd_image[]" onchange="preview();" type="file"  multiple >
-                        <br>
-                        <div id="view-images">
-                        </div>
+                        <input  name="prd_image[]" onchange="preview();" type="file"  multiple >
                     </div>
 
 
                     <div class="form-group">
                         <label>Mô tả sản phẩm</label>
-                        <textarea required name="prd_description" class="form-control" rows="3"></textarea>
+                        <textarea name="prd_description" class="form-control" rows="3" placeholder="{{$product[0]->description}}"></textarea>
                         @if ($errors->has('prd_description'))
                             <p class="text-danger">
                                 @foreach ($errors->get('prd_description') as $e)
@@ -231,12 +163,163 @@
                             </p>
                         @endif
                     </div>
-                    <button name="sbm" type="submit" class="btn btn-success">Thêm mới</button>
-                    <button type="reset" class="btn btn-default">Làm mới</button>
-                    </form>
+
 
                 </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Nature:</label>
+                        @if ($errors->has('prd_size'))
+                            <p class="text-danger">
+                                @foreach ($errors->get('prd_size') as $e)
+                                    {{ $e }}
+                                @endforeach
+                            </p>
+                        @endif
+                        @if ($errors->has('prd_color'))
+                            <p class="text-danger">
+                                @foreach ($errors->get('prd_color') as $e)
+                                    {{ $e }}
+                                @endforeach
+                            </p>
+                        @endif
+                        @if ($errors->has('prd_amount'))
+                            <p class="text-danger">
+                                @foreach ($errors->get('prd_amount') as $e)
+                                    {{ $e }}
+                                @endforeach
+                            </p>
+                        @endif
+                        <table class="table" id="my-table">
+                            <tbody>
+                            <tr>
+                                <th>Size</th>
+                                @for ($i = 0; $i < $count; $i++)
+                                    <td><input required name="prd_size[]" value="{{$p1[$i]->size}}" type="text" class="form-control"></td>
+                                    @if($i==4)
+                                    @break
+                                    @endif
+                                @endfor
+                            </tr>
+                            <tr>
+                                <th>Color</th>
+                                @for ($i = 0; $i < $count; $i++)
+                                    <td><input required name="prd_color[]" value="{{$p1[$i]->color}}" type="text" class="form-control"></td>
+                                    @if($i==4)
+                                        @break
+                                    @endif
+                                @endfor
+                            </tr>
+                            <tr>
+                                <th>Amount</th>
+                                @for ($i = 0; $i < $count; $i++)
+                                    <td><input required name="prd_amount[]" min="0" value="{{$p1[$i]->amount}}" type="number" class="form-control"></td>
+                                    @if($i==4)
+                                        @break
+                                    @endif
+                                @endfor
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    @if($count >= 4)
+                        <div class="form-group">
+                            <table class="table" id="my-table-1">
+                                <tbody>
+                                <tr>
+                                    @for ($i = 4; $i < $count; $i++)
+                                        <td><input required name="prd_size[]" value="{{$p1[$i]->size}}" type="text" class="form-control"></td>
+                                        @if($i==9)
+                                            @break
+                                        @endif
+                                    @endfor
+                                </tr>
+                                <tr>
+                                    @for ($i = 4; $i < $count; $i++)
+                                        <td><input required name="prd_color[]" value="{{$p1[$i]->color}}" type="text" class="form-control"></td>
+                                        @if($i==9)
+                                            @break
+                                        @endif
+                                    @endfor
+                                </tr>
+                                <tr>
+                                    @for ($i = 4; $i < $count; $i++)
+                                        <td><input required name="prd_amount[]" min="0" value="{{$p1[$i]->amount}}" type="number" class="form-control"></td>
+                                        @if($i==9)
+                                            @break
+                                        @endif
+                                    @endfor
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
+                    @if($count > 8 )
+                        <div class="form-group">
+                            <table class="table" id="my-table-2">
+                                <tbody>
+                                <tr>
+                                    @for ($i = 9; $i < $count; $i++)
+                                        <td><input required name="prd_size[]" value="{{$p1[$i]->size}}" type="text" class="form-control"></td>
+                                        @if($i==14)
+                                            @break
+                                        @endif
+                                    @endfor
+                                </tr>
+                                <tr>
+                                    @for ($i = 9; $i < $count; $i++)
+                                        <td><input required name="prd_color[]" value="{{$p1[$i]->color}}" type="text" class="form-control"></td>
+                                        @if($i==14)
+                                            @break
+                                        @endif
+                                    @endfor
+                                </tr>
+                                <tr>
+                                    @for ($i = 9; $i < $count; $i++)
+                                        <td><input required name="prd_amount[]" min="0" value="{{$p1[$i]->amount}}" type="number" class="form-control"></td>
+                                        @if($i==14)
+                                            @break
+                                        @endif
+                                    @endfor
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
+                    @if($count > 13 )
+                        <div class="form-group">
+                            <table class="table" id="my-table-3">
+                                <tbody>
+                                <tr>
+                                    @for ($i = 14; $i < $count; $i++)
+                                        <td><input required name="prd_size[]" value="{{$p1[$i]->size}}" type="text" class="form-control"></td>
+                                    @endfor
+                                </tr>
+                                <tr>
+                                    @for ($i = 14; $i < $count; $i++)
+                                        <td><input required name="prd_color[]" value="{{$p1[$i]->color}}" type="text" class="form-control"></td>
+                                    @endfor
+                                </tr>
+                                <tr>
+                                    @for ($i = 14; $i < $count; $i++)
+                                        <td><input required name="prd_amount[]" min="0" value="{{$p1[$i]->amount}}" type="number" class="form-control"></td>
+                                    @endfor
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
+                    <div class="form-group">
+                        <input type="button" value="Add column" onclick="javascript:appendColumn()" class="append_column"/><br />
+                        <input type="button" value="Delete columns" onclick="javascript:deleteColumns()" class="delete"/><br />
+                    </div>
+                    <button name="sbm" type="submit" class="btn btn-success">Edit</button>
+                    <button type="reset" class="btn btn-default">Fresh</button>
+                    </form>
+                </div>
             </div>
+
         </section>
         <script language="JavaScript" type="text/javascript">
             var flagname = 1;
@@ -261,6 +344,7 @@
                 var tbl=document.getElementById('my-table');
                 var tbl1=document.getElementById('my-table-1');
                 var tbl2=document.getElementById('my-table-2');
+                var tbl3=document.getElementById('my-table-3');
                 if (flagname < 4) {
                     for(var i=0;i<tbl.rows.length;i++){
 
@@ -303,6 +387,20 @@
                         }
                     }
                 }
+                if(flagname >= 14 && flagname <=18) {
+                    for(var i=0;i<tbl3.rows.length;i++){
+
+                        if (i==0) {
+                            createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_size[]','form-control','text');
+                        }
+                        if (i==1) {
+                            createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_color[]','form-control','text');
+                        }
+                        if (i==2) {
+                            createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_amount[]','form-control','number');
+                        }
+                    }
+                }
 
                 flagname++;
 
@@ -330,6 +428,9 @@
                 var tbl2 = document.getElementById('my-table-2'), // table reference
                     lastCol2 = tbl2.rows[0].cells.length - 1,    // set the last column index
                     c, d;
+                var tbl3 = document.getElementById('my-table-3'), // table reference
+                    lastCol3 = tbl3.rows[0].cells.length - 1,    // set the last column index
+                    e, f;
                 // delete cells with index greater then 0 (for each row)
                 for (i = 0; i < tbl.rows.length; i++) {
                     for (j = lastCol; j > 1; j--) {
@@ -344,6 +445,11 @@
                 for (c = 0; c < tbl2.rows.length; c++) {
                     for (d = lastCol2; d >= 0; d--) {
                         tbl2.rows[c].deleteCell(d);
+                    }
+                }
+                for (e = 0; e < tbl3.rows.length; e++) {
+                    for (f = lastCol3; f >= 0; f--) {
+                        tbl3.rows[e].deleteCell(f);
                     }
                 }
                 flagname = 1;

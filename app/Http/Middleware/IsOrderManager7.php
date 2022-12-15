@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class IsDeliveryManager
+class IsOrderManager7
 {
     /**
      * Handle an incoming request.
@@ -17,11 +16,6 @@ class IsDeliveryManager
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::guard('user')->check() && Auth::guard('user')->user()->role == 1 || Auth::guard('user')->user()->role == 9 || Auth::guard('user')->user()->role == 2)
-        {
-            return $next($request);
-        }else{
-            return redirect()->back();
-        }
+        return $next($request);
     }
 }

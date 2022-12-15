@@ -18,6 +18,7 @@ class Index extends Component
         $this->product = DB::table('items')
         ->join('category', 'items.prd_id','=', 'category.prdid')
         ->select('items.*','category.categories')
+        ->where('block','=', null)
         ->orderBy('items.prd_id')
         ->limit(8)
         ->get();

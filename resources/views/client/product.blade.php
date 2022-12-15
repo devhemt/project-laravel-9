@@ -184,21 +184,8 @@
 										<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 											<div class="prod-bottom-tab-sin">
 												<h5>Review (1)</h5>
-												<div class="product-review">
-													<div class="reviwer">
-														<img src="media/images/reviewer.png" alt="">
-														<div class="review-details">
-															<span>Posted by Tonoy - Published on	March 22, 2018</span>
-															<p>But I must explain to you how all this mistaken idea of denouncipleasure and praisi pain was born and I will give you a complete.</p>
-														</div>
-													</div>
-													<div class="add-your-review">
-														<h6>ADD A REVIEW</h6>
-														<p>YOUR RATING* </p>
+                                                @livewire('comment',['prd_id' => $id])
 
-														@livewire('comment',['prd_id' => $id])
-													</div>
-												</div>
 											</div>
 										</div>
 									@endforeach

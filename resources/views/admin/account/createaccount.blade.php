@@ -57,8 +57,12 @@
                                         <option value="1" selected>Director</option>
                                         <option value="2">Total-Manager</option>
                                         <option value="3">Import Manager</option>
-                                        <option value="4">Order Manager</option>
-                                        <option value="5">Delivery Manager</option>
+                                        <option value="4">Order Manager canceled</option>
+                                        <option value="5">Order Manager noprocess</option>
+                                        <option value="6">Order Manager confirmed</option>
+                                        <option value="7">Order Manager packing</option>
+                                        <option value="8">Order Manager success</option>
+                                        <option value="9">Delivery Manager</option>
                                     </select>
                                     @if ($errors->has('role'))
                                         <span class="text-danger">{{ $errors->first('role') }}</span>
