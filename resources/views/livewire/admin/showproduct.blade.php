@@ -1,6 +1,16 @@
 <div class="card-body">
-    <h5 class="card-title">Table with stripped rows</h5>
+    <div class="visitor-form-container" style="top:{{$top}};">
 
+        <form action="">
+            <h3>Are you sure about delete this product</h3>
+            <input wire:click="yes" type="button" value="Yes" class="btn danger">
+            <input wire:click="no" type="button" value="No" class="btn no">
+            <p for="remember">Please consider your optios.</p>
+        </form>
+
+    </div>
+
+    <h5 class="card-title">Table with stripped rows</h5>
 
     <table class="table table-striped">
         <thead>
@@ -32,10 +42,10 @@
             <td>{{$p->created_at}}</td>
             <td>{{$p->updated_at}}</td>
             <td>
-                <a href="#"><i class="fas fa-trash "></i></a>
+                <a href="#" wire:click="block('{{$p->prd_id}}')" id="deleteprd"><i class="fas fa-trash "></i></a>
                 <a href="{{url('admin/product/'.$p->prd_id)}}"><i class="fas fa-eye "></i></a>
-                <a href="#"><i class="fas fa-edit "></i></a>
-                <a href="#"><i class="fa-solid fa-circle-plus "></i></a>
+                <a href="{{url('admin/product/'.$p->prd_id.'/edit')}}"><i class="fas fa-edit "></i></a>
+                <a href="{{url('admin/addbatch/'.$p->prd_id)}}"><i class="fa-solid fa-circle-plus "></i></a>
             </td>
         </tr>
         @endforeach

@@ -17,9 +17,6 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $currentURL = url()->current();
-
-        dd($currentURL);
         return view('admin.profile');
     }
 
@@ -72,7 +69,7 @@ class ProfileController extends Controller
         }
 
         $request->validate([
-            'email' => 'required|email|exists:customer,email',
+            'email' => 'required|email|exists:user,email',
             'password' => 'required|min:6',
         ]);
 

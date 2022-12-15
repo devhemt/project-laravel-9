@@ -36,16 +36,6 @@
 								@livewire('shop-s-b-p')
 							</div>
 
-							<div class="sidebar-widget color-widget">
-								<h6>PRODUCT COLOR</h6>
-								<ul>
-									<li><a href="#"></a></li>
-									<li><a href="#"></a></li>
-									<li><a href="#"></a></li>
-									<li><a href="#"></a></li>
-									<li><a href="#"></a></li>
-								</ul>
-							</div>
 
 							<div class="sidebar-widget product-widget">
 								<h6>BEST SELLERS</h6>

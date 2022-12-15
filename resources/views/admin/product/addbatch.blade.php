@@ -14,12 +14,14 @@
 
         <section class="section">
             <div class="row addpd">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
 
-                    <form accept-charset="utf-8" action="{{ url("admin/product") }}" role="form" method="POST" enctype="multipart/form-data">
+                    <form accept-charset="utf-8" action="{{ url("admin/product/addbatch") }}" role="form" method="POST" enctype="multipart/form-data">
                         {{ method_field('POST') }}
                         @csrf
-
+                        <div class="form-group">
+                            <input hidden name="prd_id" class="form-control" value="{{$id}}">
+                        </div>
                         <div class="form-group">
                             <label>Cost price</label>
                             <input required name="prd_cost_price" type="number" min="0" class="form-control">
@@ -104,6 +106,21 @@
                             </table>
                         </div>
                         <div class="form-group">
+                            <table class="table" id="my-table-3">
+                                <tbody>
+                                <tr>
+
+                                </tr>
+                                <tr>
+
+                                </tr>
+                                <tr>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group">
                             <input type="button" value="Add column" onclick="javascript:appendColumn()" class="append_column"/><br />
                             <input type="button" value="Delete columns" onclick="javascript:deleteColumns()" class="delete"/><br />
                         </div>
@@ -119,12 +136,29 @@
         </section>
         <script language="JavaScript" type="text/javascript">
             var flagname = 1;
+            var flagimage = false;
+            function preview() {
+                var cell=document.getElementById('view-images');
+                while (cell.hasChildNodes()) {
+                    cell.removeChild(cell.firstChild);
+                }
 
+                for (var i = 0; i < event.target.files.length;i++){
+                    var div=document.createElement('img');
+                    div.setAttribute('width','130px');
+                    div.setAttribute('height','200px');
+                    div.setAttribute('src',URL.createObjectURL(event.target.files[i]));
+                    cell.appendChild(div);
+                    flagimage = true;
+                }
+
+            }
             function appendColumn(){
                 var tbl=document.getElementById('my-table');
                 var tbl1=document.getElementById('my-table-1');
                 var tbl2=document.getElementById('my-table-2');
-                if (flagname < 4) {
+                var tbl3=document.getElementById('my-table-3');
+                if (flagname < 8) {
                     for(var i=0;i<tbl.rows.length;i++){
 
                         if (i==0) {
@@ -138,7 +172,7 @@
                         }
                     }
                 }
-                if(flagname >= 4 && flagname <=8) {
+                if(flagname >= 8 && flagname <=18) {
                     for(var i=0;i<tbl1.rows.length;i++){
 
                         if (i==0) {
@@ -152,7 +186,7 @@
                         }
                     }
                 }
-                if(flagname >= 9 && flagname <=13) {
+                if(flagname >= 18 && flagname <=28) {
                     for(var i=0;i<tbl2.rows.length;i++){
 
                         if (i==0) {
@@ -163,6 +197,20 @@
                         }
                         if (i==2) {
                             createCell(tbl2.rows[i].insertCell(tbl2.rows[i].cells.length),'prd_amount[]','form-control','number');
+                        }
+                    }
+                }
+                if(flagname >= 28 && flagname <=38) {
+                    for(var i=0;i<tbl3.rows.length;i++){
+
+                        if (i==0) {
+                            createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_size[]','form-control','text');
+                        }
+                        if (i==1) {
+                            createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_color[]','form-control','text');
+                        }
+                        if (i==2) {
+                            createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_amount[]','form-control','number');
                         }
                     }
                 }
@@ -193,6 +241,9 @@
                 var tbl2 = document.getElementById('my-table-2'), // table reference
                     lastCol2 = tbl2.rows[0].cells.length - 1,    // set the last column index
                     c, d;
+                var tbl3 = document.getElementById('my-table-3'), // table reference
+                    lastCol3 = tbl3.rows[0].cells.length - 1,    // set the last column index
+                    e, f;
                 // delete cells with index greater then 0 (for each row)
                 for (i = 0; i < tbl.rows.length; i++) {
                     for (j = lastCol; j > 1; j--) {
@@ -207,6 +258,11 @@
                 for (c = 0; c < tbl2.rows.length; c++) {
                     for (d = lastCol2; d >= 0; d--) {
                         tbl2.rows[c].deleteCell(d);
+                    }
+                }
+                for (e = 0; e < tbl3.rows.length; e++) {
+                    for (f = lastCol3; f >= 0; f--) {
+                        tbl3.rows[e].deleteCell(f);
                     }
                 }
                 flagname = 1;

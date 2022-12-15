@@ -75,19 +75,21 @@ class Product extends Component
         }else{
             $userId = Session::getId();
         }
-        Cart::add([
-            'id' => $this->thisid,
-            'name' => $this->name,
-            'price' => $this->price,
-            'quantity' => $this->quantity,
-            'attributes' => array(
-                0 => array(
-                    'color' => $this->color,
-                    'size' => $this->getsize,
-                    'image' => $this->imagein,
+        if ($this->quantity != 0){
+            Cart::add([
+                'id' => $this->thisid,
+                'name' => $this->name,
+                'price' => $this->price,
+                'quantity' => $this->quantity,
+                'attributes' => array(
+                    0 => array(
+                        'color' => $this->color,
+                        'size' => $this->getsize,
+                        'image' => $this->imagein,
+                    )
                 )
-            )
-        ]);
+            ]);
+        }
         $this->emit('loadsmallcart');
     }
 

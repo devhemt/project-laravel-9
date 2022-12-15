@@ -86,16 +86,19 @@
 
                         <table class="table" id="my-table">
                             <tbody>
-                            @foreach($batch as $b)
                             <tr>
                                 <th>Batch</th>
+                                @foreach($batch as $b)
                                 <td><input readonly placeholder="{{$b->batch}}" type="text" class="form-control"></td>
+                                @endforeach
                             </tr>
                             <tr>
                                 <th>Cost</th>
+                                @foreach($batch as $b)
                                 <td><input readonly min="0" placeholder="{{$b->cost}}" type="number" class="form-control"></td>
+                                @endforeach
                             </tr>
-                            @endforeach
+
                             </tbody>
                         </table>
 
@@ -105,24 +108,30 @@
 
                         <table class="table" id="my-table">
                             <tbody>
-                            @foreach($properties as $p)
                             <tr>
                                 <th>Size</th>
+                                @foreach($properties as $p)
                                 <td><input readonly value="{{$p->size}}" type="text" class="form-control"></td>
+                                @endforeach
                             </tr>
                             <tr>
-                                <th>Color</th>
+                                <th>Color
+                                @foreach($properties as $p)
                                 <td><input readonly value="{{$p->color}}" type="text" class="form-control"></td>
+                                @endforeach
                             </tr>
                             <tr>
                                 <th>Batch</th>
+                                @foreach($properties as $p)
                                 <td><input readonly value="{{$p->batch}}" type="text" class="form-control"></td>
+                                @endforeach
                             </tr>
                             <tr>
                                 <th>Amount</th>
+                                @foreach($properties as $p)
                                 <td><input readonly min="0" value="{{$p->amount}}" type="number" class="form-control"></td>
+                                @endforeach
                             </tr>
-                            @endforeach
                             </tbody>
                         </table>
 
