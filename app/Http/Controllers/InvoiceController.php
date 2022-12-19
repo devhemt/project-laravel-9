@@ -128,7 +128,8 @@ class InvoiceController extends Controller
     }
 
     public function test(Request $request){
-//        dd($request->resultCode);
+        dd($request);
+//        if ($request->resultCode == 0)
         if ($request->resultCode != null){
             if (Auth::guard("customer")->check()){
                 $userId = Auth::guard("customer")->id();

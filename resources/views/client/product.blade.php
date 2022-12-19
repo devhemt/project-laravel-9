@@ -29,10 +29,6 @@
 				<div class="row">
 					<div class="order-2 order-md-1 col-md-4 col-lg-3 col-xl-3">
 						<div class=" shop-sidebar">
-							<div class="sidebar-widget sidebar-search">
-								<input type="text" placeholder="Search Product....">
-								<button type="submit"><i class="fas fa-search"></i></button>
-							</div>
 							<div class="sidebar-widget product-widget">
 								<h6>BEST SELLERS</h6>
 								<div class="wid-pro">

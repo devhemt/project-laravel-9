@@ -114,7 +114,7 @@
                                 <form method="POST" action="{{ url('admin/invoice') }}">
                                     @csrf
                                     <div class="d-flex justify-content-between mb-5">
-                                            <input type="submit" class="btn btn-info" value="MoMo payment">
+                                            <input wire:click="momonoacc" type="button" class="btn btn-info" value="MoMo payment">
                                     </div>
                                 </form>
                                 <button wire:click="register" type="button" class="btn btn-dark btn-block btn-lg"

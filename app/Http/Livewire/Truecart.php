@@ -13,17 +13,20 @@ use Illuminate\Support\Facades\DB;
 
 class Truecart extends Component
 {
-    protected $listeners = ['loadtruecart'];
+    protected $listeners = ['loadtruecart','setCusNoacc'];
     public $resultCode;
     public $cart;
     public $totalquantity = 0;
     public $total;
     public $checked = [];
     public $deliverymethod = 'Default delivery $5';
-    public $options = ['Default delivery $5','Fast delivery $5','Super fast delivery $25'];
+    public $options = ['Default delivery $5','Fast delivery $15','Super fast delivery $25'];
 
 
     public function loadtruecart(){}
+    public function setCusNoacc($datas){
+        dd($datas);
+    }
 
     public function deleteCartItem($itemsid){
         if (Auth::guard("customer")->check()){
@@ -196,6 +199,10 @@ class Truecart extends Component
         }else{
             $this->emit('showTakeInfor');
         }
+    }
+
+    public function momonoacc(){
+        $this->emit('showTakeInfor');
     }
 
     public function minus($id){

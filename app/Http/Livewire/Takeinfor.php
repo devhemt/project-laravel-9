@@ -2,6 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Detail_invoice;
+use App\Models\Invoice;
+use App\Models\Status;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Takeinfor extends Component
@@ -11,6 +16,10 @@ class Takeinfor extends Component
 
     public function showTakeInfor(){
         $this->top = 0;
+    }
+
+    public function confirm(){
+        $this->emit('setCusNoacc',['jgvj','gfcgcgf','rtrtrrtrt']);
     }
 
     public function close(){
