@@ -39,7 +39,11 @@ class Smallcart extends Component
         $this->cart = Cart::getContent()->toArray();
         $this->subtotal = Cart::getSubTotal();
         $this->total = Cart::getTotal();
-        $this->amount = Cart::getTotalQuantity();
+
+        $this->amount = 0;
+        foreach ($this->cart as $c){
+            $this->amount++ ;
+        }
         return view('livewire.client.smallcart',['cart'=>$this->cart]);
     }
 }

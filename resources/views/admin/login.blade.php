@@ -55,10 +55,10 @@
                                         <div class="input-group has-validation">
                                             <input type="email" name="email" class="form-control" id="yourUsername" required>
                                             <div class="invalid-feedback">Please enter your username.</div>
-                                            @if ($errors->has('email'))
-                                                <span class="text-danger">{{ $errors->first('email') }}</span>
-                                            @endif
                                         </div>
+                                        @if ($errors->has('email'))
+                                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                                        @endif
                                     </div>
 
                                     <div class="col-12">
