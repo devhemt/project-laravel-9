@@ -40,9 +40,9 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="{{url('admin')}}" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <span class="d-none d-lg-block">KF Admin</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -214,16 +214,6 @@
           <li>
             <a href="{{ url('admin/product/create') }}">
               <i class="bi bi-circle"></i><span>Add product</span>
-            </a>
-          </li>
-            <li>
-                <a href="{{ url('admin/addbatch') }}">
-                    <i class="bi bi-circle"></i><span>Add batch</span>
-                </a>
-            </li>
-          <li>
-            <a href="{{ url('admin/product/1/edit') }}">
-              <i class="bi bi-circle"></i><span>Edit product</span>
             </a>
           </li>
         </ul>

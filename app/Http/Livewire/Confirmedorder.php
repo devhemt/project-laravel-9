@@ -8,6 +8,6 @@ class Confirmedorder extends Component
 {
     public function render()
     {
-        return view('livewire.admin.confirmedorder');
+        return view('livewire.admin.order.confirmedorder');
     }
 }

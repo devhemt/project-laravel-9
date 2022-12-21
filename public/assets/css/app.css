@@ -1689,7 +1689,7 @@ a.btn-two::after {
 }
 
 .main-product .sin-product.style-one .pro-img img{
-    height: 100%;
+    height: 25rem;
     object-fit: cover;
 }
 
@@ -1701,6 +1701,11 @@ a.btn-two::after {
 
 .shop-four-grid .sin-product.style-two .pro-title a {
   width: 183px;
+}
+
+.shop-four-grid .sin-product.style-two img {
+    height: 20rem;
+    object-fit: cover;
 }
 
 .sin-product.style-one h5.pro-title {

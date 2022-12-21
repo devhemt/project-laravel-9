@@ -91,23 +91,23 @@ class ProductController extends Controller
             $flag++;
         }
 
-
-
-        $first = DB::table('total_property')
-            ->where('itemsid','=',$request->get('prd_id'))
+        $sizes = [];
+        $colors = [];
+        $first = DB::table('properties')
+            ->where('itemsid','=', $request->get('prd_id'))
             ->get();
-        $oldcolors = explode(" ", $first[0]->colors);
-        $resultcolor = array_merge((array)$size, (array)$oldcolors);
-        $oldsizes = explode(" ", $first[0]->sizes);
-        $resultsize = array_merge((array)$color, (array)$oldsizes);
+        foreach ($first as $f){
+            array_push($sizes, $f->size);
+            array_push($colors, $f->color);
+        }
 
-        $sizeonly = array_unique($resultsize);
+        $sizeonly = array_unique($sizes);
         $sizecolap = "";
         foreach ($sizeonly as $i){
             $sizecolap.=strtoupper($i);
             $sizecolap.=" ";
         }
-        $coloronly = array_unique($resultcolor);
+        $coloronly = array_unique($colors);
         $colorcolap = "";
         foreach ($coloronly as $i){
             $colorcolap.=$i;
@@ -120,6 +120,8 @@ class ProductController extends Controller
         $affected2 = DB::table('total_property')
             ->where('itemsid','=', $request->get('prd_id'))
             ->update(['colors' => $colorcolap]);
+
+
         return redirect('admin/product/'.$request->get('prd_id'));
     }
 
@@ -131,7 +133,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
+//        dd($request);
         $request->validate([
             'prd_name' => 'required|unique:items,name|max:200',
             'prd_cost_price' => 'required',
@@ -162,9 +164,9 @@ class ProductController extends Controller
         $provided = DB::table('provideds')
             ->where('provided_phone','=',$request->get('provided_phone'))
             ->first();
-//        dd($provided->id);
+//        dd($request->prd_image->getClientOriginalName());
         $items = Items::create([
-            'demoimage'=> $request->prd_image[0]->getClientOriginalName(),
+            'demoimage'=> $request->prd_image->getClientOriginalName(),
             'name' => $request->get('prd_name'),
             'description' => $request->get('prd_description'),
             'price' => $request->get('prd_price'),
@@ -172,16 +174,18 @@ class ProductController extends Controller
             'brand' => $request->get('prd_brand'),
             'provided' => $provided->id
         ]);
-        $id = DB::table('items')->latest('created_at')->first();
+        $id = DB::table('items')
+            ->where('name',$request->get('prd_name'))
+            ->latest('created_at')->first();
 
 
-        foreach ($request->prd_image as $i){
+        foreach ($request->prd_images as $i){
             $images = Images::create([
                 'itemsid'=> $id->prd_id,
                 'url'=> $i->getClientOriginalName()
             ]);
         }
-        $file = $request->prd_image;
+        $file = $request->prd_images;
         foreach ($file as $f) {
             $f->move('images', $f->getClientOriginalName());
         }
@@ -253,26 +257,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = DB::table('items')
-            ->join('category','items.prd_id','category.prdid')
-            ->join('provideds','items.provided','provideds.id')
-            ->where('items.prd_id', $id)
-            ->get();
-
-        $images = DB::table('images')
-            ->where('itemsid', $id)->get();
-
-        $properties = DB::table('properties')
-            ->where('itemsid', $id)->get();
-
-        $batch = DB::table('batch_price')
-            ->where('prdid', $id)->get();
-
         return view('admin.product.product',[
-            'product' => $product,
-            'images' => $images,
-            'properties' => $properties,
-            'batch' => $batch,
+            'id' => $id,
         ]);
     }
 
@@ -284,37 +270,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = DB::table('items')
-            ->join('category','items.prd_id','category.prdid')
-            ->join('provideds','items.provided','provideds.id')
-            ->where('items.prd_id', $id)->get();
-
-
-        $count = DB::table('properties')
-            ->where('itemsid', $id)->get()->count();
-
-        $images = DB::table('images')
-            ->where('itemsid', $id)->get();
-        $batch = DB::table('batch_price')
-            ->where('prdid', $id)
-            ->latest('created_at')->first();
-        $properties1 = DB::table('properties')
-            ->where('itemsid', $id)
-            ->where('batch', $batch->batch)
-            ->get()->toArray();
-        $properties2 = DB::table('properties')
-            ->where('itemsid', $id)
-            ->where('batch', ($batch->batch-1))
-            ->get()->toArray();
-
-//        dd($properties[0]->color);
-
         return view('admin.product.editproduct',[
-            'product' => $product,
-            'images' => $images,
-            'p1' => $properties1,
-            'p2' => $properties2,
-            'count' => $count,
             'id'=> $id,
         ]);
 
@@ -373,24 +329,97 @@ class ProductController extends Controller
                 ->where('prd_id','=', $request->get('prd_id'))
                 ->update(['description' => $request->get('prd_description')]);
         }
-//        dd($request->prd_image != null);
         if ($request->prd_image != null){
-            $deleted = DB::table('images')->where('itemsid','=', $request->get('prd_id'))->delete();
             $affected = DB::table('items')
                 ->where('prd_id','=', $request->get('prd_id'))
-                ->update(['demoimage' => $request->prd_image[0]->getClientOriginalName()]);
+                ->update(['demoimage' => $request->prd_image->getClientOriginalName()]);
+        }
+//        dd($request->prd_image != null);
+        if ($request->prd_images != null){
+            $deleted = DB::table('images')->where('itemsid','=', $request->get('prd_id'))->delete();
 
-            foreach ($request->prd_image as $i){
+            foreach ($request->prd_images as $i){
                 $images = Images::create([
                     'itemsid'=> $request->get('prd_id'),
                     'url'=> $i->getClientOriginalName()
                 ]);
             }
-            $file = $request->prd_image;
+            $file = $request->prd_images;
             foreach ($file as $f) {
                 $f->move('images', $f->getClientOriginalName());
             }
         }
+
+        $deletedp = DB::table('properties')
+            ->where('batch','=', $request->get('prd_batch'))
+            ->where('itemsid','=', $request->get('prd_id'))
+            ->delete();
+
+        $size = $request->get('prd_size');
+        $color = $request->get('prd_color');
+        $amount = $request->get('prd_amount');
+        $flag = 0;
+
+        foreach ($size as $p){
+            $Properties = Properties::create([
+                'itemsid'=> $request->get('prd_id'),
+                'size' => strtoupper($p),
+                'color' => $color[$flag],
+                'batch'=> $request->get('prd_batch'),
+                'amount' => $amount[$flag]
+            ]);
+            $flag++;
+        }
+        $sizes = [];
+        $colors = [];
+        $first = DB::table('properties')
+            ->where('itemsid','=', $request->get('prd_id'))
+            ->get();
+        foreach ($first as $f){
+            array_push($sizes, $f->size);
+            array_push($colors, $f->color);
+        }
+
+        $sizeonly = array_unique($sizes);
+        $sizecolap = "";
+        foreach ($sizeonly as $i){
+            $sizecolap.=strtoupper($i);
+            $sizecolap.=" ";
+        }
+        $coloronly = array_unique($colors);
+        $colorcolap = "";
+        foreach ($coloronly as $i){
+            $colorcolap.=$i;
+            $colorcolap.=" ";
+        }
+
+        $affected1 = DB::table('total_property')
+            ->where('itemsid','=', $request->get('prd_id'))
+            ->update(['sizes' => $sizecolap]);
+        $affected2 = DB::table('total_property')
+            ->where('itemsid','=', $request->get('prd_id'))
+            ->update(['colors' => $colorcolap]);
+
+        $batch_amuont = 0;
+        $amount = $request->get('prd_amount');
+        foreach ($amount as $i) {
+            $batch_amuont+= $i;
+        }
+
+        $affected3 = DB::table('batch_price')
+            ->where('prdid','=', $request->get('prd_id'))
+            ->where('batch','=', $request->get('prd_batch'))
+            ->update(['batch_amount' => $batch_amuont]);
+
+
+        if ($request->get('prd_cost') != null){
+            $affected = DB::table('batch_price')
+                ->where('prdid','=', $request->get('prd_id'))
+                ->where('batch','=', $request->get('prd_batch'))
+                ->update(['cost' => $request->get('prd_cost')]);
+        }
+
+
         if ($request->get('provided_phone') != null){
             $provided = DB::table('provideds')
                 ->where('provided_phone','=',$request->get('provided_phone'))

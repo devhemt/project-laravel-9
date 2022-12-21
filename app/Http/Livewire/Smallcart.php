@@ -23,6 +23,7 @@ class Smallcart extends Component
             Cart::session($userId);
         }else{
             $userId = Session::getId();
+            Cart::session($userId);
         }
         Cart::remove($itemsid);
         $this->emit('loadtruecart');
@@ -35,6 +36,7 @@ class Smallcart extends Component
             Cart::session($userId);
         }else{
             $userId = Session::getId();
+            Cart::session($userId);
         }
         $this->cart = Cart::getContent()->toArray();
         $this->subtotal = Cart::getSubTotal();

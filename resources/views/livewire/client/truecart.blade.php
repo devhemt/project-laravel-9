@@ -111,12 +111,22 @@
                                     <h5 class="text-uppercase">Total price</h5>
                                     <h5>$ {{$total}}</h5>
                                 </div>
-                                <form method="POST" action="{{ url('admin/invoice') }}">
-                                    @csrf
-                                    <div class="d-flex justify-content-between mb-5">
+                                @if($momodirec)
+                                    <form method="POST" action="{{ url('admin/invoice') }}">
+                                        @csrf
+                                        <div class="d-flex justify-content-between mb-5">
+                                            <input hidden name="delivery" value="{{$deliverymethod}}">
+                                            <input type="submit" class="btn btn-info" value="MoMo payment">
+                                        </div>
+                                    </form>
+                                @endif
+                                @if(!$momodirec)
+                                    <form method="POST" action="">
+                                        <div class="d-flex justify-content-between mb-5">
                                             <input wire:click="momonoacc" type="button" class="btn btn-info" value="MoMo payment">
-                                    </div>
-                                </form>
+                                        </div>
+                                    </form>
+                                @endif
                                 <button wire:click="register" type="button" class="btn btn-dark btn-block btn-lg"
                                         data-mdb-ripple-color="dark" id="visitor-btn">Cash payment</button>
 

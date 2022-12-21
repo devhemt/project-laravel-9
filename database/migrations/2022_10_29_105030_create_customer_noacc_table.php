@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('customer_noacc', function (Blueprint $table) {
             $table->increments('cus_id')->unsigned();
+            $table->text('sessionid');
             $table->String('name',200);
-            $table->String('email',200)->unique();
-            $table->String('phone',20)->unique();
+            $table->String('email',200);
+            $table->String('phone',20);
             $table->text('address');
             $table->timestamps();
         });

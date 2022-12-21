@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Detail_invoice;
+use App\Models\Detail_invoice_noacc;
 use App\Models\Invoice;
+use App\Models\Invoice_noacc;
 use App\Models\Status;
+use App\Models\Status_noacc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Cart;
+use Illuminate\Support\Facades\Session;
 
 class InvoiceController extends Controller
 {
@@ -122,27 +126,26 @@ class InvoiceController extends Controller
             ->get();
 
         $totalamount = $prdbatch[0]->batch_amount;
-
-
         return $totalamount;
     }
 
     public function test(Request $request){
-        dd($request);
+//        dd($request);
 //        if ($request->resultCode == 0)
         if ($request->resultCode != null){
             if (Auth::guard("customer")->check()){
                 $userId = Auth::guard("customer")->id();
                 Cart::session($userId);
-                $this->total = Cart::getTotal();
+                $total = Cart::getTotal();
                 if (Cart::isEmpty()){
-                    dd("mua hang di dm");
+                    return redirect('cart');
                 }else{
                     $cartin = Cart::getContent()->toArray();
                     $items = Invoice::create([
                         'cusid' => $userId,
-                        'pay' => $this->total,
+                        'pay' => $total,
                         'payment' => 'momo',
+                        'delivery' => session('delivery')
                     ]);
                     $idinvoice = DB::table('invoice')->latest('created_at')->first();
                     $status = Status::create([
@@ -236,17 +239,126 @@ class InvoiceController extends Controller
                     }
                 }
             }else{
+                $userId = Session::getId();
+                Cart::session($userId);
+                $total = Cart::getTotal();
+                if (Cart::isEmpty()){
+                    return redirect('cart');
+                }else{
+                    $cartin = Cart::getContent()->toArray();
+                    $usernoacc = DB::table('customer_noacc')
+                        ->where('sessionid','=',$userId)
+                        ->latest()
+                        ->get();
+                    $items = Invoice_noacc::create([
+                        'cusid' => $usernoacc[0]->cus_id,
+                        'pay' => $total,
+                        'payment' => 'momo',
+                        'delivery' => session('delivery')
+                    ]);
+                    $idinvoice = DB::table('invoice_noacc')->latest('created_at')->first();
+                    $status = Status_noacc::create([
+                        'invoice_id'=> $idinvoice->invoice_id,
+                        'status'=> 1,
+                    ]);
 
+                    foreach ($cartin as $c){
+                        $prdbatch = DB::table('batch_price')
+                            ->where('prdid','=',$c['id'])
+                            ->get();
+                        $length = count($prdbatch);
+                        $check = 0;
+                        $start;
+                        $end;
+                        $input1;
+                        for ($i=1;$i<=$length;$i++){
+                            $check += $this->checkBatch($c['id'],$i);
+                            if ($this->checkInvoice($c['id'])<$check){
+                                $start = $i;
+                                $input1 = $check - $this->checkInvoice($c['id']);
+                            }
+                            if (($this->checkInvoice($c['id'])+$c['quantity'])<=$check){
+                                $end = $i;
+                                if ($start == $end){
+                                    $batch1 = DB::table('batch_price')
+                                        ->where('prdid','=',$c['id'])
+                                        ->where('batch','=',$start)
+                                        ->get();
+
+                                    $cost1 = $batch1['0']->cost;
+                                    $detail1 = Detail_invoice_noacc::create([
+                                        'itemsid'=> $c['id'],
+                                        'invoice_id'=> $idinvoice->invoice_id,
+                                        'size'=> $c['attributes'][0]['size'],
+                                        'color'=> $c['attributes'][0]['color'],
+                                        'amount'=> $c['quantity'],
+                                        'price_one'=> $c['price'],
+                                        'cost_one'=> $cost1,
+                                    ]);
+                                    $change = DB::table('properties')
+                                        ->where('size','=', $c['attributes'][0]['size'])
+                                        ->where('color','=', $c['attributes'][0]['color'])
+                                        ->where('batch','=', $start )
+                                        ->decrement('amount', $c['quantity']);
+                                }else{
+                                    $input2 = $c['quantity'] - $input1;
+                                    $batch1 = DB::table('batch_price')
+                                        ->where('prdid','=',$c['id'])
+                                        ->where('batch','=',$start)
+                                        ->get();
+                                    $cost1 = $batch1['0']->cost;
+                                    $batch2 = DB::table('batch_price')
+                                        ->where('prdid','=',$c['id'])
+                                        ->where('batch','=',$end)
+                                        ->get();
+                                    $cost2 = $batch2['0']->cost;
+                                    $detail1 = Detail_invoice_noacc::create([
+                                        'itemsid'=> $c['id'],
+                                        'invoice_id'=> $idinvoice->invoice_id,
+                                        'size'=> $c['attributes'][0]['size'],
+                                        'color'=> $c['attributes'][0]['color'],
+                                        'amount'=> $input1,
+                                        'price_one'=> $c['price'],
+                                        'cost_one'=> $cost1,
+                                    ]);
+                                    $detail2 = Detail_invoice_noacc::create([
+                                        'itemsid'=> $c['id'],
+                                        'invoice_id'=> $idinvoice->invoice_id,
+                                        'size'=> $c['attributes'][0]['size'],
+                                        'color'=> $c['attributes'][0]['color'],
+                                        'amount'=> $input2,
+                                        'price_one'=> $c['price'],
+                                        'cost_one'=> $cost2,
+                                    ]);
+                                    $change1 = DB::table('properties')
+                                        ->where('size','=', $c['attributes'][0]['size'])
+                                        ->where('color','=', $c['attributes'][0]['color'])
+                                        ->where('batch','=', $start )
+                                        ->decrement('amount', $input1);
+                                    $change2 = DB::table('properties')
+                                        ->where('size','=', $c['attributes'][0]['size'])
+                                        ->where('color','=', $c['attributes'][0]['color'])
+                                        ->where('batch','=', $end )
+                                        ->decrement('amount', $input2);
+                                }
+                                Cart::clear();
+                                break;
+                            }
+                        }
+
+                    }
+
+                }
             }
         }
         return redirect()->to('cart');
-//        return view('frontend.cart',[
-//            'resultCode' => $request->resultCode,
-//        ]);
     }
 
     public function store(Request $request)
     {
+        session(['delivery' => $request->delivery]);
+
+
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
 
 

@@ -4,10 +4,14 @@
 
     <form action="">
         <h3>Your information</h3>
-        <input name="name" type="text" class="box" placeholder="enter your name">
-        <input name="email" type="email" class="box" placeholder="enter your email">
-        <input name="phone" type="tel" class="box" placeholder="enter your phone">
-        <input name="address" type="text" class="box" placeholder="enter your address">
+        <input required wire:model="name" name="name" type="text" class="box" placeholder="enter your name">
+        @error('name') <span class="text-danger">{{ $message }}</span> @enderror
+        <input required wire:model="email" name="email" type="email" class="box" placeholder="enter your email">
+        @error('email') <span class="text-danger">{{ $message }}</span> @enderror
+        <input required wire:model="phone" name="phone" type="tel" class="box" placeholder="enter your phone">
+        @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
+        <input required wire:model="address" name="address" type="text" class="box" placeholder="enter your address">
+        @error('address') <span class="text-danger">{{ $message }}</span> @enderror
         <input wire:click="confirm" type="button" value="confirm" class="btn">
         <p for="remember">Because you don't have an account, we need you to provide your personal information in order to confirm the order.</p>
     </form>

@@ -10,7 +10,17 @@
 
     </div>
 
-    <h5 class="card-title">Table with stripped rows</h5>
+    <div class="row">
+        <div class="col-6">
+            <h5 class="card-title">Table of products ({{$total}})</h5>
+        </div>
+        <div class="col-6">
+            <a style="float: right" href="{{ url('admin/product/create') }}">
+                <h3 class="card-title">Add new product</h3>
+            </a>
+        </div>
+    </div>
+
 
     <table class="table table-striped">
         <thead>
@@ -42,10 +52,10 @@
             <td>{{$p->created_at}}</td>
             <td>{{$p->updated_at}}</td>
             <td>
-                <a href="#" wire:click="block('{{$p->prd_id}}')" id="deleteprd"><i class="fas fa-trash "></i></a>
-                <a href="{{url('admin/product/'.$p->prd_id)}}"><i class="fas fa-eye "></i></a>
-                <a href="{{url('admin/product/'.$p->prd_id.'/edit')}}"><i class="fas fa-edit "></i></a>
-                <a href="{{url('admin/addbatch/'.$p->prd_id)}}"><i class="fa-solid fa-circle-plus "></i></a>
+                <a href="#" wire:click="block('{{$p->prd_id}}')" id="deleteprd" title="Delete product"><i class="fas fa-trash "></i></a>
+                <a href="{{url('admin/product/'.$p->prd_id)}}" title="Detail of product"><i class="fas fa-eye "></i></a>
+                <a href="{{url('admin/product/'.$p->prd_id.'/edit')}}" title="Edit product"><i class="fas fa-edit "></i></a>
+                <a href="{{url('admin/addbatch/'.$p->prd_id)}}" title="Add new batch"><i class="fa-solid fa-circle-plus "></i></a>
             </td>
         </tr>
         @endforeach
