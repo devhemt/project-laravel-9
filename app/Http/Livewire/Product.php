@@ -19,39 +19,11 @@ class Product extends Component
     public $checked = 'Stock';
 
 
-    public function updated($quantity)
-    {
-        if($this->getsize == null){
-            $trim = trim($this->sizes);
-            $size = explode(" ",$trim);
-            $this->getsize = $size[0];
-        }
-        if($this->color == null){
-            $trim = trim($this->colors);
-            $colorch = explode(" ",$trim);
-            $this->color = $colorch[0];
-        }
-        $detail = DB::table('properties')
-            ->where('itemsid','=',$this->prd_id)
-            ->where('size','=',$this->getsize)
-            ->where('color','=',$this->color)
-            ->get();
-        $totalamount = 0;
-        foreach ($detail as $d){
-            $totalamount += $d->amount;
-        }
-        if ($this->quantity > $totalamount){
-            $this->checked = 'Sold out';
-            $this->quantity = $totalamount;
-        }
-        if ($this->quantity < $totalamount){
-            $this->checked = 'Stock';
-        }
-    }
 
     public function getColor($input){
         $this->color = $input;
         $this->colorclass = "active";
+
     }
 
     public function addcart(){
@@ -74,6 +46,7 @@ class Product extends Component
             Cart::session($userId);
         }else{
             $userId = Session::getId();
+            Cart::session($userId);
         }
         if ($this->quantity != 0){
             Cart::add([
@@ -107,7 +80,32 @@ class Product extends Component
             $this->price = $p->price;
             $this->imagein = $p->demoimage;
         }
-
+        if($this->getsize == null){
+            $trim = trim($this->sizes);
+            $size = explode(" ",$trim);
+            $this->getsize = $size[0];
+        }
+        if($this->color == null){
+            $trim = trim($this->colors);
+            $colorch = explode(" ",$trim);
+            $this->color = $colorch[0];
+        }
+        $detail = DB::table('properties')
+            ->where('itemsid','=',$this->prd_id)
+            ->where('size','=',$this->getsize)
+            ->where('color','=',$this->color)
+            ->get();
+        $totalamount = 0;
+        foreach ($detail as $d){
+            $totalamount += $d->amount;
+        }
+        if ($this->quantity >= $totalamount){
+            $this->checked = 'Sold out';
+            $this->quantity = $totalamount;
+        }
+        if ($this->quantity < $totalamount){
+            $this->checked = 'Stock';
+        }
         return view('livewire.client.product');
     }
 }

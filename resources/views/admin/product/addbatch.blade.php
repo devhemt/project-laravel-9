@@ -2,12 +2,12 @@
 @section('content')
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>General Tables</h1>
+            <h1>Product manager</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Tables</li>
-                    <li class="breadcrumb-item active">General</li>
+                    <li class="breadcrumb-item"><a href="{{url('admin')}}">Dashboard</a></li>
+                    <li class="breadcrumb-item">Product</li>
+                    <li class="breadcrumb-item active">Add new batch</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -61,11 +61,20 @@
                                 <tbody>
                                 <tr>
                                     <th>Size</th>
-                                    <td><input required name="prd_size[]" type="text" class="form-control"></td>
+                                    <td><select name="prd_size[]" class="form-control">
+                                            <option value="XXS">XXS</option>
+                                            <option value="XS">XS</option>
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="L">L</option>
+                                            <option value="XL">XL</option>
+                                            <option value="XXL">XXL</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Color</th>
-                                    <td><input required name="prd_color[]" type="text" class="form-control"></td>
+                                    <td><input type="color" name="prd_color[]" class="form-control form-control-color1" value="#4154f1" title="Choose your color"></td>
                                 </tr>
                                 <tr>
                                     <th>Amount</th>
@@ -120,12 +129,12 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="form-group">
-                            <input type="button" value="Add column" onclick="javascript:appendColumn()" class="append_column"/><br />
-                            <input type="button" value="Delete columns" onclick="javascript:deleteColumns()" class="delete"/><br />
+                        <div class="form-group" style="flex-direction: row;float: right;margin-top: -30px;">
+                            <button type="button" value="Add column" onclick="javascript:appendColumn()" class="btn1">Append Column</button>
+                            <button type="button" value="Delete columns" onclick="javascript:deleteColumns()" class="btn1">Delete Columns</button>
                         </div>
-                        <button name="sbm" type="submit" class="btn btn-success">Thêm mới</button>
-                        <button type="reset" class="btn btn-default">Làm mới</button>
+                        <button name="sbm" type="submit" class="btn btn-success">Add new batch</button>
+                        <button type="reset" class="btn">Fresh</button>
                     </form>
                 </div>
 
@@ -136,78 +145,62 @@
         </section>
         <script language="JavaScript" type="text/javascript">
             var flagname = 1;
-            var flagimage = false;
-            function preview() {
-                var cell=document.getElementById('view-images');
-                while (cell.hasChildNodes()) {
-                    cell.removeChild(cell.firstChild);
-                }
 
-                for (var i = 0; i < event.target.files.length;i++){
-                    var div=document.createElement('img');
-                    div.setAttribute('width','130px');
-                    div.setAttribute('height','200px');
-                    div.setAttribute('src',URL.createObjectURL(event.target.files[i]));
-                    cell.appendChild(div);
-                    flagimage = true;
-                }
-
-            }
             function appendColumn(){
                 var tbl=document.getElementById('my-table');
                 var tbl1=document.getElementById('my-table-1');
                 var tbl2=document.getElementById('my-table-2');
                 var tbl3=document.getElementById('my-table-3');
-                if (flagname < 8) {
+                if (flagname < 4) {
                     for(var i=0;i<tbl.rows.length;i++){
 
                         if (i==0) {
-                            createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length),'prd_size[]','form-control','text');
+                            createSelect(tbl.rows[i].insertCell(tbl.rows[i].cells.length),'prd_size[]','form-control','text');
                         }
                         if (i==1) {
-                            createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length),'prd_color[]','form-control','text');
+                            createCellColor(tbl.rows[i].insertCell(tbl.rows[i].cells.length),'prd_color[]','form-control','text');
                         }
                         if (i==2) {
                             createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length),'prd_amount[]','form-control','number');
                         }
                     }
                 }
-                if(flagname >= 8 && flagname <=18) {
+                if(flagname >= 4 && flagname <=8) {
                     for(var i=0;i<tbl1.rows.length;i++){
 
                         if (i==0) {
-                            createCell(tbl1.rows[i].insertCell(tbl1.rows[i].cells.length),'prd_size[]','form-control','text');
+                            createSelect(tbl1.rows[i].insertCell(tbl1.rows[i].cells.length),'prd_size[]','form-control','text');
                         }
                         if (i==1) {
-                            createCell(tbl1.rows[i].insertCell(tbl1.rows[i].cells.length),'prd_color[]','form-control','text');
+                            createCellColor(tbl1.rows[i].insertCell(tbl1.rows[i].cells.length),'prd_color[]','form-control','text');
                         }
                         if (i==2) {
                             createCell(tbl1.rows[i].insertCell(tbl1.rows[i].cells.length),'prd_amount[]','form-control','number');
                         }
                     }
                 }
-                if(flagname >= 18 && flagname <=28) {
+                if(flagname >= 9 && flagname <=13) {
                     for(var i=0;i<tbl2.rows.length;i++){
 
                         if (i==0) {
-                            createCell(tbl2.rows[i].insertCell(tbl2.rows[i].cells.length),'prd_size[]','form-control','text');
+                            createSelect(tbl2.rows[i].insertCell(tbl2.rows[i].cells.length),'prd_size[]','form-control','text');
                         }
                         if (i==1) {
-                            createCell(tbl2.rows[i].insertCell(tbl2.rows[i].cells.length),'prd_color[]','form-control','text');
+                            createCellColor(tbl2.rows[i].insertCell(tbl2.rows[i].cells.length),'prd_color[]','form-control','text');
                         }
                         if (i==2) {
                             createCell(tbl2.rows[i].insertCell(tbl2.rows[i].cells.length),'prd_amount[]','form-control','number');
                         }
                     }
                 }
-                if(flagname >= 28 && flagname <=38) {
+                if(flagname >= 14 && flagname <=18) {
                     for(var i=0;i<tbl3.rows.length;i++){
 
                         if (i==0) {
-                            createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_size[]','form-control','text');
+                            createSelect(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_size[]','form-control','text');
                         }
                         if (i==1) {
-                            createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_color[]','form-control','text');
+                            createCellColor(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_color[]','form-control','text');
                         }
                         if (i==2) {
                             createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_amount[]','form-control','number');
@@ -228,6 +221,52 @@
                 div.setAttribute('min',0);
                 div.setAttribute('className',style);
                 cell.appendChild(div);
+            }
+            function createCellColor(cell,name,style,type){
+                var div=document.createElement('input');
+                div.setAttribute('name',name);
+                div.setAttribute('type','color');
+                div.setAttribute('value','#4154f1')
+                div.setAttribute('title','Choose your color')
+                div.setAttribute('class','form-control form-control-color1');
+                div.setAttribute('className','form-control form-control-color1');
+                cell.appendChild(div);
+            }
+            function createSelect(cell,name,style,type){
+                var div=document.createElement('select');
+                div.setAttribute('name',name);
+                div.setAttribute('class',style);
+                div.setAttribute('className',style);
+                cell.appendChild(div);
+
+                var op1 =document.createElement('option');
+                op1.setAttribute('value','XXS');
+                op1.innerHTML = 'XXS';
+                div.appendChild(op1);
+                var op2 =document.createElement('option');
+                op2.setAttribute('value','XS');
+                op2.innerHTML = 'XS';
+                div.appendChild(op2);
+                var op3 =document.createElement('option');
+                op3.setAttribute('value','S');
+                op3.innerHTML = 'S';
+                div.appendChild(op3);
+                var op4 =document.createElement('option');
+                op4.setAttribute('value','M');
+                op4.innerHTML = 'M';
+                div.appendChild(op4);
+                var op5 =document.createElement('option');
+                op5.setAttribute('value','L');
+                op5.innerHTML = 'L';
+                div.appendChild(op5);
+                var op6 =document.createElement('option');
+                op6.setAttribute('value','XL');
+                op6.innerHTML = 'XL';
+                div.appendChild(op6);
+                var op7 =document.createElement('option');
+                op7.setAttribute('value','XXL');
+                op7.innerHTML = 'XXL';
+                div.appendChild(op7);
             }
 
             // delete table columns with index greater then 0

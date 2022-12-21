@@ -8,6 +8,6 @@ class Packingorder extends Component
 {
     public function render()
     {
-        return view('livewire.admin.packingorder');
+        return view('livewire.admin.order.packingorder');
     }
 }

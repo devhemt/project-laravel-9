@@ -13,7 +13,7 @@ class Showproduct extends Component
 
     protected $listeners = ['searchOut3'];
     protected $paginationTheme = 'bootstrap';
-    public $prd;
+    public $prd, $total;
     public $stockfirst = [],$percentfirst = [];
     public $stocklast = [],$percentlast = [];
     public $checksearch = null;
@@ -43,6 +43,7 @@ class Showproduct extends Component
     {
         if ($this->checksearch == null){
             $this->prd = Items::all();
+            $this->total = Items::all()->count();
             foreach ($this->prd as $p){
                 $batchall = DB::table('batch_price')
                     ->where('prdid',$p->prd_id)
@@ -91,6 +92,7 @@ class Showproduct extends Component
             ]);
         }else{
             $this->prd = Items::all();
+            $this->total = Items::all()->count();
             foreach ($this->prd as $p){
                 $batchall = DB::table('batch_price')
                     ->where('prdid',$p->prd_id)

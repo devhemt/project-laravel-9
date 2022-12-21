@@ -8,6 +8,6 @@ class Successfulorder extends Component
 {
     public function render()
     {
-        return view('livewire.admin.successfulorder');
+        return view('livewire.admin.order.successfulorder');
     }
 }

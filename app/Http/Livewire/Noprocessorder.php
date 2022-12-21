@@ -23,7 +23,7 @@ class Noprocessorder extends Component
     {
         if ($this->type == 'Have account'){
             if ($this->checksearch == null){
-                return view('livewire.admin.noprocessorder',[
+                return view('livewire.admin.order.noprocessorder',[
                     'order'=> DB::table('invoice')
                         ->join('status', 'invoice.invoice_id','=', 'status.invoice_id')
                         ->join('customer', 'invoice.cusid','=', 'customer.cus_id')
@@ -32,7 +32,7 @@ class Noprocessorder extends Component
                         ->paginate(10),
                 ]);
             }else{
-                return view('livewire.admin.noprocessorder',[
+                return view('livewire.admin.order.noprocessorder',[
                     'order'=> DB::table('invoice')
                         ->join('status', 'invoice.invoice_id','=', 'status.invoice_id')
                         ->join('customer', 'invoice.cusid','=', 'customer.cus_id')
@@ -44,7 +44,7 @@ class Noprocessorder extends Component
             }
         }else{
             if ($this->checksearch == null){
-                return view('livewire.admin.noprocessorder',[
+                return view('livewire.admin.order.noprocessorder',[
                     'order'=> DB::table('invoice_noacc')
                         ->join('status_noacc', 'invoice_noacc.invoice_id','=', 'status_noacc.invoice_id')
                         ->join('customer_noacc', 'invoice_noacc.cusid','=', 'customer_noacc.cus_id')
@@ -53,8 +53,8 @@ class Noprocessorder extends Component
                         ->paginate(10),
                 ]);
             }else{
-                return view('livewire.admin.noprocessorder',[
-                    'order'=> DB::table('invoice')
+                return view('livewire.admin.order.noprocessorder',[
+                    'order'=> DB::table('invoice_noacc')
                         ->join('status_noacc', 'invoice_noacc.invoice_id','=', 'status_noacc.invoice_id')
                         ->join('customer_noacc', 'invoice_noacc.cusid','=', 'customer_noacc.cus_id')
                         ->select('invoice_noacc.*','status_noacc.status','customer_noacc.name','customer_noacc.phone','customer_noacc.email','customer_noacc.address')

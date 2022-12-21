@@ -8,6 +8,6 @@ class Deliveryorder extends Component
 {
     public function render()
     {
-        return view('livewire.admin.deliveryorder');
+        return view('livewire.admin.order.deliveryorder');
     }
 }

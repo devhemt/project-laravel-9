@@ -13,13 +13,24 @@ class Takeinfor extends Component
 {
     protected $listeners = ['showTakeInfor'];
     public $top = null;
+    public $name, $email, $phone, $address;
+
+    protected $rules = [
+        'name' => 'required',
+        'email' => 'required|email',
+        'phone' => 'required',
+        'address' => 'required',
+    ];
+
 
     public function showTakeInfor(){
         $this->top = 0;
     }
 
     public function confirm(){
-        $this->emit('setCusNoacc',['jgvj','gfcgcgf','rtrtrrtrt']);
+        $validatedData = $this->validate();
+        $this->emit('setCusNoacc',[$this->name, $this->email, $this->phone, $this->address]);
+        $this->close();
     }
 
     public function close(){
