@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+
 class Noprocessorder extends Component
 {
     use WithPagination;

@@ -26,7 +26,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $currentURL = url()->current();
+        $currentURL = \Route::current()->uri();
         return view('admin.product.showproduct',[
             'currentURL'=> $currentURL,
         ]);

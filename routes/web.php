@@ -51,3 +51,5 @@ Route::get('registration', [\App\Http\Controllers\CustomerController::class, 're
 Route::post('custom-registration', [\App\Http\Controllers\CustomerController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [\App\Http\Controllers\CustomerController::class, 'signOut'])->name('signout');
 
+Route::get('success',[\App\Http\Controllers\HomeController::class, 'success'])->name('success');
+Route::get('fail',[\App\Http\Controllers\HomeController::class, 'fail'])->name('fail');

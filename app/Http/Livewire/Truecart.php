@@ -21,7 +21,7 @@ class Truecart extends Component
     public $resultCode;
     public $cart;
     public $totalquantity = 0;
-    public $total;
+    public $total,$totalpl;
     public $checked = [];
     public $deliverymethod = 'Default delivery $5';
     public $options = ['Default delivery $5','Fast delivery $15','Super fast delivery $25'];
@@ -91,7 +91,7 @@ class Truecart extends Component
             Cart::session($userId);
             $this->total = Cart::getTotal();
             if (Cart::isEmpty()){
-                dd("mua hang di dm");
+
             }else{
                 $cartin = Cart::getContent()->toArray();
                 $flagcountcheck = false;
@@ -107,12 +107,11 @@ class Truecart extends Component
                         $totalamount += $d->amount;
                     }
                     if ($c['quantity']>$totalamount){
-                        $this->checked[$c['id']] = 'The product in the order has exceeded the number of products left in stock';
                         $flagcountcheck = true;
                     }
                 }
                 if ($flagcountcheck){
-                    $this->redirect('cart');
+                    $this->redirect('fail');
                 }
                 $items = Invoice::create([
                     'cusid' => $userId,
@@ -212,7 +211,7 @@ class Truecart extends Component
                     }
 
                 }
-
+                $this->redirect('success');
             }
         }else{
             if ($this->name != null && $this->email != null && $this->phone != null && $this->address != null){
@@ -237,12 +236,11 @@ class Truecart extends Component
                             $totalamount += $d->amount;
                         }
                         if ($c['quantity']>$totalamount){
-                            $this->checked[$c['id']] = 'The product in the order has exceeded the number of products left in stock';
                             $flagcountcheck = true;
                         }
                     }
                     if ($flagcountcheck){
-                        $this->redirect('cart');
+                        $this->redirect('fail');
                     }
                     $usernoacc = DB::table('customer_noacc')
                         ->where('sessionid','=',$userId)
@@ -346,8 +344,9 @@ class Truecart extends Component
                         }
 
                     }
-
+                    $this->redirect('success');
                 }
+
             }else{
                 $this->emit('showTakeInfor');
             }
@@ -462,10 +461,35 @@ class Truecart extends Component
         }
         $this->cart = Cart::getContent()->toArray();
         $this->total = Cart::getTotal();
+        if ($this->deliverymethod == 'Default delivery $5'){
+            $this->totalpl = $this->total+5;
+        }
+        if ($this->deliverymethod == 'Fast delivery $15'){
+            $this->totalpl = $this->total+15;
+        }
+        if ($this->deliverymethod == 'Super fast delivery $25'){
+            $this->totalpl = $this->total+25;
+        }
+
 
         $this->totalquantity = 0;
         foreach ($this->cart as $c){
             $this->totalquantity++ ;
+        }
+        foreach ($this->cart as $c){
+            $detail = DB::table('properties')
+                ->where('itemsid','=',$c['id'])
+                ->where('size','=',$c['attributes'][0]['size'])
+                ->where('color','=',$c['attributes'][0]['color'])
+                ->get();
+
+            $totalamount = 0;
+            foreach ($detail as $d){
+                $totalamount += $d->amount;
+            }
+            if ($c['quantity']>$totalamount){
+                $this->checked[$c['id']] = 'The product in the order has exceeded the number of products left in stock';
+            }
         }
 
 

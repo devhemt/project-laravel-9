@@ -109,13 +109,14 @@
 
                                 <div class="d-flex justify-content-between mb-5">
                                     <h5 class="text-uppercase">Total price</h5>
-                                    <h5>$ {{$total}}</h5>
+                                    <h5>$ {{$totalpl}}</h5>
                                 </div>
                                 @if($momodirec)
                                     <form method="POST" action="{{ url('admin/invoice') }}">
                                         @csrf
                                         <div class="d-flex justify-content-between mb-5">
                                             <input hidden name="delivery" value="{{$deliverymethod}}">
+                                            <input hidden name="amount" value="{{$totalpl}}">
                                             <input type="submit" class="btn btn-info" value="MoMo payment">
                                         </div>
                                     </form>

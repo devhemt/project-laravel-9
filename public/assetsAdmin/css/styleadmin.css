@@ -589,6 +589,8 @@ h6 {
 
 .header-nav .notifications {
   inset: 8px -15px auto auto !important;
+    max-height: 400px;
+    overflow-y:scroll ;
 }
 
 .header-nav .notifications .notification-item {
