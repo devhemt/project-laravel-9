@@ -26,17 +26,45 @@ class Salescard extends Component
         if ($this->time == 'Today'){
             $now = Carbon::now();
             $product = DB::table('detail_invoice')
-                ->whereDay('created_at', '=', $now->day)
+                ->join('invoice', 'invoice.invoice_id','=', 'detail_invoice.invoice_id')
+                ->join('status', 'status.invoice_id','=', 'invoice.invoice_id')
+                ->select('detail_invoice.*')
+                ->where('status.status','=',5)
+                ->whereDay('detail_invoice.created_at', '=', $now->day)
+                ->get();
+            $productnoacc = DB::table('detail_invoice_noacc')
+                ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
+                ->join('status_noacc', 'status_noacc.invoice_id','=', 'invoice_noacc.invoice_id')
+                ->select('detail_invoice_noacc.*')
+                ->where('status_noacc.status','=',5)
+                ->whereDay('detail_invoice_noacc.created_at', '=', $now->day)
                 ->get();
             $amount = 0;
             foreach ($product as $p){
                 $amount += $p->amount;
             }
+            foreach ($productnoacc as $p){
+                $amount += $p->amount;
+            }
             $product1 = DB::table('detail_invoice')
-                ->whereDay('created_at', '=', $now->day-1)
+                ->join('invoice', 'invoice.invoice_id','=', 'detail_invoice.invoice_id')
+                ->join('status', 'status.invoice_id','=', 'invoice.invoice_id')
+                ->select('detail_invoice.*')
+                ->where('status.status','=',5)
+                ->whereDay('detail_invoice.created_at', '=', $now->day-1)
+                ->get();
+            $productnoacc1 = DB::table('detail_invoice_noacc')
+                ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
+                ->join('status_noacc', 'status_noacc.invoice_id','=', 'invoice_noacc.invoice_id')
+                ->select('detail_invoice_noacc.*')
+                ->where('status_noacc.status','=',5)
+                ->whereDay('detail_invoice_noacc.created_at', '=', $now->day-1)
                 ->get();
             $amount1 = 0;
             foreach ($product1 as $p){
+                $amount1 += $p->amount;
+            }
+            foreach ($productnoacc1 as $p){
                 $amount1 += $p->amount;
             }
             if ($amount!=0 && $amount1 !=0){
@@ -76,17 +104,45 @@ class Salescard extends Component
         if ($this->time == 'This month'){
             $now = Carbon::now();
             $product = DB::table('detail_invoice')
-                ->whereMonth('created_at', '=', $now->month)
+                ->join('invoice', 'invoice.invoice_id','=', 'detail_invoice.invoice_id')
+                ->join('status', 'status.invoice_id','=', 'invoice.invoice_id')
+                ->select('detail_invoice.*')
+                ->where('status.status','=',5)
+                ->whereMonth('detail_invoice.created_at', '=', $now->month)
+                ->get();
+            $productnoacc = DB::table('detail_invoice_noacc')
+                ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
+                ->join('status_noacc', 'status_noacc.invoice_id','=', 'invoice_noacc.invoice_id')
+                ->select('detail_invoice_noacc.*')
+                ->where('status_noacc.status','=',5)
+                ->whereMonth('detail_invoice_noacc.created_at', '=', $now->month)
                 ->get();
             $amount = 0;
             foreach ($product as $p){
                 $amount += $p->amount;
             }
+            foreach ($productnoacc as $p){
+                $amount += $p->amount;
+            }
             $product1 = DB::table('detail_invoice')
-                ->whereMonth('created_at', '=', $now->month-1)
+                ->join('invoice', 'invoice.invoice_id','=', 'detail_invoice.invoice_id')
+                ->join('status', 'status.invoice_id','=', 'invoice.invoice_id')
+                ->select('detail_invoice.*')
+                ->where('status.status','=',5)
+                ->whereMonth('detail_invoice.created_at', '=', $now->month-1)
+                ->get();
+            $productnoacc1 = DB::table('detail_invoice_noacc')
+                ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
+                ->join('status_noacc', 'status_noacc.invoice_id','=', 'invoice_noacc.invoice_id')
+                ->select('detail_invoice_noacc.*')
+                ->where('status_noacc.status','=',5)
+                ->whereMonth('detail_invoice_noacc.created_at', '=', $now->month-1)
                 ->get();
             $amount1 = 0;
             foreach ($product1 as $p){
+                $amount1 += $p->amount;
+            }
+            foreach ($productnoacc1 as $p){
                 $amount1 += $p->amount;
             }
             if ($amount!=0 && $amount1 !=0){
@@ -126,17 +182,45 @@ class Salescard extends Component
         if ($this->time == 'This year'){
             $now = Carbon::now();
             $product = DB::table('detail_invoice')
-                ->whereYear('created_at', '=', $now->year)
+                ->join('invoice', 'invoice.invoice_id','=', 'detail_invoice.invoice_id')
+                ->join('status', 'status.invoice_id','=', 'invoice.invoice_id')
+                ->select('detail_invoice.*')
+                ->where('status.status','=',5)
+                ->whereYear('detail_invoice.created_at', '=', $now->year)
+                ->get();
+            $productnoacc = DB::table('detail_invoice_noacc')
+                ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
+                ->join('status_noacc', 'status_noacc.invoice_id','=', 'invoice_noacc.invoice_id')
+                ->select('detail_invoice_noacc.*')
+                ->where('status_noacc.status','=',5)
+                ->whereYear('detail_invoice_noacc.created_at', '=', $now->year)
                 ->get();
             $amount = 0;
             foreach ($product as $p){
                 $amount += $p->amount;
             }
+            foreach ($productnoacc as $p){
+                $amount += $p->amount;
+            }
             $product1 = DB::table('detail_invoice')
-                ->whereYear('created_at', '=', $now->year-1)
+                ->join('invoice', 'invoice.invoice_id','=', 'detail_invoice.invoice_id')
+                ->join('status', 'status.invoice_id','=', 'invoice.invoice_id')
+                ->select('detail_invoice.*')
+                ->where('status.status','=',5)
+                ->whereYear('detail_invoice.created_at', '=', $now->year-1)
+                ->get();
+            $productnoacc1 = DB::table('detail_invoice_noacc')
+                ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
+                ->join('status_noacc', 'status_noacc.invoice_id','=', 'invoice_noacc.invoice_id')
+                ->select('detail_invoice_noacc.*')
+                ->where('status_noacc.status','=',5)
+                ->whereYear('detail_invoice_noacc.created_at', '=', $now->year-1)
                 ->get();
             $amount1 = 0;
             foreach ($product1 as $p){
+                $amount1 += $p->amount;
+            }
+            foreach ($productnoacc1 as $p){
                 $amount1 += $p->amount;
             }
             if ($amount!=0 && $amount1 !=0){

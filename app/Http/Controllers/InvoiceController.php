@@ -27,42 +27,42 @@ class InvoiceController extends Controller
     }
     public function index0()
     {
-        $currentURL = url()->current();
+        $currentURL = \Route::current()->uri();
         return view('admin.order.canceledorder',[
             'currentURL'=> $currentURL,
         ]);
     }
     public function index1()
     {
-        $currentURL = url()->current();
+        $currentURL = \Route::current()->uri();
         return view('admin.order.noprocessorder',[
             'currentURL'=> $currentURL,
         ]);
     }
     public function index2()
     {
-        $currentURL = url()->current();
+        $currentURL = \Route::current()->uri();
         return view('admin.order.confirmedorder',[
             'currentURL'=> $currentURL,
         ]);
     }
     public function index3()
     {
-        $currentURL = url()->current();
+        $currentURL = \Route::current()->uri();
         return view('admin.order.packingorder',[
             'currentURL'=> $currentURL,
         ]);
     }
     public function index4()
     {
-        $currentURL = url()->current();
+        $currentURL = \Route::current()->uri();
         return view('admin.order.deliveryorder',[
             'currentURL'=> $currentURL,
         ]);
     }
     public function index5()
     {
-        $currentURL = url()->current();
+        $currentURL = \Route::current()->uri();
         return view('admin.order.successfulorder',[
             'currentURL'=> $currentURL,
         ]);
@@ -141,6 +141,25 @@ class InvoiceController extends Controller
                     return redirect('cart');
                 }else{
                     $cartin = Cart::getContent()->toArray();
+                    $flagcountcheck = false;
+                    foreach ($cartin as $c){
+                        $detail = DB::table('properties')
+                            ->where('itemsid','=',$c['id'])
+                            ->where('size','=',$c['attributes'][0]['size'])
+                            ->where('color','=',$c['attributes'][0]['color'])
+                            ->get();
+
+                        $totalamount = 0;
+                        foreach ($detail as $d){
+                            $totalamount += $d->amount;
+                        }
+                        if ($c['quantity']>$totalamount){
+                            $flagcountcheck = true;
+                        }
+                    }
+                    if ($flagcountcheck){
+                        return redirect('fail');
+                    }
                     $items = Invoice::create([
                         'cusid' => $userId,
                         'pay' => $total,
@@ -237,6 +256,7 @@ class InvoiceController extends Controller
                             }
                         }
                     }
+                    return redirect('success');
                 }
             }else{
                 $userId = Session::getId();
@@ -246,6 +266,25 @@ class InvoiceController extends Controller
                     return redirect('cart');
                 }else{
                     $cartin = Cart::getContent()->toArray();
+                    $flagcountcheck = false;
+                    foreach ($cartin as $c){
+                        $detail = DB::table('properties')
+                            ->where('itemsid','=',$c['id'])
+                            ->where('size','=',$c['attributes'][0]['size'])
+                            ->where('color','=',$c['attributes'][0]['color'])
+                            ->get();
+
+                        $totalamount = 0;
+                        foreach ($detail as $d){
+                            $totalamount += $d->amount;
+                        }
+                        if ($c['quantity']>$totalamount){
+                            $flagcountcheck = true;
+                        }
+                    }
+                    if ($flagcountcheck){
+                        return redirect('fail');
+                    }
                     $usernoacc = DB::table('customer_noacc')
                         ->where('sessionid','=',$userId)
                         ->latest()
@@ -347,7 +386,7 @@ class InvoiceController extends Controller
                         }
 
                     }
-
+                    return redirect('success');
                 }
             }
         }
@@ -358,7 +397,6 @@ class InvoiceController extends Controller
     {
         session(['delivery' => $request->delivery]);
 
-
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
 
 
@@ -366,7 +404,7 @@ class InvoiceController extends Controller
         $accessKey = 'klm05TvNBzhg7h7j';
         $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
         $orderInfo = "Thanh toán qua MoMo";
-        $amount = "10000";
+        $amount = $request->get('amount')*23000;
         $orderId = time() ."";
         $redirectUrl = "http://127.0.0.1:8000/test";
         $ipnUrl = "http://127.0.0.1:8000/test";
@@ -407,10 +445,11 @@ class InvoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,$type)
     {
         return view('admin.order.order',[
             'id' => $id,
+            'type' => $type
         ]);
     }
 

@@ -25,26 +25,56 @@ class Searchshop extends Component
     public function find($category){
         switch ($category) {
             case 1:
+                if ($this->searching == "Man clothing"){
+                    $this->searching = null;
+                    $this->onlNull();
+                    $category = 0;
+                    break;
+                }
                 $this->searching = "Man clothing";
                 $this->onlNull();
                 $this->style1 = 700;
                 break;
             case 2:
+                if ($this->searching == "Women clothing"){
+                    $this->searching = null;
+                    $this->onlNull();
+                    $category = 0;
+                    break;
+                }
                 $this->searching = "Women clothing";
                 $this->onlNull();
                 $this->style2 = 700;
                 break;
             case 3:
+                if ($this->searching == "Kid clothing"){
+                    $this->searching = null;
+                    $this->onlNull();
+                    $category = 0;
+                    break;
+                }
                 $this->searching = "Kid clothing";
                 $this->onlNull();
                 $this->style3 = 700;
                 break;
             case 4:
+                if ($this->searching == "Accessories clothing"){
+                    $this->searching = null;
+                    $this->onlNull();
+                    $category = 0;
+                    break;
+                }
                 $this->searching = "Accessories clothing";
                 $this->onlNull();
                 $this->style4 = 700;
                 break;
             case 5:
+                if ($this->searching == "Others clothing"){
+                    $this->searching = null;
+                    $this->onlNull();
+                    $category = 0;
+                    break;
+                }
                 $this->searching = "Others clothing";
                 $this->onlNull();
                 $this->style5 = 700;

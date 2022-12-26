@@ -7,6 +7,18 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    public function success()
+    {
+
+        return view('layout.successful');
+
+    }
+    public function fail()
+    {
+
+        return view('layout.fail');
+
+    }
     /**
      * Display a listing of the resource.
      *

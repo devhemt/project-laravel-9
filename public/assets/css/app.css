@@ -93,6 +93,25 @@
     object-fit: cover;
 }
 
+.success{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.success a{
+    color: #0f0606;
+}
+
+.success a:hover{
+    color: #e7061b;
+    font-weight: 500 ;
+}
+
+.success h2{
+    text-align: center;
+}
+
 /*--------------------------------------------------------------
   ##  Fonts
   --------------------------------------------------------------*/

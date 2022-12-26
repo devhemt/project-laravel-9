@@ -33,7 +33,7 @@ Route::get('/confirmedorder', [\App\Http\Controllers\InvoiceController::class, '
 Route::get('/packingorder', [\App\Http\Controllers\InvoiceController::class, 'index3']);
 Route::get('/deliveryorder', [\App\Http\Controllers\InvoiceController::class, 'index4']);
 Route::get('/successfulorder', [\App\Http\Controllers\InvoiceController::class, 'index5']);
-Route::get('/order/{id}', [\App\Http\Controllers\InvoiceController::class, 'show']);
+Route::get('/order/{id}/{type}', [\App\Http\Controllers\InvoiceController::class, 'show']);
 
 
 Route::post('/invoice',[\App\Http\Controllers\InvoiceController::class, 'store']);

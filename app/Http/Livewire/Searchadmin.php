@@ -12,11 +12,11 @@ class Searchadmin extends Component
 
 
     public function search($currentURL){
-//        dd($currentURL);
-        if ($currentURL === 'http://127.0.0.1:8000/admin/product'){
+
+        if ($currentURL === 'admin/product'){
             $this->emit('searchOut3', $this->searchinput);
         }
-        if ($currentURL === 'http://127.0.0.1:8000/admin/noprocessorder'){
+        if ($currentURL === 'admin/noprocessorder'||$currentURL === 'admin/canceledorder'){
             $this->emit('searchOut5', $this->searchinput);
         }
     }
