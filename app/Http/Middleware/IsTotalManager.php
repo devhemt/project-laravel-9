@@ -21,7 +21,7 @@ class IsTotalManager
         {
             return $next($request);
         }else{
-            return redirect()->back();
+            return redirect('admin/login');
         }
     }
 }

@@ -31,6 +31,8 @@ class Revenuecard extends Component
                 ->select('detail_invoice.*')
                 ->where('status.status','=',5)
                 ->whereDay('detail_invoice.created_at', '=', $now->day)
+                ->whereMonth('detail_invoice.created_at', '=', $now->month)
+                ->whereYear('detail_invoice.created_at', '=', $now->year)
                 ->get();
             $productnoacc = DB::table('detail_invoice_noacc')
                 ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
@@ -38,6 +40,8 @@ class Revenuecard extends Component
                 ->select('detail_invoice_noacc.*')
                 ->where('status_noacc.status','=',5)
                 ->whereDay('detail_invoice_noacc.created_at', '=', $now->day)
+                ->whereMonth('detail_invoice_noacc.created_at', '=', $now->month)
+                ->whereYear('detail_invoice_noacc.created_at', '=', $now->year)
                 ->get();
             $amount = 0;
             foreach ($product as $p){
@@ -52,6 +56,8 @@ class Revenuecard extends Component
                 ->select('detail_invoice.*')
                 ->where('status.status','=',5)
                 ->whereDay('detail_invoice.created_at', '=', $now->day-1)
+                ->whereMonth('detail_invoice.created_at', '=', $now->month)
+                ->whereYear('detail_invoice.created_at', '=', $now->year)
                 ->get();
             $productnoacc1 = DB::table('detail_invoice_noacc')
                 ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
@@ -59,6 +65,8 @@ class Revenuecard extends Component
                 ->select('detail_invoice_noacc.*')
                 ->where('status_noacc.status','=',5)
                 ->whereDay('detail_invoice_noacc.created_at', '=', $now->day-1)
+                ->whereMonth('detail_invoice_noacc.created_at', '=', $now->month)
+                ->whereYear('detail_invoice_noacc.created_at', '=', $now->year)
                 ->get();
             $amount1 = 0;
             foreach ($product1 as $p){
@@ -109,6 +117,7 @@ class Revenuecard extends Component
                 ->select('detail_invoice.*')
                 ->where('status.status','=',5)
                 ->whereMonth('detail_invoice.created_at', '=', $now->month)
+                ->whereYear('detail_invoice.created_at', '=', $now->year)
                 ->get();
             $productnoacc = DB::table('detail_invoice_noacc')
                 ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
@@ -116,6 +125,7 @@ class Revenuecard extends Component
                 ->select('detail_invoice_noacc.*')
                 ->where('status_noacc.status','=',5)
                 ->whereMonth('detail_invoice_noacc.created_at', '=', $now->month)
+                ->whereYear('detail_invoice_noacc.created_at', '=', $now->year)
                 ->get();
             $amount = 0;
             foreach ($product as $p){
@@ -130,6 +140,7 @@ class Revenuecard extends Component
                 ->select('detail_invoice.*')
                 ->where('status.status','=',5)
                 ->whereMonth('detail_invoice.created_at', '=', $now->month-1)
+                ->whereYear('detail_invoice.created_at', '=', $now->year)
                 ->get();
             $productnoacc1 = DB::table('detail_invoice_noacc')
                 ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
@@ -137,6 +148,7 @@ class Revenuecard extends Component
                 ->select('detail_invoice_noacc.*')
                 ->where('status_noacc.status','=',5)
                 ->whereMonth('detail_invoice_noacc.created_at', '=', $now->month-1)
+                ->whereYear('detail_invoice_noacc.created_at', '=', $now->year)
                 ->get();
             $amount1 = 0;
             foreach ($product1 as $p){

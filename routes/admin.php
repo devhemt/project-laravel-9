@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -51,3 +52,5 @@ Route::get('/product/{id}',[\App\Http\Controllers\ProductController::class,'show
 Route::get('/profile',[\App\Http\Controllers\ProfileController::class,'index']);
 Route::post('/profile',[\App\Http\Controllers\ProfileController::class,'store']);
 Route::get('/profile/create',[\App\Http\Controllers\ProfileController::class,'create']);
+
+

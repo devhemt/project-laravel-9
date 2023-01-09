@@ -36,13 +36,19 @@ class Truecart extends Component
         $this->phone = $datas[2];
         $this->address = $datas[3];
         $userId = Session::getId();
-        $cusnoacc = Customer_noacc::create([
-            'sessionid'=> $userId,
-            'name' => $this->name,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'address' => $this->address
-        ]);
+
+        $usernoacc = DB::table('customer_noacc')
+            ->where('sessionid','=',$userId)
+            ->count();
+        if ($usernoacc == 0){
+            $cusnoacc = Customer_noacc::create([
+                'sessionid'=> $userId,
+                'name' => $this->name,
+                'email' => $this->email,
+                'phone' => $this->phone,
+                'address' => $this->address
+            ]);
+        }
     }
 
     public function deleteCartItem($itemsid){

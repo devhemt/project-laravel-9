@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------
-  >>> TABLE OF CONTENTS:
+  >>> TABLE OF CONTENTS:HTL
   ----------------------------------------------------------------
   # Base
   # Sections
@@ -1974,10 +1974,12 @@ a.btn-two::after {
 
 .sin-product.style-three .pro-img-three .img-hover img{
     height: 485px;
+    width: 325px;
     object-fit: cover;
 }
 .sin-product.style-three .pro-img-three .img-show img{
     height: 485px;
+    width: 325px;
     object-fit: cover;
 }
 
@@ -4617,7 +4619,7 @@ border-bottom-right-radius: 16px;
 }
 
 .quickview img {
-  height: 87%;
+  height: 515px;
   object-fit:cover;
   width: 400px;
 }

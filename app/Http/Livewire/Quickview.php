@@ -72,6 +72,8 @@ class Quickview extends Component
     {
         $this->getid = $id;
         $this->open = "open";
+        $this->getsize = null;
+        $this->color = null;
     }
 
     public function render()
@@ -104,16 +106,13 @@ class Quickview extends Component
             ->where('itemsid','=',$this->thisid)
             ->where('size','=',$this->getsize)
             ->where('color','=',$this->color)
-            ->get();
-        $totalamount = 0;
-        foreach ($detail as $d){
-            $totalamount += $d->amount;
-        }
-        if ($this->quantity >= $totalamount){
+            ->sum('amount');
+
+        if ($this->quantity >= $detail){
             $this->checked = 'Sold out';
-            $this->quantity = $totalamount;
+            $this->quantity = $detail;
         }
-        if ($this->quantity < $totalamount){
+        if ($this->quantity < $detail){
             $this->checked = 'Stock';
         }
         return view('livewire.client.quickview',['prdQV' => $this->prdQV,'showchose'=>$this->color,'thisid'=>$this->thisid]);

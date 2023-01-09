@@ -20,6 +20,11 @@ class Showproduct extends Component
     public $top = null;
     public $iddelete;
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function yes(){
         $affected = DB::table('items')
             ->where('prd_id','=', $this->iddelete)

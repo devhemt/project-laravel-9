@@ -55,7 +55,7 @@
                                 <div class="col-12">
                                     <select name="role" id="inputState" class="form-select">
                                         <option value="1" selected>Director</option>
-                                        <option value="2">Total-Manager</option>
+                                        <option value="2">Total Manager</option>
                                         <option value="3">Import Manager</option>
                                         <option value="4">Order Manager canceled</option>
                                         <option value="5">Order Manager noprocess</option>

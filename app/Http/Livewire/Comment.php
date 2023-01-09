@@ -9,7 +9,7 @@ use Livewire\Component;
 class Comment extends Component
 {
     public $prd_id;
-    public $cmt;
+    public $cmt,$count;
     public $comments;
 
     protected $rules = [
@@ -62,6 +62,12 @@ class Comment extends Component
             ->select('comments.*','customer.name')
             ->where('itemsid', $this->prd_id)
             ->latest()->limit(5)->get();
+
+        $this->count = DB::table('comments')
+            ->join('customer', 'comments.cus_id','=', 'customer.cus_id')
+            ->select('comments.*','customer.name')
+            ->where('itemsid', $this->prd_id)
+            ->count();
 
         return view('livewire.client.comment');
     }
