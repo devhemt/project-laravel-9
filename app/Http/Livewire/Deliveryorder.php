@@ -15,6 +15,11 @@ class Deliveryorder extends Component
     public $options = ['Have account','No account'];
     public $type = 'Have account';
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function searchOut5($searchinput){
         $this->checksearch = $searchinput;
     }

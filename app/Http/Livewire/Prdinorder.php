@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use App\Mail\MailNotify;
+use Illuminate\Support\Facades\Mail;
 
 class Prdinorder extends Component
 {
@@ -39,7 +41,23 @@ class Prdinorder extends Component
     }
 
     public function forward(){
-        if (Auth::guard('user')->user()->role != 4 && Auth::guard('user')->user()->role != 8){
+        if ($this->type == 'Have account'){
+            $invoice_status = DB::table('invoice')
+                ->join('status', 'invoice.invoice_id','=', 'status.invoice_id')
+                ->join('customer', 'customer.cus_id','=', 'invoice.cusid')
+                ->select('invoice.*','status.status','customer.email')
+                ->where('invoice.invoice_id', $this->idinvoice)
+                ->first();
+        }else{
+            $invoice_status = DB::table('invoice_noacc')
+                ->join('status_noacc', 'invoice_noacc.invoice_id','=', 'status_noacc.invoice_id')
+                ->join('customer_noacc', 'customer_noacc.cus_id','=', 'invoice_noacc.cusid')
+                ->select('invoice_noacc.*','status_noacc.status','customer_noacc.email')
+                ->where('invoice_noacc.invoice_id', $this->idinvoice)
+                ->first();
+        }
+
+        if ($invoice_status->status != 0 && $invoice_status->status != 5){
             $status = DB::table('status')
                 ->where('invoice_id','=', $this->idinvoice)
                 ->first();
@@ -47,6 +65,32 @@ class Prdinorder extends Component
                 ->where('invoice_id','=', $this->idinvoice)
                 ->update(['status' => ($status->status+1)]);
         }
+        if ($invoice_status->status == 1){
+            $data = [
+                "order" => "Your order was comfirmed",
+                "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+            ];
+        }
+        if ($invoice_status->status == 2){
+            $data = [
+                "order" => "Your order is packing",
+                "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+            ];
+        }
+        if ($invoice_status->status == 3){
+            $data = [
+                "order" => "Your order is delivery",
+                "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+            ];
+        }
+        if ($invoice_status->status == 4){
+            $data = [
+                "order" => "Your order was successful",
+                "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+            ];
+        }
+        //                        $invoice_status->email
+        Mail::to("thucc6696@gmail.com")->send(new MailNotify($data));
         $this->redirectOrder();
     }
 
@@ -60,6 +104,12 @@ class Prdinorder extends Component
                 ->where('invoice_id','=', $this->idinvoice)
                 ->update(['status' => 0]);
         }
+        $data = [
+            "order" => "Your order was canceled",
+            "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+        ];
+        //                        $invoice_status->email
+        Mail::to("thucc6696@gmail.com")->send(new MailNotify($data));
         $this->redirectOrder();
     }
     public function no1(){

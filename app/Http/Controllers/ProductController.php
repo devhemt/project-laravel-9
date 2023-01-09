@@ -189,7 +189,7 @@ class ProductController extends Controller
         foreach ($file as $f) {
             $f->move('images', $f->getClientOriginalName());
         }
-
+        $file2 = $request->prd_image->move('images', $request->prd_image->getClientOriginalName());
 
 
         $size = $request->get('prd_size');

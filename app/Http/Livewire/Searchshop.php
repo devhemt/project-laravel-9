@@ -2,13 +2,15 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Searchshop extends Component
 {
     public $searching = "";
     public $autoSearch;
-    public $style1,$style2,$style3,$style4,$style5;
+    public $style1,$style2,$style3,$style4;
+    public $men, $women, $kid, $ass;
 
     public function search(){
         $this->emit('searchResult', $this->autoSearch);
@@ -19,7 +21,6 @@ class Searchshop extends Component
         $this->style2 = null;
         $this->style3 = null;
         $this->style4 = null;
-        $this->style5 = null;
     }
 
     public function find($category){
@@ -68,23 +69,37 @@ class Searchshop extends Component
                 $this->onlNull();
                 $this->style4 = 700;
                 break;
-            case 5:
-                if ($this->searching == "Others clothing"){
-                    $this->searching = null;
-                    $this->onlNull();
-                    $category = 0;
-                    break;
-                }
-                $this->searching = "Others clothing";
-                $this->onlNull();
-                $this->style5 = 700;
-                break;
         }
         $this->emit('CategorySearch', $category);
     }
 
     public function render()
     {
+        $this->men = DB::table('items')
+            ->join('category', 'items.prd_id','=', 'category.prdid')
+            ->select('items.*','category.categories')
+            ->where('block','=', null)
+            ->where('category.categories','=', 1)
+            ->count();
+        $this->women = DB::table('items')
+            ->join('category', 'items.prd_id','=', 'category.prdid')
+            ->select('items.*','category.categories')
+            ->where('block','=', null)
+            ->where('category.categories','=', 2)
+            ->count();
+        $this->kid = DB::table('items')
+            ->join('category', 'items.prd_id','=', 'category.prdid')
+            ->select('items.*','category.categories')
+            ->where('block','=', null)
+            ->where('category.categories','=', 3)
+            ->count();
+        $this->ass = DB::table('items')
+            ->join('category', 'items.prd_id','=', 'category.prdid')
+            ->select('items.*','category.categories')
+            ->where('block','=', null)
+            ->where('category.categories','=', 4)
+            ->count();
+
         return view('livewire.client.searchshop');
     }
 }

@@ -20,6 +20,11 @@ class Noprocessorder extends Component
         $this->checksearch = $searchinput;
     }
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         if ($this->type == 'Have account'){

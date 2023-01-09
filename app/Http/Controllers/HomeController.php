@@ -26,8 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        return view('client.index');
+        if (!session()->exists('access')){
+            session(['access' => false]);
+            $flag = true;
+        }else{
+            $flag = false;
+        }
+        return view('client.index',[
+            'flag' => $flag,
+        ]);
 
     }
 

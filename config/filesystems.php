@@ -56,6 +56,13 @@ return [
             'throw' => false,
         ],
 
+        'my' => [
+            'driver' => 'local',
+            'root'   => public_path('imagesadmin'),
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
     ],
 
     /*

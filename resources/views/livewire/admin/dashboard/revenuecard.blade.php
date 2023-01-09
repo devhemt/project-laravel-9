@@ -1,16 +1,16 @@
-<div class="col-xxl-4 col-md-6">
+<div class="col-xxl-4 col-xl-12">
     <div class="card info-card revenue-card">
 
         <div class="filter">
-            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-chevron-down ms-auto"></i></a>
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                 <li class="dropdown-header text-start">
                     <h6>Filter</h6>
                 </li>
 
-                <li><a wire:click="today" class="dropdown-item" href="#">Today</a></li>
-                <li><a wire:click="thismonth" class="dropdown-item" href="#">This Month</a></li>
-                <li><a wire:click="thisyear" class="dropdown-item" href="#">This Year</a></li>
+                <li><a wire:click="today" class="dropdown-item">Today</a></li>
+                <li><a wire:click="thismonth" class="dropdown-item">This Month</a></li>
+                <li><a wire:click="thisyear" class="dropdown-item">This Year</a></li>
             </ul>
         </div>
 

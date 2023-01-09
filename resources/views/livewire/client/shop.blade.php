@@ -12,14 +12,6 @@
 
                 <div class="mid-wrapper">
                     <h5 class="pro-title"><a href="{{url('product/'.$p->prd_id)}}">{{$p->name}}</a></h5>
-                    <div class="color-variation">
-                        <ul>
-                            <li><i class="fas fa-circle"></i></li>
-                            <li><i class="fas fa-circle"></i></li>
-                            <li><i class="fas fa-circle"></i></li>
-                            <li><i class="fas fa-circle"></i></li>
-                        </ul>
-                    </div>
                     <p>
                         @if($p->categories == 1)
                         Men

@@ -178,11 +178,7 @@
 											</div>
 										</div>
 										<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-											<div class="prod-bottom-tab-sin">
-												<h5>Review (1)</h5>
-                                                @livewire('comment',['prd_id' => $id])
-
-											</div>
+                                            @livewire('comment',['prd_id' => $id])
 										</div>
 									@endforeach
                                     @endif

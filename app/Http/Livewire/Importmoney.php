@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use Carbon\Carbon;
 
-class Salescard extends Component
+class Importmoney extends Component
 {
     public $time = 'Today';
     public $amount, $percent, $status, $class;
@@ -33,7 +33,7 @@ class Salescard extends Component
                 ->whereDay('detail_invoice.created_at', '=', $now->day)
                 ->whereMonth('detail_invoice.created_at', '=', $now->month)
                 ->whereYear('detail_invoice.created_at', '=', $now->year)
-                ->sum('amount');
+                ->get();
             $productnoacc = DB::table('detail_invoice_noacc')
                 ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
                 ->join('status_noacc', 'status_noacc.invoice_id','=', 'invoice_noacc.invoice_id')
@@ -42,9 +42,14 @@ class Salescard extends Component
                 ->whereDay('detail_invoice_noacc.created_at', '=', $now->day)
                 ->whereMonth('detail_invoice_noacc.created_at', '=', $now->month)
                 ->whereYear('detail_invoice_noacc.created_at', '=', $now->year)
-                ->sum('amount');
-            $amount = $product+$productnoacc;
-
+                ->get();
+            $amount = 0;
+            foreach ($product as $p){
+                $amount += $p->amount*$p->price_one;
+            }
+            foreach ($productnoacc as $p){
+                $amount += $p->amount*$p->price_one;
+            }
             $product1 = DB::table('detail_invoice')
                 ->join('invoice', 'invoice.invoice_id','=', 'detail_invoice.invoice_id')
                 ->join('status', 'status.invoice_id','=', 'invoice.invoice_id')
@@ -53,7 +58,7 @@ class Salescard extends Component
                 ->whereDay('detail_invoice.created_at', '=', $now->day-1)
                 ->whereMonth('detail_invoice.created_at', '=', $now->month)
                 ->whereYear('detail_invoice.created_at', '=', $now->year)
-                ->sum('amount');
+                ->get();
             $productnoacc1 = DB::table('detail_invoice_noacc')
                 ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
                 ->join('status_noacc', 'status_noacc.invoice_id','=', 'invoice_noacc.invoice_id')
@@ -62,9 +67,14 @@ class Salescard extends Component
                 ->whereDay('detail_invoice_noacc.created_at', '=', $now->day-1)
                 ->whereMonth('detail_invoice_noacc.created_at', '=', $now->month)
                 ->whereYear('detail_invoice_noacc.created_at', '=', $now->year)
-                ->sum('amount');
-            $amount1 = $product1+$productnoacc1;
-
+                ->get();
+            $amount1 = 0;
+            foreach ($product1 as $p){
+                $amount1 += $p->amount*$p->price_one;
+            }
+            foreach ($productnoacc1 as $p){
+                $amount1 += $p->amount*$p->price_one;
+            }
             if ($amount!=0 && $amount1 !=0){
                 if ($amount > $amount1){
                     $this->percent = (($amount-$amount1)/$amount1)*100;
@@ -108,7 +118,7 @@ class Salescard extends Component
                 ->where('status.status','=',5)
                 ->whereMonth('detail_invoice.created_at', '=', $now->month)
                 ->whereYear('detail_invoice.created_at', '=', $now->year)
-                ->sum('amount');
+                ->get();
             $productnoacc = DB::table('detail_invoice_noacc')
                 ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
                 ->join('status_noacc', 'status_noacc.invoice_id','=', 'invoice_noacc.invoice_id')
@@ -116,9 +126,14 @@ class Salescard extends Component
                 ->where('status_noacc.status','=',5)
                 ->whereMonth('detail_invoice_noacc.created_at', '=', $now->month)
                 ->whereYear('detail_invoice_noacc.created_at', '=', $now->year)
-                ->sum('amount');
-            $amount = $product+$productnoacc;
-
+                ->get();
+            $amount = 0;
+            foreach ($product as $p){
+                $amount += $p->amount*$p->price_one;
+            }
+            foreach ($productnoacc as $p){
+                $amount += $p->amount*$p->price_one;
+            }
             $product1 = DB::table('detail_invoice')
                 ->join('invoice', 'invoice.invoice_id','=', 'detail_invoice.invoice_id')
                 ->join('status', 'status.invoice_id','=', 'invoice.invoice_id')
@@ -126,7 +141,7 @@ class Salescard extends Component
                 ->where('status.status','=',5)
                 ->whereMonth('detail_invoice.created_at', '=', $now->month-1)
                 ->whereYear('detail_invoice.created_at', '=', $now->year)
-                ->sum('amount');
+                ->get();
             $productnoacc1 = DB::table('detail_invoice_noacc')
                 ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
                 ->join('status_noacc', 'status_noacc.invoice_id','=', 'invoice_noacc.invoice_id')
@@ -134,9 +149,14 @@ class Salescard extends Component
                 ->where('status_noacc.status','=',5)
                 ->whereMonth('detail_invoice_noacc.created_at', '=', $now->month-1)
                 ->whereYear('detail_invoice_noacc.created_at', '=', $now->year)
-                ->sum('amount');
-            $amount1 = $product1+$productnoacc1;
-
+                ->get();
+            $amount1 = 0;
+            foreach ($product1 as $p){
+                $amount1 += $p->amount*$p->price_one;
+            }
+            foreach ($productnoacc1 as $p){
+                $amount1 += $p->amount*$p->price_one;
+            }
             if ($amount!=0 && $amount1 !=0){
                 if ($amount > $amount1){
                     $this->percent = (($amount-$amount1)/$amount1)*100;
@@ -179,32 +199,42 @@ class Salescard extends Component
                 ->select('detail_invoice.*')
                 ->where('status.status','=',5)
                 ->whereYear('detail_invoice.created_at', '=', $now->year)
-                ->sum('amount');
+                ->get();
             $productnoacc = DB::table('detail_invoice_noacc')
                 ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
                 ->join('status_noacc', 'status_noacc.invoice_id','=', 'invoice_noacc.invoice_id')
                 ->select('detail_invoice_noacc.*')
                 ->where('status_noacc.status','=',5)
                 ->whereYear('detail_invoice_noacc.created_at', '=', $now->year)
-                ->sum('amount');
-            $amount = $product+$productnoacc;
-
+                ->get();
+            $amount = 0;
+            foreach ($product as $p){
+                $amount += $p->amount*$p->price_one;
+            }
+            foreach ($productnoacc as $p){
+                $amount += $p->amount*$p->price_one;
+            }
             $product1 = DB::table('detail_invoice')
                 ->join('invoice', 'invoice.invoice_id','=', 'detail_invoice.invoice_id')
                 ->join('status', 'status.invoice_id','=', 'invoice.invoice_id')
                 ->select('detail_invoice.*')
                 ->where('status.status','=',5)
                 ->whereYear('detail_invoice.created_at', '=', $now->year-1)
-                ->sum('amount');
+                ->get();
             $productnoacc1 = DB::table('detail_invoice_noacc')
                 ->join('invoice_noacc', 'invoice_noacc.invoice_id','=', 'detail_invoice_noacc.invoice_id')
                 ->join('status_noacc', 'status_noacc.invoice_id','=', 'invoice_noacc.invoice_id')
                 ->select('detail_invoice_noacc.*')
                 ->where('status_noacc.status','=',5)
                 ->whereYear('detail_invoice_noacc.created_at', '=', $now->year-1)
-                ->sum('amount');
-            $amount1 = $product1+$productnoacc1;
-
+                ->get();
+            $amount1 = 0;
+            foreach ($product1 as $p){
+                $amount1 += $p->amount*$p->price_one;
+            }
+            foreach ($productnoacc1 as $p){
+                $amount1 += $p->amount*$p->price_one;
+            }
             if ($amount!=0 && $amount1 !=0){
                 if ($amount > $amount1){
                     $this->percent = (($amount-$amount1)/$amount1)*100;
@@ -239,6 +269,6 @@ class Salescard extends Component
             }
             $this->amount=$amount;
         }
-        return view('livewire.admin.dashboard.salescard');
+        return view('livewire.admin.dashboard.importmoney');
     }
 }

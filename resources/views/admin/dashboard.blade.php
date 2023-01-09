@@ -22,7 +22,8 @@
             <!-- Sales Card -->
               @livewire('salescard')
             <!-- End Sales Card -->
-
+{{--              import money--}}
+              @livewire('importmoney')
             <!-- Revenue Card -->
               @livewire('revenuecard')
             <!-- End Revenue Card -->
