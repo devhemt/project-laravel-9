@@ -281,9 +281,8 @@ var THEMEIM = THEMEIM || {};
         var mask = '<div class="mask-overlay">';
 
         // $('.quickview-wrapper').addClass('open');
-        console.log("asds");
         $(mask).hide().appendTo('body').fadeIn('fast');
-        $('.mask-overlay, .close-qv').on('click', function() {
+        $('.close-qv').on('click', function() {
           $('.quickview-wrapper').removeClass('open');
           $('.mask-overlay').remove();
         });

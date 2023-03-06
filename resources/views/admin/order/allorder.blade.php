@@ -2,15 +2,16 @@
 @section('content')
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Product manager</h1>
+            <h1>Order manager</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url('admin')}}">Dashboard</a></li>
                     <li class="breadcrumb-item">Order</li>
-                    <li class="breadcrumb-item active">Detail of order</li>
+                    <li class="breadcrumb-item active">All order</li>
                 </ol>
             </nav>
-        </div>
+            @livewire('searchadmin',['currentURL' => $currentURL])
+        </div><!-- End Page Title -->
 
         <section class="section">
             <div class="row">
@@ -18,10 +19,9 @@
                 <div class="col-lg-12">
 
                     <div class="card">
-                        @livewire('prdinorder',['idinvoice'=>$id,'type'=>$type])
+                        @livewire('allorder')
                     </div>
 
-                    @livewire('maskloadadmin')
                 </div>
             </div>
         </section>

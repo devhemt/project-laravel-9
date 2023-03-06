@@ -85,12 +85,35 @@
         </ul>
       </li><!-- End Components Nav -->
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#cus-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-menu-button-wide"></i><span>Customer</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="cus-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ url('admin/product') }}">
+                        <i class="bi bi-circle"></i><span>Show products</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('admin/product/create') }}">
+                        <i class="bi bi-circle"></i><span>Add product</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Orders</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
+            <li>
+                <a href="{{url('admin/allorder')}}">
+                    <i class="bi bi-circle"></i><span>All order</span>
+                </a>
+            </li>
+            <li>
             <a href="{{url('admin/canceledorder')}}">
               <i class="bi bi-circle"></i><span>Canceled order</span>
             </a>
@@ -133,6 +156,11 @@
               <i class="bi bi-circle"></i><span>Create account</span>
             </a>
           </li>
+            <li>
+                <a href="{{url('admin/profile/showall')}}">
+                    <i class="bi bi-circle"></i><span>All account</span>
+                </a>
+            </li>
         </ul>
       </li><!-- End Tables Nav -->
 

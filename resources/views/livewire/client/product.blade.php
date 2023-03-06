@@ -3,6 +3,9 @@
     <div class="product-details">
         <h5 class="pro-title"><a href="#">{{$product[0]->name}}</a></h5>
         <span class="price">Price : ${{$product[0]->price}}</span>
+        <div wire:poll.500ms.visible="amount" class="size-variation">
+            <span>Amount :{{$amount}}</span>
+        </div>
         <div class="size-variation">
             <span>size :</span>
             <select wire:model="getsize" name="size-value">

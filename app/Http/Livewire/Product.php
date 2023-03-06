@@ -17,8 +17,13 @@ class Product extends Component
     public $color;
     public $quantity = 1;
     public $checked = 'Stock';
+    public $amount = "countting";
 
-
+    public function amount(){
+        $this->amount = DB::table('items')
+            ->join('properties', 'items.prd_id','=', 'properties.itemsid')
+            ->where('prd_id', $this->prd_id)->sum('properties.amount');
+    }
 
     public function getColor($input){
         $this->color = $input;

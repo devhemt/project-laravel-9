@@ -44,6 +44,8 @@ Route::get('/test',[\App\Http\Controllers\InvoiceController::class,'test']);
 Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
 Route::get('/product/{id}',[\App\Http\Controllers\HomeController::class, 'show']);
 
+Route::get('/order/{id}',[\App\Http\Controllers\CustomerController::class, 'view']);
+
 Route::match(['get', 'post'], '/login', [\App\Http\Controllers\CustomerController::class, 'login'])->name('login');
 
 

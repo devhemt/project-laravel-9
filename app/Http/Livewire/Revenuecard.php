@@ -81,7 +81,7 @@ class Revenuecard extends Component
                     $this->status = 'increase';
                     $this->class = 'text-success';
                 }
-                if ($amount = $amount1){
+                if ($amount == $amount1){
                     $this->percent = 0;
                     $this->status = 'the same';
                     $this->class = 'text-success';
@@ -163,7 +163,7 @@ class Revenuecard extends Component
                     $this->status = 'increase';
                     $this->class = 'text-success';
                 }
-                if ($amount = $amount1){
+                if ($amount == $amount1){
                     $this->percent = 0;
                     $this->status = 'the same';
                     $this->class = 'text-success';
@@ -214,6 +214,7 @@ class Revenuecard extends Component
             foreach ($productnoacc as $p){
                 $amount += $p->amount*$p->price_one;
             }
+
             $product1 = DB::table('detail_invoice')
                 ->join('invoice', 'invoice.invoice_id','=', 'detail_invoice.invoice_id')
                 ->join('status', 'status.invoice_id','=', 'invoice.invoice_id')
@@ -241,7 +242,7 @@ class Revenuecard extends Component
                     $this->status = 'increase';
                     $this->class = 'text-success';
                 }
-                if ($amount = $amount1){
+                if ($amount == $amount1){
                     $this->percent = 0;
                     $this->status = 'the same';
                     $this->class = 'text-success';

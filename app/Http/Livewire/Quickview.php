@@ -20,7 +20,24 @@ class Quickview extends Component
     public $quantity = 1;
     public $checked = 'Stock';
     public $open = null;
+    public $amount;
 
+    public function updated($quantity)
+    {
+        if ($this->quantity < 1){
+            $this->quantity = 1;
+        }
+    }
+
+    public function close(){
+        $this->open = null;
+    }
+
+    public function amount(){
+        $this->amount = DB::table('items')
+            ->join('properties', 'items.prd_id','=', 'properties.itemsid')
+            ->where('prd_id', $this->getid)->sum('properties.amount');
+    }
 
     public function getColor($input){
         $this->color = $input;
@@ -74,6 +91,8 @@ class Quickview extends Component
         $this->open = "open";
         $this->getsize = null;
         $this->color = null;
+        $this->quantity = 1;
+        $this->amount = "countting";
     }
 
     public function render()
