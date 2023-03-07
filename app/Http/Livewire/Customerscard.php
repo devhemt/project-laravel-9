@@ -55,7 +55,7 @@ class Customerscard extends Component
                     $this->status = 'increase';
                     $this->class = 'text-success';
                 }
-                if ($amount = $amount1){
+                if ($amount == $amount1){
                     $this->percent = 0;
                     $this->status = 'the same';
                     $this->class = 'text-success';
@@ -111,7 +111,7 @@ class Customerscard extends Component
                     $this->status = 'increase';
                     $this->class = 'text-success';
                 }
-                if ($amount = $amount1){
+                if ($amount == $amount1){
                     $this->percent = 0;
                     $this->status = 'the same';
                     $this->class = 'text-success';
@@ -163,7 +163,7 @@ class Customerscard extends Component
                     $this->status = 'increase';
                     $this->class = 'text-success';
                 }
-                if ($amount = $amount1){
+                if ($amount == $amount1){
                     $this->percent = 0;
                     $this->status = 'the same';
                     $this->class = 'text-success';

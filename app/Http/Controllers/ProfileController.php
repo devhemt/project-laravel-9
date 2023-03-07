@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
+    public function showall(){
+        return view('admin.account.showall');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
+    public function view($id){
+        return view('client.order',[
+            'id' => $id
+        ]);
+    }
+
     public function login(Request $request)
     {
         if(Auth::guard('customer')->check()){

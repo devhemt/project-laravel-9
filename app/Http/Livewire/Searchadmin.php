@@ -16,7 +16,7 @@ class Searchadmin extends Component
         if ($currentURL === 'admin/product'){
             $this->emit('searchOut3', $this->searchinput);
         }
-        if ($currentURL === 'admin/noprocessorder'||$currentURL === 'admin/canceledorder'){
+        if ($currentURL != 'admin/product'){
             $this->emit('searchOut5', $this->searchinput);
         }
     }

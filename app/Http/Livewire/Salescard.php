@@ -71,7 +71,7 @@ class Salescard extends Component
                     $this->status = 'increase';
                     $this->class = 'text-success';
                 }
-                if ($amount = $amount1){
+                if ($amount == $amount1){
                     $this->percent = 0;
                     $this->status = 'the same';
                     $this->class = 'text-success';
@@ -187,6 +187,7 @@ class Salescard extends Component
                 ->where('status_noacc.status','=',5)
                 ->whereYear('detail_invoice_noacc.created_at', '=', $now->year)
                 ->sum('amount');
+
             $amount = $product+$productnoacc;
 
             $product1 = DB::table('detail_invoice')
@@ -211,7 +212,7 @@ class Salescard extends Component
                     $this->status = 'increase';
                     $this->class = 'text-success';
                 }
-                if ($amount = $amount1){
+                if ($amount == $amount1){
                     $this->percent = 0;
                     $this->status = 'the same';
                     $this->class = 'text-success';
@@ -222,6 +223,7 @@ class Salescard extends Component
                     $this->class = 'text-danger';
                 }
             }
+
             if ($amount != 0 && $amount1 ==0){
                 $this->percent= 100;
                 $this->status = 'no sales last year';
@@ -237,6 +239,7 @@ class Salescard extends Component
                 $this->status = 'no sales last year and this year';
                 $this->class = 'text-success';
             }
+
             $this->amount=$amount;
         }
         return view('livewire.admin.dashboard.salescard');

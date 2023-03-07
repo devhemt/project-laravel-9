@@ -13,6 +13,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/img/fav-icons/favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/img/fav-icons/favicon-16x16.png')}}">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
     <!-- Dependency Styles -->
     <link rel="stylesheet" href="{{ asset('dependencies/bootstrap/css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('dependencies/fontawesome/css/fontawesome-all.min.css') }}" type="text/css">
@@ -67,7 +69,7 @@
                                 </li>
 {{--                                <li><a href="{{ url('/shop') }}">Men</a></li>--}}
 {{--                                <li><a href="{{ url('/shop') }}">Woman</a></li>--}}
-                                <li class="has-child"><a href="{{ url('/shop') }}">Collections</a>
+                                <li class="has-child"><a href="{{ url('/shop') }}">Shop</a>
                                     <div class="mega-menu">
                                         <div class="mega-catagory per-20">
                                             <h4><a class="font-red" href="shop.html">Woman Dresses</a></h4>
@@ -97,14 +99,14 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="has-child"><a href="{{ url('/shop') }}">Shop</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="{{ url('/prd') }}">Product details</a></li>
-                                        <li><a href="{{ url('/cart') }}">Cart</a></li>
-                                        <li><a href="{{ url('/acc') }}">Order</a></li>
-                                        <li><a href="{{ url('/singleblog') }}">Single blog</a></li>
-                                    </ul>
-                                </li>
+{{--                                <li class="has-child"><a href="{{ url('/shop') }}">Shop</a>--}}
+{{--                                    <ul class="sub-menu">--}}
+{{--                                        <li><a href="{{ url('/prd') }}">Product details</a></li>--}}
+{{--                                        <li><a href="{{ url('/cart') }}">Cart</a></li>--}}
+{{--                                        <li><a href="{{ url('/acc') }}">Order</a></li>--}}
+{{--                                        <li><a href="{{ url('/singleblog') }}">Single blog</a></li>--}}
+{{--                                    </ul>--}}
+{{--                                </li>--}}
                                 <li><a href="{{ url('/blog') }}">Blog</a></li>
                                 <li><a href="{{ url('/contact') }}">CONTACT</a></li>
                             </ul>

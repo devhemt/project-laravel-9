@@ -69,8 +69,12 @@ class Kernel extends HttpKernel
         'isdirector'=> \App\Http\Middleware\IsDirector::class,
         'isdeliverymanager'=> \App\Http\Middleware\IsDeliveryManager::class,
         'isimportmanager'=> \App\Http\Middleware\IsImportManager::class,
-        'isordermanager'=> \App\Http\Middleware\IsOrderManager4::class,
+        'isordermanager4'=> \App\Http\Middleware\IsOrderManager4::class,
         'istotalmanager'=> \App\Http\Middleware\IsTotalManager::class,
+        'isordermanager5'=> \App\Http\Middleware\IsOrderManager5::class,
+        'isordermanager6'=> \App\Http\Middleware\IsOrderManager6::class,
+        'isordermanager7'=> \App\Http\Middleware\IsOrderManager7::class,
+        'isordermanager8'=> \App\Http\Middleware\IsOrderManager8::class,
 
     ];
 

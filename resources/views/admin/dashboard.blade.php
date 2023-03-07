@@ -16,7 +16,7 @@
       <div class="row">
 
         <!-- Left side columns -->
-        <div class="col-lg-8">
+        <div class="col-lg-12">
           <div class="row">
 
             <!-- Sales Card -->
@@ -25,7 +25,7 @@
 {{--              import money--}}
               @livewire('importmoney')
             <!-- Revenue Card -->
-              @livewire('revenuecard')
+{{--              @livewire('revenuecard')--}}
             <!-- End Revenue Card -->
 
             <!-- Customers Card -->
@@ -43,20 +43,20 @@
           </div>
         </div><!-- End Left side columns -->
 
-        <!-- Right side columns -->
-        <div class="col-lg-4">
+{{--        <!-- Right side columns -->--}}
+{{--        <div class="col-lg-4">--}}
 
-          <!-- Recent Activity -->
-            @livewire('recentact')
-          <!-- End Recent Activity -->
+{{--          <!-- Recent Activity -->--}}
+{{--            @livewire('recentact')--}}
+{{--          <!-- End Recent Activity -->--}}
 
-          <!-- Budget Report -->
-            @livewire('budgetreport')
-          <!-- End Budget Report -->
+{{--          <!-- Budget Report -->--}}
+{{--            @livewire('budgetreport')--}}
+{{--          <!-- End Budget Report -->--}}
 
 
 
-        </div><!-- End Right side columns -->
+{{--        </div><!-- End Right side columns -->--}}
 
       </div>
     </section>

@@ -67,6 +67,13 @@ class InvoiceController extends Controller
             'currentURL'=> $currentURL,
         ]);
     }
+    public function index6()
+    {
+        $currentURL = \Route::current()->uri();
+        return view('admin.order.allorder',[
+            'currentURL'=> $currentURL,
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.

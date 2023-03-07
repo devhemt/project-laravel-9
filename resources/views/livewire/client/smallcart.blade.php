@@ -9,10 +9,10 @@
                 <img alt="" src="{{url('images/'.$c['attributes'][0]['image'])}}">
             </div>
             <div class="cart-title">
-                <p><a href="">{{$c['name']}}</a></p>
+                <p><a href="{{url('product/'.$c['id'])}}">{{$c['name']}}</a></p>
             </div>
             <div class="cart-price">
-                <p>{{$c['quantity']}} x ${{$c['price']}} </p>
+                <p>{{$c['quantity']}} x ${{$c['price']}}</p>
             </div>
             <a href="#"><i wire:click="deleteCartItem({{$c['id']}})" class="fa fa-times"></i></a>
         </div>

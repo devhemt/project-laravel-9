@@ -513,7 +513,7 @@ p {
   height: 16px;
   line-height: 15px;
   position: absolute;
-  right: 2px;
+  right: 15px;
   text-align: right;
   top: 38px;
   width: 16px;
@@ -3641,6 +3641,17 @@ border-bottom-right-radius: 16px;
   cursor: pointer;
 }
 
+.visitor-form-container form .danger{
+    display: block;
+    width:100%;
+    background-color: rgba(255, 0, 0, 0.99);
+}
+.visitor-form-container form .no{
+    display: block;
+    width:100%;
+    background-color: rgba(115, 255, 0, 0.99);
+}
+
 /* visitor end */
 
 .account-details {
@@ -4255,6 +4266,25 @@ border-bottom-right-radius: 16px;
   width: 100%;
   height: 100%;
   z-index: 999;
+}
+
+.mask-popup {
+    content: '';
+    position: fixed;
+    background: rgba(0, 0, 0, 0.8);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 888;
+}
+.btn-popup {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 .close-qv {
